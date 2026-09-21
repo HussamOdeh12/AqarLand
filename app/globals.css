@@ -1,22 +1,66 @@
 @import "tailwindcss";
 
-:root {
-  --color-brand-sand: #c5a880;
-  --color-brand-gold: #b89558;
+@layer base {
+  :root {
+    --bg-graphite: #181A1B;
+    --bg-charcoal: #2C2F33;
+    --bg-limestone: #F7F5F0;
+    --bg-limestone-surface: #EFECE6;
+    --border-divider: #E2DED6;
+    --border-dark-divider: #2C2F33;
+    --accent-terracotta: #C85A32;
+    --accent-terracotta-hover: #B84D28;
+    --accent-slate: #628E9D;
+  }
 }
 
 html {
   scroll-behavior: smooth;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 body {
-  background-color: #0b1120;
-  color: #0f172a;
+  background-color: #F7F5F0;
+  color: #181A1B;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
 
+html.dark body {
+  background-color: #181A1B;
+  color: #F7F5F0;
+}
+
 [dir="rtl"] {
   text-align: start;
+}
+
+/* Structural borders and geometry - Stitch clean architectural lines */
+.border-stitch {
+  border-color: #E2DED6;
+}
+
+html.dark .border-stitch {
+  border-color: #2C2F33;
+}
+
+/* Custom scrollbar matching Stitch palette */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #EFECE6;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: #181A1B;
+}
+::-webkit-scrollbar-thumb {
+  background: #E2DED6;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #2C2F33;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C85A32;
 }

@@ -1,25 +1,46 @@
 import type { Metadata, Viewport } from 'next';
+import { Playfair_Display, Plus_Jakarta_Sans, Noto_Sans_Arabic } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/lib/language-context';
+import { ThemeProvider } from '@/lib/theme-context';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import JsonLd from '@/components/JsonLd';
 
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
+
+const notoSansArabic = Noto_Sans_Arabic({
+  subsets: ['arabic'],
+  variable: '--font-arabic',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
+
 export const metadata: Metadata = {
-  title: 'Aqar Land | Contracting & Maintenance in UAE',
+  title: 'Aqar Land | General Contracting, Maintenance & Support Services UAE',
   description:
-    "Premier general contracting, building maintenance, and support services in Abu Dhabi and across the UAE. Constructing tomorrow's landmarks with Emirati pride.",
+    "Aqar Land: Premier general contracting, building maintenance, and support services in Abu Dhabi and across the UAE. Architectural precision and enduring execution.",
   keywords: [
     'Aqar Land',
     'عقار لاند',
     'General Contracting Abu Dhabi',
     'Building Maintenance UAE',
-    'Residential Building Construction',
-    'Commercial Building Construction',
-    'Industrial Construction UAE',
-    'Emergency Building Maintenance 24/7',
-    'Annual Maintenance Contracts Abu Dhabi',
-    'Compliance and Safety Audits UAE',
+    'Project Execution UAE',
+    'Design and Structural Analysis',
+    'Project Management Abu Dhabi',
+    'Support Services UAE',
   ],
   authors: [{ name: 'Aqarland Contracting & Transporting Est.' }],
   creator: 'Aqarland Contracting & Transporting Est.',
@@ -32,9 +53,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Aqar Land | Contracting & Maintenance in UAE',
+    title: 'Aqar Land | General Contracting, Maintenance & Support Services UAE',
     description:
-      "Premier general contracting, building maintenance, and support services in Abu Dhabi and across the UAE. Constructing tomorrow's landmarks with Emirati pride.",
+      "Aqar Land: Premier general contracting, building maintenance, and support services in Abu Dhabi and across the UAE. Architectural precision and enduring execution.",
     url: 'https://aqarland.ae',
     siteName: 'Aqar Land',
     locale: 'en_AE',
@@ -50,9 +71,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Aqar Land | Contracting & Maintenance in UAE',
+    title: 'Aqar Land | General Contracting, Maintenance & Support Services UAE',
     description:
-      "Premier general contracting, building maintenance, and support services in Abu Dhabi and across the UAE. Constructing tomorrow's landmarks with Emirati pride.",
+      "Aqar Land: Premier general contracting, building maintenance, and support services in Abu Dhabi and across the UAE. Architectural precision and enduring execution.",
     site: '@AqarLand195',
     creator: '@AqarLand195',
     images: [
@@ -73,7 +94,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0b1120',
+  themeColor: '#181A1B',
   width: 'device-width',
   initialScale: 1,
 };
@@ -84,20 +105,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" dir="ltr" className="scroll-smooth">
+    <html
+      lang="en"
+      dir="ltr"
+      className={`${playfair.variable} ${plusJakarta.variable} ${notoSansArabic.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
       <head>
         <JsonLd />
       </head>
-      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-amber-500 selection:text-slate-950 font-sans" suppressHydrationWarning>
-        <LanguageProvider>
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </LanguageProvider>
+      <body className="min-h-screen flex flex-col font-sans bg-[#F7F5F0] text-[#181A1B] dark:bg-[#181A1B] dark:text-[#F7F5F0] transition-colors duration-200">
+        <ThemeProvider>
+          <LanguageProvider>
+            <div className="flex min-h-screen flex-col">
+              <Navbar />
+              <main id="main-content" className="flex-1">
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

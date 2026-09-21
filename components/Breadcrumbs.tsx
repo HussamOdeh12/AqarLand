@@ -35,15 +35,15 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   };
 
   return (
-    <nav aria-label="Breadcrumb" className="py-3 px-4 sm:px-6 lg:px-8 border-b border-slate-200/80 bg-slate-50/70 text-xs">
+    <nav aria-label="Breadcrumb" className="py-3 px-6 lg:px-12 border-b border-[#E2DED6] dark:border-[#2C2F33] bg-[#EFECE6]/50 dark:bg-[#181A1B] text-xs">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbListSchema) }}
       />
-      <div className="mx-auto max-w-7xl flex items-center gap-1.5 text-slate-500 overflow-x-auto whitespace-nowrap">
+      <div className="mx-auto max-w-7xl flex items-center gap-2 text-[#2C2F33]/70 dark:text-[#E2DED6]/70 overflow-x-auto whitespace-nowrap font-sans">
         <Link
           href="/"
-          className="inline-flex items-center gap-1 text-slate-600 hover:text-amber-700 transition-colors"
+          className="inline-flex items-center gap-1.5 hover:text-[#C85A32] transition-colors"
         >
           <Home className="h-3.5 w-3.5" />
           <span>{lang === 'ar' ? 'الرئيسية' : 'Home'}</span>
@@ -53,17 +53,17 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
           const isLast = idx === items.length - 1;
           return (
             <React.Fragment key={idx}>
-              <ChevronIcon className="h-3 w-3 text-slate-400 shrink-0" />
+              <ChevronIcon className="h-3 w-3 text-[#2C2F33]/40 dark:text-[#E2DED6]/40 shrink-0" />
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="text-slate-600 hover:text-amber-700 transition-colors"
+                  className="hover:text-[#C85A32] transition-colors"
                 >
-                  {lang === 'ar' ? item.labelAr : item.labelEn}
+                  {isAr ? item.labelAr : item.labelEn}
                 </Link>
               ) : (
-                <span className="font-semibold text-slate-900" aria-current="page">
-                  {lang === 'ar' ? item.labelAr : item.labelEn}
+                <span className="text-[#181A1B] dark:text-[#F7F5F0] font-semibold">
+                  {isAr ? item.labelAr : item.labelEn}
                 </span>
               )}
             </React.Fragment>

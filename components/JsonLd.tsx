@@ -1,5 +1,5 @@
 import React from 'react';
-import { COMPANY_DETAILS, SERVICE_CATEGORIES } from '@/lib/company-data';
+import { COMPANY_DETAILS, STITCH_SERVICES } from '@/lib/company-data';
 
 export default function JsonLd() {
   const schemaOrganization = {
@@ -11,8 +11,7 @@ export default function JsonLd() {
     url: 'https://aqarland.ae',
     logo: 'https://aqarland.ae/icons/icons_0/aqarland%20logo.ico',
     description:
-      'Premier general contracting, building maintenance, and support services in Abu Dhabi and across the UAE. Constructing tomorrow’s landmarks with Emirati pride.',
-    foundingDate: '2000',
+      'Premier general contracting, building maintenance, and project execution services in Abu Dhabi and across the UAE.',
     telephone: '+971-2-6588909',
     email: COMPANY_DETAILS.contact.email,
     address: {
@@ -29,7 +28,7 @@ export default function JsonLd() {
       {
         '@type': 'ContactPoint',
         telephone: '+971-50-4754070',
-        contactType: 'emergency',
+        contactType: 'customer service',
         areaServed: 'AE',
         availableLanguage: ['en', 'ar'],
       },
@@ -49,43 +48,21 @@ export default function JsonLd() {
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Aqar Land Engineering & Contracting Services',
-      itemListElement: SERVICE_CATEGORIES.map((cat) => ({
-        '@type': 'OfferCatalog',
-        name: cat.titleEn,
-        itemListElement: cat.services.map((srv) => ({
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: srv.titleEn,
-            description: srv.shortDescEn,
-          },
-        })),
+      itemListElement: STITCH_SERVICES.map((cat) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: cat.titleEn,
+          description: cat.shortDescEn,
+        },
       })),
     },
   };
 
-  const schemaWebSite = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Aqar Land - Contracting & Maintenance Services UAE',
-    url: 'https://aqarland.ae',
-    inLanguage: ['en', 'ar'],
-    publisher: {
-      '@type': 'Organization',
-      name: COMPANY_DETAILS.brandNameEn,
-    },
-  };
-
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrganization) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaWebSite) }}
-      />
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrganization) }}
+    />
   );
 }

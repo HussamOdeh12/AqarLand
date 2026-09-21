@@ -3,252 +3,197 @@
 import React from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/language-context';
-import { UI_STRINGS } from '@/lib/translations';
-import { COMPANY_DETAILS, SERVICE_CATEGORIES } from '@/lib/company-data';
+import { COMPANY_DETAILS } from '@/lib/company-data';
 import {
-  Building2,
   Phone,
   Mail,
   MapPin,
-  Clock,
-  ExternalLink,
-  ShieldCheck,
+  ArrowRight,
+  ArrowLeft,
 } from 'lucide-react';
 
 export default function Footer() {
   const { lang, isAr } = useLanguage();
+  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
+
+  const currentYear = new Date().getFullYear();
+
+  const servicesList = [
+    { num: '01', titleEn: 'General Contracting', titleAr: 'المقاولات العامة', href: '/services#01-general-contracting' },
+    { num: '02', titleEn: 'Building Maintenance', titleAr: 'صيانة المباني', href: '/services#02-building-maintenance' },
+    { num: '03', titleEn: 'Support Services', titleAr: 'خدمات الدعم والمساندة', href: '/services#03-support-services' },
+    { num: '04', titleEn: 'Project Management', titleAr: 'إدارة المشاريع', href: '/services#04-project-management' },
+    { num: '05', titleEn: 'Design & Structural Analysis', titleAr: 'التصميم والتحليل الإنشائي', href: '/services#05-design-structural-analysis' },
+    { num: '06', titleEn: 'Project Execution', titleAr: 'تنفيذ المشاريع', href: '/services#06-project-execution' },
+  ];
+
+  const quickLinks = [
+    { labelEn: 'Home', labelAr: 'الرئيسية', href: '/' },
+    { labelEn: 'About Us', labelAr: 'من نحن', href: '/about' },
+    { labelEn: 'Services', labelAr: 'خدماتنا', href: '/services' },
+    { labelEn: 'Projects', labelAr: 'المشاريع', href: '/projects' },
+    { labelEn: 'Quality & Approach', labelAr: 'الجودة والمنهجية', href: '/quality' },
+    { labelEn: 'Contact', labelAr: 'اتصل بنا', href: '/contact' },
+    { labelEn: 'Privacy Policy', labelAr: 'سياسة الخصوصية', href: '/privacy-policy' },
+    { labelEn: 'Terms & Conditions', labelAr: 'الشروط والأحكام', href: '/terms-conditions' },
+  ];
 
   return (
-    <footer className="w-full bg-slate-950 text-slate-300 border-t border-slate-800" aria-labelledby="footer-heading">
-      <h2 id="footer-heading" className="sr-only">
-        {isAr ? 'تذييل الموقع' : 'Footer Navigation'}
-      </h2>
+    <footer className="w-full border-t border-[#E2DED6] dark:border-[#2C2F33] bg-[#EFECE6] dark:bg-[#181A1B] text-[#181A1B] dark:text-[#F7F5F0] transition-colors duration-200">
+      {/* Top Pre-Footer Callout / Architectural Statement */}
+      <div className="border-b border-[#E2DED6] dark:border-[#2C2F33] py-16 px-6 lg:px-12">
+        <div className="mx-auto max-w-7xl flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="max-w-2xl space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+              {isAr ? 'عقار لاند • دولة الإمارات' : 'AQAR LAND • UNITED ARAB EMIRATES'}
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#181A1B] dark:text-[#F7F5F0]">
+              {isAr
+                ? 'تشكيل رؤيتك مع أفضل خدمات البناء والتصميم الملهم'
+                : 'Shaping Your Vision with Premier Construction and Inspired Design'}
+            </h2>
+          </div>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-3 bg-[#C85A32] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors self-start md:self-auto"
+          >
+            <span>{isAr ? 'ابدأ مشروعك معنا' : 'Start a Project With Us'}</span>
+            <ArrowIcon className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
 
-      {/* Main Footer Grid */}
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
-          {/* Col 1: Corporate Profile */}
-          <div className="space-y-4">
+      {/* Main Footer Navigation Grid */}
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+          {/* Brand & Corporate Overview */}
+          <div className="lg:col-span-4 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-600 text-slate-950 font-black">
-                <Building2 className="h-5 w-5" />
-              </div>
-              <div>
-                <span className="block font-serif text-lg font-bold text-white">
-                  AQAR LAND
-                </span>
-                <span className="block text-xs font-semibold text-amber-400 font-arabic">
+              <div className="h-4 w-4 bg-[#C85A32]" />
+              <span className="font-serif text-2xl font-bold tracking-widest text-[#181A1B] dark:text-[#F7F5F0]">
+                AQAR LAND
+              </span>
+              {isAr && (
+                <span className="text-lg font-bold text-[#C85A32] font-arabic">
                   عقار لاند
                 </span>
-              </div>
+              )}
             </div>
 
-            <p className="text-sm leading-relaxed text-slate-400">
-              {UI_STRINGS.footer.aboutText[lang]}
+            <p className="text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans max-w-sm">
+              {isAr
+                ? 'مؤسسة عقارلاند للمقاولات العامة والنقل. خدمات مقاولات عامة شاملة، صيانة مباني، وإدارة مشاريع هندسية في أبوظبي وجميع أنحاء دولة الإمارات العربية المتحدة.'
+                : 'Aqarland Contracting & Transporting Est. Dedicated general contracting, facility upkeep, and engineering execution across Abu Dhabi and the United Arab Emirates.'}
             </p>
 
-            <div className="inline-flex items-center gap-2 rounded border border-slate-800 bg-slate-900/80 px-3 py-1.5 text-xs text-amber-400">
-              <ShieldCheck className="h-4 w-4 text-emerald-400" />
-              <span>
-                {isAr ? 'تأسست عام 2000 في أبوظبي' : 'Established in 2000 • Abu Dhabi, UAE'}
-              </span>
-            </div>
-
-            {/* Social Links */}
-            <div className="pt-2">
-              <span className="block text-xs uppercase font-medium text-slate-500 mb-2">
-                {isAr ? 'تابعنا' : 'Official Channels'}
-              </span>
-              <div className="flex items-center gap-3">
-                <a
-                  href={COMPANY_DETAILS.social.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded bg-slate-900 p-2 text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition-colors"
-                  aria-label="Aqar Land Facebook"
-                >
-                  <span className="text-xs font-bold">FB</span>
-                </a>
-                <a
-                  href={COMPANY_DETAILS.social.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded bg-slate-900 p-2 text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition-colors"
-                  aria-label="Aqar Land Instagram"
-                >
-                  <span className="text-xs font-bold">IG</span>
-                </a>
-                <a
-                  href={COMPANY_DETAILS.social.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded bg-slate-900 p-2 text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition-colors"
-                  aria-label="Aqar Land X Twitter"
-                >
-                  <span className="text-xs font-bold">X</span>
-                </a>
-              </div>
+            <div className="pt-2 text-xs text-[#2C2F33]/70 dark:text-[#E2DED6]/70">
+              <p className="font-semibold">{COMPANY_DETAILS.legalNameEn}</p>
+              <p className="font-arabic font-medium mt-1">{COMPANY_DETAILS.legalNameAr}</p>
             </div>
           </div>
 
-          {/* Col 2: Services */}
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-4">
-              {UI_STRINGS.footer.services[lang]}
-            </h3>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <Link
-                  href="/general-contracting"
-                  className="text-slate-400 hover:text-amber-400 transition-colors"
-                >
-                  {UI_STRINGS.nav.generalContracting[lang]}
-                </Link>
-                <div className="text-xs text-slate-500 mt-0.5">
-                  {isAr ? 'سكني • تجاري • صناعي' : 'Residential • Commercial • Industrial'}
-                </div>
-              </li>
-              <li className="pt-1">
-                <Link
-                  href="/building-maintenance"
-                  className="text-slate-400 hover:text-amber-400 transition-colors"
-                >
-                  {UI_STRINGS.nav.buildingMaintenance[lang]}
-                </Link>
-                <div className="text-xs text-slate-500 mt-0.5">
-                  {isAr ? 'صيانة دورية • طوارئ 24/7 • عقود سنوية' : 'Routine • 24/7 Emergency • AMC Contracts'}
-                </div>
-              </li>
-              <li className="pt-1">
-                <Link
-                  href="/support-services"
-                  className="text-slate-400 hover:text-amber-400 transition-colors"
-                >
-                  {UI_STRINGS.nav.supportServices[lang]}
-                </Link>
-                <div className="text-xs text-slate-500 mt-0.5">
-                  {isAr ? 'إدارة المشاريع • تدقيق السلامة • التدريب' : 'Project Management • Safety Audits • Training'}
-                </div>
-              </li>
+          {/* Core Categories */}
+          <div className="lg:col-span-4 space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32] block">
+              {isAr ? 'الخدمات التخصصية' : 'Core Disciplines'}
+            </span>
+            <ul className="space-y-3 pt-2">
+              {servicesList.map((srv) => (
+                <li key={srv.num}>
+                  <Link
+                    href={srv.href}
+                    className="group flex items-baseline gap-3 text-sm text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] dark:hover:text-[#C85A32] transition-colors"
+                  >
+                    <span className="text-xs font-mono text-[#628E9D] group-hover:text-[#C85A32] transition-colors">
+                      {srv.num}
+                    </span>
+                    <span>{isAr ? srv.titleAr : srv.titleEn}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Col 3: Quick Links & Legal */}
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-4">
-              {UI_STRINGS.footer.quickLinks[lang]}
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/" className="text-slate-400 hover:text-amber-400 transition-colors">
-                  {UI_STRINGS.nav.home[lang]}
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-slate-400 hover:text-amber-400 transition-colors">
-                  {UI_STRINGS.nav.aboutUs[lang]}
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-slate-400 hover:text-amber-400 transition-colors">
-                  {UI_STRINGS.nav.contactUs[lang]}
-                </Link>
-              </li>
-              <li className="pt-2 border-t border-slate-800">
-                <Link
-                  href="/privacy-policy"
-                  className="text-slate-400 hover:text-amber-400 transition-colors"
-                >
-                  {UI_STRINGS.footer.privacyNotice[lang]}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms-conditions"
-                  className="text-slate-400 hover:text-amber-400 transition-colors"
-                >
-                  {UI_STRINGS.footer.conditionsOfUse[lang]}
-                </Link>
-              </li>
+          {/* Quick Directory */}
+          <div className="lg:col-span-2 space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32] block">
+              {isAr ? 'دليل الموقع' : 'Navigation'}
+            </span>
+            <ul className="space-y-2.5 pt-2">
+              {quickLinks.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-[#2C2F33]/90 dark:text-[#E2DED6]/90 hover:text-[#C85A32] dark:hover:text-[#C85A32] transition-colors"
+                  >
+                    {isAr ? item.labelAr : item.labelEn}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Col 4: Verified Contact Info */}
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-4">
-              {isAr ? 'المقر ومعلومات الاتصال' : 'Abu Dhabi Headquarters'}
-            </h3>
-            <address className="not-italic space-y-3 text-sm text-slate-400">
+          {/* Direct Contact HQ */}
+          <div className="lg:col-span-2 space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32] block">
+              {isAr ? 'المقر الرئيسي' : 'Headquarters'}
+            </span>
+            <div className="space-y-3 pt-2 text-sm text-[#2C2F33] dark:text-[#E2DED6]">
               <div className="flex items-start gap-2.5">
-                <MapPin className="h-4 w-4 text-amber-500 shrink-0 mt-1" />
-                <div>
-                  <span className="block font-medium text-slate-300">
-                    {COMPANY_DETAILS.headquarters.addressEn}
-                  </span>
-                  <a
-                    href={COMPANY_DETAILS.headquarters.googleMapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-amber-400 hover:underline mt-0.5"
-                  >
-                    <span>{UI_STRINGS.contact.openInMaps[lang]}</span>
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
-                </div>
+                <MapPin className="h-4 w-4 text-[#C85A32] shrink-0 mt-0.5" />
+                <span className="text-xs leading-relaxed">
+                  {isAr ? 'أبوظبي، الإمارات العربية المتحدة' : 'Abu Dhabi, United Arab Emirates'}
+                </span>
               </div>
-
               <div className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 text-amber-500 shrink-0" />
-                <div>
-                  <div className="text-xs text-slate-500">{isAr ? 'الهاتف الثابت' : 'Landline'}</div>
-                  <a
-                    href={COMPANY_DETAILS.contact.landlineTel}
-                    className="font-medium text-slate-300 hover:text-amber-400 transition-colors"
-                    dir="ltr"
-                  >
-                    {COMPANY_DETAILS.contact.landlineFormatted}
-                  </a>
-                </div>
+                <Phone className="h-4 w-4 text-[#C85A32] shrink-0" />
+                <a
+                  href={COMPANY_DETAILS.contact.landlineTel}
+                  className="text-xs hover:text-[#C85A32] transition-colors"
+                  dir="ltr"
+                >
+                  {COMPANY_DETAILS.contact.landlineFormatted}
+                </a>
               </div>
-
               <div className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 text-emerald-400 shrink-0" />
-                <div>
-                  <div className="text-xs text-slate-500">{isAr ? 'الهاتف المتحرك' : 'Mobile / 24-7'}</div>
-                  <a
-                    href={COMPANY_DETAILS.contact.mobileTel}
-                    className="font-medium text-slate-300 hover:text-emerald-400 transition-colors"
-                    dir="ltr"
-                  >
-                    {COMPANY_DETAILS.contact.mobileFormatted}
-                  </a>
-                </div>
+                <Phone className="h-4 w-4 text-[#C85A32] shrink-0" />
+                <a
+                  href={COMPANY_DETAILS.contact.mobileTel}
+                  className="text-xs hover:text-[#C85A32] transition-colors"
+                  dir="ltr"
+                >
+                  {COMPANY_DETAILS.contact.mobileFormatted}
+                </a>
               </div>
-
               <div className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 text-amber-500 shrink-0" />
-                <div>
-                  <div className="text-xs text-slate-500">{isAr ? 'البريد الإلكتروني' : 'Email Us'}</div>
-                  <a
-                    href={COMPANY_DETAILS.contact.emailMailto}
-                    className="font-medium text-slate-300 hover:text-amber-400 transition-colors"
-                  >
-                    {COMPANY_DETAILS.contact.email}
-                  </a>
-                </div>
+                <Mail className="h-4 w-4 text-[#C85A32] shrink-0" />
+                <a
+                  href={COMPANY_DETAILS.contact.emailMailto}
+                  className="text-xs hover:text-[#C85A32] transition-colors truncate"
+                >
+                  {COMPANY_DETAILS.contact.email}
+                </a>
               </div>
-            </address>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>{UI_STRINGS.footer.rightsReserved[lang]}</p>
-          <p className="text-slate-500">
-            {isAr
-              ? 'بناء معالم الغد بفخر إماراتي • أبوظبي'
-              : "Constructing Tomorrow's Landmarks with Emirati Pride • Abu Dhabi, UAE"}
+      {/* Bottom Bar */}
+      <div className="border-t border-[#E2DED6] dark:border-[#2C2F33] py-8 px-6 lg:px-12">
+        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#2C2F33]/60 dark:text-[#E2DED6]/60">
+          <p>
+            © {currentYear} {COMPANY_DETAILS.legalNameEn}. {isAr ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
           </p>
+          <div className="flex items-center gap-6">
+            <Link href="/privacy-policy" className="hover:text-[#C85A32] transition-colors">
+              {isAr ? 'سياسة الخصوصية' : 'Privacy Policy'}
+            </Link>
+            <span>•</span>
+            <Link href="/terms-conditions" className="hover:text-[#C85A32] transition-colors">
+              {isAr ? 'الشروط والأحكام' : 'Terms & Conditions'}
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

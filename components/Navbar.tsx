@@ -4,25 +4,19 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/language-context';
-import { UI_STRINGS } from '@/lib/translations';
-import { COMPANY_DETAILS } from '@/lib/company-data';
+import { useTheme } from '@/lib/theme-context';
 import {
-  Phone,
-  Mail,
-  MapPin,
   Menu,
   X,
-  Globe,
+  Sun,
+  Moon,
   ArrowRight,
   ArrowLeft,
-  Building2,
-  HardHat,
-  Wrench,
-  ShieldCheck,
 } from 'lucide-react';
 
 export default function Navbar() {
   const { lang, setLang, isAr } = useLanguage();
+  const { isDark, toggleTheme } = useTheme();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -31,181 +25,155 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { href: '/', label: UI_STRINGS.nav.home[lang] },
-    { href: '/general-contracting', label: UI_STRINGS.nav.generalContracting[lang] },
-    { href: '/building-maintenance', label: UI_STRINGS.nav.buildingMaintenance[lang] },
-    { href: '/support-services', label: UI_STRINGS.nav.supportServices[lang] },
-    { href: '/about', label: UI_STRINGS.nav.aboutUs[lang] },
-    { href: '/contact', label: UI_STRINGS.nav.contactUs[lang] },
+    { href: '/', labelEn: 'Home', labelAr: 'الرئيسية' },
+    { href: '/about', labelEn: 'About', labelAr: 'من نحن' },
+    { href: '/services', labelEn: 'Services', labelAr: 'خدماتنا' },
+    { href: '/projects', labelEn: 'Projects', labelAr: 'المشاريع' },
+    { href: '/quality', labelEn: 'Quality & Approach', labelAr: 'الجودة والمنهجية' },
+    { href: '/contact', labelEn: 'Contact', labelAr: 'اتصل بنا' },
   ];
 
   const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-slate-950 text-slate-100 shadow-md">
-      {/* Top Utility Bar */}
-      <div className="border-b border-slate-800/80 bg-slate-900/90 text-xs text-slate-300">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            <div className="flex items-center gap-1.5 text-slate-300">
-              <MapPin className="h-3.5 w-3.5 text-amber-500" />
-              <span>{UI_STRINGS.topbar.abuDhabi[lang]}</span>
-            </div>
-            <div className="hidden sm:flex items-center gap-1.5 text-slate-400">
-              <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-              <span>{UI_STRINGS.topbar.workingHours[lang]}</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <a
-              href={COMPANY_DETAILS.contact.landlineTel}
-              className="flex items-center gap-1.5 font-medium text-slate-200 hover:text-amber-400 transition-colors"
-              title="Abu Dhabi Landline"
-            >
-              <Phone className="h-3.5 w-3.5 text-amber-500" />
-              <span dir="ltr">{COMPANY_DETAILS.contact.landlineFormatted}</span>
-            </a>
-
-            <div className="h-3 w-px bg-slate-700" />
-
-            {/* Language Switcher */}
-            <button
-              id="nav-lang-toggle"
-              type="button"
-              onClick={toggleLanguage}
-              className="inline-flex items-center gap-1.5 rounded border border-slate-700 bg-slate-800/80 px-2.5 py-0.5 text-xs font-semibold text-amber-400 hover:border-amber-500/50 hover:bg-slate-800 transition-colors"
-              aria-label={isAr ? 'Switch to English' : 'التبديل إلى العربية'}
-            >
-              <Globe className="h-3 w-3" />
-              <span>{UI_STRINGS.topbar.switchLang[lang]}</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navigation Bar */}
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        {/* Brand Logo */}
+    <header className="sticky top-0 z-50 w-full border-b border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0]/95 dark:bg-[#181A1B]/95 backdrop-blur-md transition-colors duration-200">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-12">
+        {/* Brand Logo - Stitch architectural wordmark */}
         <Link
           href="/"
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-3 tracking-wider group focus:outline-none"
           aria-label="Aqar Land Homepage"
         >
-          <div className="relative flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-to-br from-amber-600 to-amber-700 text-slate-950 font-black shadow-inner shadow-amber-300/30">
-            <Building2 className="h-6 w-6 text-slate-950" />
-            <span className="absolute -bottom-1 -right-1 h-3.5 w-3.5 rounded-full border-2 border-slate-950 bg-amber-400" />
+          {/* Subtle architectural geometric mark */}
+          <div className="h-5 w-5 bg-[#C85A32] transition-transform duration-300 group-hover:scale-95 flex items-center justify-center">
+            <div className="h-2 w-2 bg-[#F7F5F0] dark:bg-[#181A1B]" />
           </div>
-          <div className="flex flex-col">
-            <div className="flex items-baseline gap-2">
-              <span className="font-serif text-xl font-bold tracking-tight text-white group-hover:text-amber-400 transition-colors">
-                AQAR LAND
-              </span>
-              <span className="text-sm font-bold text-amber-400/90 font-arabic">
-                عقار لاند
-              </span>
-            </div>
-            <span className="text-[10px] font-medium tracking-wider uppercase text-slate-400">
-              {isAr ? 'المقاولات العامة والصيانة' : 'Contracting & Maintenance'}
+          <span className="font-serif text-xl sm:text-2xl font-bold tracking-widest text-[#181A1B] dark:text-[#F7F5F0]">
+            AQAR LAND
+          </span>
+          {isAr && (
+            <span className="text-base font-bold text-[#C85A32] font-arabic me-1">
+              عقار لاند
             </span>
-          </div>
+          )}
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Main Navigation">
+        <nav className="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+            const isActive =
+              link.href === '/'
+                ? pathname === '/'
+                : pathname === link.href || pathname.startsWith(`${link.href}/`);
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
+                className={`text-sm tracking-wide transition-colors py-1 border-b-2 ${
                   isActive
-                    ? 'bg-slate-800 text-amber-400 border border-slate-700'
-                    : 'text-slate-300 hover:bg-slate-900 hover:text-white'
+                    ? 'border-[#C85A32] text-[#C85A32] font-semibold'
+                    : 'border-transparent text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] dark:hover:text-[#C85A32]'
                 }`}
               >
-                {link.label}
+                {isAr ? link.labelAr : link.labelEn}
               </Link>
             );
           })}
         </nav>
 
-        {/* Action Button & Mobile Toggle */}
-        <div className="flex items-center gap-3">
-          <Link
-            id="nav-cta-contact"
-            href="/contact"
-            className="hidden sm:inline-flex items-center gap-2 rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-slate-950 shadow hover:bg-amber-500 transition-colors"
+        {/* Right Controls: EN/AR, Theme Toggle, Start a Project CTA */}
+        <div className="hidden sm:flex items-center gap-5">
+          {/* Language Toggle */}
+          <button
+            id="nav-lang-toggle"
+            type="button"
+            onClick={toggleLanguage}
+            className="text-xs font-semibold tracking-widest text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] transition-colors uppercase px-2 py-1 border border-[#E2DED6] dark:border-[#2C2F33]"
+            aria-label={isAr ? 'Switch to English' : 'التبديل إلى العربية'}
           >
-            <span>{UI_STRINGS.nav.requestQuote[lang]}</span>
-            <ArrowIcon className="h-4 w-4" />
-          </Link>
+            {isAr ? 'EN' : 'AR'}
+          </button>
 
-          {/* Mobile Menu Button */}
+          {/* Theme Toggle */}
+          <button
+            id="nav-theme-toggle"
+            type="button"
+            onClick={toggleTheme}
+            className="p-2 text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] dark:hover:text-[#C85A32] transition-colors border border-[#E2DED6] dark:border-[#2C2F33]"
+            aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+
+          {/* Start a Project Button */}
+          <Link
+            id="nav-cta-start-project"
+            href="/contact"
+            className="inline-flex items-center gap-2 bg-[#C85A32] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#B84D28] transition-colors"
+          >
+            <span>{isAr ? 'ابدأ مشروعك' : 'Start a Project'}</span>
+            <ArrowIcon className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+
+        {/* Mobile Menu & Quick Controls */}
+        <div className="flex sm:hidden items-center gap-3">
+          <button
+            type="button"
+            onClick={toggleLanguage}
+            className="text-xs font-semibold tracking-wider text-[#181A1B] dark:text-[#F7F5F0] px-2 py-1 border border-[#E2DED6] dark:border-[#2C2F33]"
+          >
+            {isAr ? 'EN' : 'AR'}
+          </button>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="p-1.5 text-[#181A1B] dark:text-[#F7F5F0] border border-[#E2DED6] dark:border-[#2C2F33]"
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
           <button
             id="mobile-menu-toggle-btn"
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="inline-flex lg:hidden items-center justify-center rounded-md p-2 text-slate-400 hover:bg-slate-800 hover:text-white focus:outline-none"
+            className="p-2 text-[#181A1B] dark:text-[#F7F5F0] border border-[#E2DED6] dark:border-[#2C2F33]"
             aria-expanded={mobileMenuOpen}
-            aria-label="Toggle main menu"
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-800 bg-slate-950 px-4 pt-3 pb-6 space-y-2">
-          <nav className="space-y-1" aria-label="Mobile Navigation">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2.5 text-base font-medium transition-colors ${
-                    isActive
-                      ? 'bg-slate-800 text-amber-400 font-semibold'
-                      : 'text-slate-200 hover:bg-slate-900 hover:text-white'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+        <div className="lg:hidden border-t border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-6 py-6 space-y-4">
+          <nav className="flex flex-col space-y-3">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`py-2 text-base font-medium border-b border-[#E2DED6]/50 dark:border-[#2C2F33] ${
+                  pathname === link.href
+                    ? 'text-[#C85A32] font-semibold'
+                    : 'text-[#181A1B] dark:text-[#F7F5F0]'
+                }`}
+              >
+                {isAr ? link.labelAr : link.labelEn}
+              </Link>
+            ))}
           </nav>
-
-          <div className="pt-4 border-t border-slate-800 space-y-3">
+          <div className="pt-4">
             <Link
-              id="mobile-nav-cta-contact"
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex w-full items-center justify-center gap-2 rounded-md bg-amber-600 px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-amber-500 transition-colors"
+              className="flex w-full items-center justify-center gap-2 bg-[#C85A32] py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#B84D28]"
             >
-              <span>{UI_STRINGS.nav.requestQuote[lang]}</span>
+              <span>{isAr ? 'ابدأ مشروعك' : 'Start a Project'}</span>
               <ArrowIcon className="h-4 w-4" />
             </Link>
-
-            <div className="flex flex-col gap-2 pt-2 text-xs text-slate-400">
-              <a
-                href={COMPANY_DETAILS.contact.mobileTel}
-                className="flex items-center gap-2 text-slate-300"
-              >
-                <Phone className="h-3.5 w-3.5 text-amber-500" />
-                <span>Mobile: {COMPANY_DETAILS.contact.mobileFormatted}</span>
-              </a>
-              <a
-                href={COMPANY_DETAILS.contact.emailMailto}
-                className="flex items-center gap-2 text-slate-300"
-              >
-                <Mail className="h-3.5 w-3.5 text-amber-500" />
-                <span>{COMPANY_DETAILS.contact.email}</span>
-              </a>
-            </div>
           </div>
         </div>
       )}

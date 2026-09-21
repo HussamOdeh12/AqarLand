@@ -5,124 +5,297 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/lib/language-context';
 import { UI_STRINGS } from '@/lib/translations';
-import { COMPANY_DETAILS, SERVICE_CATEGORIES } from '@/lib/company-data';
-import QuoteCalculator from '@/components/QuoteCalculator';
-import ContactForm from '@/components/ContactForm';
-import {
-  Building2,
-  Wrench,
-  HardHat,
-  ShieldCheck,
-  Award,
-  Sparkles,
-  Users,
-  Compass,
-  ArrowRight,
-  ArrowLeft,
-  Phone,
-  Mail,
-  MapPin,
-  CheckCircle2,
-  Clock,
-  ExternalLink,
-} from 'lucide-react';
+import { STITCH_SERVICES, VERIFIED_PROJECTS, COMPANY_DETAILS } from '@/lib/company-data';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 
 export default function HomePage() {
   const { lang, isAr } = useLanguage();
   const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
 
-  const valueIcons: Record<string, React.ElementType> = {
-    ShieldCheck,
-    Award,
-    Sparkles,
-    Users,
-    HardHat,
-    Compass,
-  };
-
-  const divisionIcons: Record<string, React.ElementType> = {
-    Building2,
-    Wrench,
-    HardHat,
-  };
+  const featuredProjects = VERIFIED_PROJECTS.slice(0, 3);
 
   return (
-    <div className="flex flex-col">
-      {/* 1. Hero Section */}
+    <div className="flex flex-col bg-[#F7F5F0] dark:bg-[#181A1B] text-[#181A1B] dark:text-[#F7F5F0] transition-colors duration-200">
+      {/* 1. Large Architectural Hero Section */}
       <section
         id="hero-section"
-        className="relative overflow-hidden bg-slate-950 text-white pt-16 pb-20 lg:pt-24 lg:pb-32 border-b border-slate-800"
+        className="relative border-b border-[#E2DED6] dark:border-[#2C2F33] overflow-hidden"
       >
-        {/* Background Architectural Texture with subtle overlay */}
-        <div className="absolute inset-0 z-0 opacity-20 mix-blend-luminosity pointer-events-none">
-          <Image
-            src="https://images.unsplash.com/photo-1541971875076-8f970d573be6?q=80&w=2000&auto=format&fit=crop"
-            alt="Aqar Land UAE Construction"
-            fill
-            priority
-            className="object-cover object-center"
-            referrerPolicy="no-referrer"
-          />
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:py-28 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 space-y-8">
+              <div className="space-y-3">
+                <span className="inline-block text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+                  {UI_STRINGS.hero.label[lang]}
+                </span>
+                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#181A1B] dark:text-[#F7F5F0] leading-[1.12]">
+                  {UI_STRINGS.hero.title[lang]}
+                </h1>
+              </div>
+
+              <p className="text-base sm:text-lg text-[#2C2F33]/85 dark:text-[#E2DED6]/85 leading-relaxed font-sans max-w-xl">
+                {UI_STRINGS.hero.description[lang]}
+              </p>
+
+              {/* CTAs */}
+              <div className="flex flex-wrap items-center gap-4 pt-4">
+                <Link
+                  id="hero-explore-services-btn"
+                  href="/services"
+                  className="inline-flex items-center gap-3 bg-[#C85A32] px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors"
+                >
+                  <span>{UI_STRINGS.hero.ctaPrimary[lang]}</span>
+                  <ArrowIcon className="h-4 w-4" />
+                </Link>
+
+                <Link
+                  id="hero-view-projects-btn"
+                  href="/projects"
+                  className="inline-flex items-center gap-3 border border-[#E2DED6] dark:border-[#2C2F33] bg-[#EFECE6]/50 dark:bg-[#2C2F33]/30 px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#181A1B] dark:text-[#F7F5F0] hover:border-[#C85A32] hover:text-[#C85A32] transition-colors"
+                >
+                  <span>{UI_STRINGS.hero.ctaSecondary[lang]}</span>
+                </Link>
+              </div>
+
+              {/* Minimal Architectural Location & Registration Stamp */}
+              <div className="pt-8 border-t border-[#E2DED6] dark:border-[#2C2F33] flex flex-wrap items-center gap-8 text-xs text-[#2C2F33]/70 dark:text-[#E2DED6]/70">
+                <div>
+                  <span className="block font-semibold uppercase tracking-wider text-[#C85A32]">
+                    {isAr ? 'المقر' : 'Location'}
+                  </span>
+                  <span className="font-sans">
+                    {isAr ? 'أبوظبي، الإمارات' : 'Abu Dhabi, UAE'}
+                  </span>
+                </div>
+                <div className="h-6 w-px bg-[#E2DED6] dark:bg-[#2C2F33]" />
+                <div>
+                  <span className="block font-semibold uppercase tracking-wider text-[#C85A32]">
+                    {isAr ? 'الكيان القانوني' : 'Legal Entity'}
+                  </span>
+                  <span className="font-sans">
+                    {COMPANY_DETAILS.legalNameEn}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Asymmetrical Architectural Visual Frame */}
+            <div className="lg:col-span-5">
+              <div className="relative border border-[#E2DED6] dark:border-[#2C2F33] p-3 bg-[#EFECE6] dark:bg-[#2C2F33]/40">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#2C2F33]">
+                  <Image
+                    src="https://images.unsplash.com/photo-1541971875076-8f970d573be6?q=80&w=1200&auto=format&fit=crop"
+                    alt="Aqar Land Architectural Construction"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  {/* Subtle architectural overlay */}
+                  <div className="absolute inset-0 bg-[#181A1B]/15" />
+                </div>
+                {/* Structural Metadata Tag */}
+                <div className="mt-3 flex items-center justify-between text-[11px] font-mono tracking-wider text-[#2C2F33]/70 dark:text-[#E2DED6]/70 uppercase">
+                  <span>Abu Dhabi • Structural Works</span>
+                  <span>Ref. AL-2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-900/60 z-0" />
+      </section>
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-6">
-            {/* Emirati Pride & Licensing Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs font-semibold text-amber-400">
-              <ShieldCheck className="h-4 w-4 text-emerald-400" />
-              <span>{UI_STRINGS.hero.badge[lang]}</span>
-            </div>
-
-            {/* Main Headline */}
-            <h1 className="font-serif text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white leading-tight">
-              {UI_STRINGS.hero.tagline[lang]}
-            </h1>
-
-            {/* Authentic Subtitle */}
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
-              {UI_STRINGS.hero.subtitle[lang]}
+      {/* 2. Editorial Philosophy Statement */}
+      <section className="border-b border-[#E2DED6] dark:border-[#2C2F33] py-16 bg-[#EFECE6]/60 dark:bg-[#2C2F33]/20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="max-w-4xl space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+              {isAr ? 'رؤية وفلسفة العمل' : 'VISION & ARCHITECTURAL PHILOSOPHY'}
+            </span>
+            <p className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#181A1B] dark:text-[#F7F5F0] leading-snug">
+              {isAr ? COMPANY_DETAILS.visionPhilosophy.ar : COMPANY_DETAILS.visionPhilosophy.en}
             </p>
+          </div>
+        </div>
+      </section>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Link
-                id="hero-explore-services-btn"
-                href="#services-section"
-                className="inline-flex items-center gap-2 rounded-lg bg-amber-600 px-6 py-3.5 text-sm font-bold text-slate-950 shadow-md hover:bg-amber-500 focus:ring-2 focus:ring-amber-400 focus:outline-none transition-all"
-              >
-                <span>{UI_STRINGS.hero.ctaPrimary[lang]}</span>
-                <ArrowIcon className="h-4 w-4" />
-              </Link>
+      {/* 3. Core Disciplines / Services Grid (The 6 Verified Stitch Categories) */}
+      <section id="services-section" className="border-b border-[#E2DED6] dark:border-[#2C2F33] py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+            <div className="max-w-2xl space-y-3">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+                {UI_STRINGS.servicesOverview.label[lang]}
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
+                {UI_STRINGS.servicesOverview.heading[lang]}
+              </h2>
+              <p className="text-sm sm:text-base text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans">
+                {UI_STRINGS.servicesOverview.subheading[lang]}
+              </p>
+            </div>
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#C85A32] hover:text-[#B84D28] transition-colors pb-1 border-b border-[#C85A32]"
+            >
+              <span>{UI_STRINGS.servicesOverview.viewAll[lang]}</span>
+              <ArrowIcon className="h-3.5 w-3.5" />
+            </Link>
+          </div>
 
-              <Link
-                id="hero-contact-hq-btn"
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/80 px-6 py-3.5 text-sm font-semibold text-slate-200 hover:border-slate-500 hover:text-white transition-all"
+          {/* 6 Services Architectural Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-s border-[#E2DED6] dark:border-[#2C2F33]">
+            {STITCH_SERVICES.map((srv) => (
+              <div
+                key={srv.id}
+                className="group relative flex flex-col justify-between border-b border-e border-[#E2DED6] dark:border-[#2C2F33] p-8 bg-[#F7F5F0] dark:bg-[#181A1B] hover:bg-[#EFECE6] dark:hover:bg-[#2C2F33]/40 transition-colors duration-200"
               >
-                <span>{UI_STRINGS.hero.ctaSecondary[lang]}</span>
-              </Link>
+                <div>
+                  <div className="flex items-center justify-between mb-8">
+                    <span className="font-mono text-xs font-bold text-[#C85A32] tracking-widest">
+                      {srv.number}
+                    </span>
+                    <div className="h-2 w-2 bg-[#E2DED6] dark:bg-[#2C2F33] group-hover:bg-[#C85A32] transition-colors" />
+                  </div>
 
-              <a
-                id="hero-landline-call"
-                href={COMPANY_DETAILS.contact.landlineTel}
-                className="inline-flex items-center gap-2 text-xs font-medium text-slate-300 hover:text-amber-400 px-2 py-2 transition-colors"
+                  <h3 className="font-serif text-2xl font-normal text-[#181A1B] dark:text-[#F7F5F0] mb-4 group-hover:text-[#C85A32] transition-colors">
+                    {isAr ? srv.titleAr : srv.titleEn}
+                  </h3>
+
+                  <p className="text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans mb-8">
+                    {isAr ? srv.shortDescAr : srv.shortDescEn}
+                  </p>
+                </div>
+
+                <div className="pt-6 border-t border-[#E2DED6]/60 dark:border-[#2C2F33]/60 flex items-center justify-between">
+                  <Link
+                    href={`/services#${srv.number.toLowerCase()}-${srv.slug}`}
+                    className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0] group-hover:text-[#C85A32] transition-colors"
+                  >
+                    <span>{isAr ? 'التفاصيل الهندسية' : 'View Specifications'}</span>
+                    <ArrowIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Featured Projects (Selected Works) */}
+      <section id="projects-section" className="border-b border-[#E2DED6] dark:border-[#2C2F33] py-20 lg:py-28 bg-[#EFECE6]/40 dark:bg-[#181A1B]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+            <div className="max-w-2xl space-y-3">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+                {UI_STRINGS.featuredProjects.label[lang]}
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
+                {UI_STRINGS.featuredProjects.heading[lang]}
+              </h2>
+              <p className="text-sm sm:text-base text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans">
+                {UI_STRINGS.featuredProjects.subheading[lang]}
+              </p>
+            </div>
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#C85A32] hover:text-[#B84D28] transition-colors pb-1 border-b border-[#C85A32]"
+            >
+              <span>{UI_STRINGS.featuredProjects.viewAll[lang]}</span>
+              <ArrowIcon className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+
+          {/* Editorial Project Portfolio Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {featuredProjects.map((proj) => (
+              <div
+                key={proj.id}
+                className="group border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#2C2F33]/20 flex flex-col"
               >
-                <Phone className="h-4 w-4 text-amber-500" />
-                <span dir="ltr">{COMPANY_DETAILS.contact.landlineFormatted}</span>
-              </a>
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#2C2F33]">
+                  <Image
+                    src={proj.imageUrl}
+                    alt={proj.titleEn}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-[#181A1B]/20 group-hover:bg-transparent transition-colors" />
+                  <div className="absolute top-4 start-4 bg-[#F7F5F0]/90 dark:bg-[#181A1B]/90 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-[#C85A32]">
+                    {isAr ? proj.categoryAr : proj.categoryEn}
+                  </div>
+                </div>
+
+                <div className="p-6 sm:p-8 flex flex-col justify-between flex-1 space-y-4">
+                  <div>
+                    <span className="text-xs font-mono text-[#628E9D] block mb-2">
+                      {isAr ? proj.locationAr : proj.locationEn}
+                    </span>
+                    <h3 className="font-serif text-xl sm:text-2xl font-normal text-[#181A1B] dark:text-[#F7F5F0] mb-2 group-hover:text-[#C85A32] transition-colors">
+                      {isAr ? proj.titleAr : proj.titleEn}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans">
+                      {isAr ? proj.scopeAr : proj.scopeEn}
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-[#E2DED6] dark:border-[#2C2F33] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#C85A32]">
+                    <span>{isAr ? 'استعراض المشروع' : 'Project Scope'}</span>
+                    <ArrowIcon className="h-3.5 w-3.5" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Quality & Approach Section */}
+      <section className="border-b border-[#E2DED6] dark:border-[#2C2F33] py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            <div className="lg:col-span-5 space-y-6">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+                {UI_STRINGS.approach.label[lang]}
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#181A1B] dark:text-[#F7F5F0] leading-tight">
+                {UI_STRINGS.approach.heading[lang]}
+              </h2>
+              <p className="text-base text-[#2C2F33]/85 dark:text-[#E2DED6]/85 leading-relaxed font-sans">
+                {UI_STRINGS.approach.description[lang]}
+              </p>
+              <div className="pt-4">
+                <Link
+                  href="/quality"
+                  className="inline-flex items-center gap-3 bg-[#C85A32] px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors"
+                >
+                  <span>{isAr ? 'منهجية الجودة والرقابة' : 'Quality Framework'}</span>
+                  <ArrowIcon className="h-4 w-4" />
+                </Link>
+              </div>
             </div>
 
-            {/* Verified Statistics Bar */}
-            <div className="pt-8 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-6">
-              {UI_STRINGS.hero.stats.map((st, i) => (
-                <div key={i} className="flex flex-col">
-                  <span className="font-serif text-2xl sm:text-3xl font-bold text-amber-400">
-                    {st.value}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {UI_STRINGS.approach.principles.map((pr) => (
+                <div
+                  key={pr.num}
+                  className="border border-[#E2DED6] dark:border-[#2C2F33] p-6 sm:p-8 bg-[#EFECE6]/40 dark:bg-[#2C2F33]/20 space-y-4"
+                >
+                  <span className="font-mono text-xs font-bold text-[#C85A32] tracking-widest block">
+                    {pr.num}
                   </span>
-                  <span className="text-xs text-slate-400 mt-1">
-                    {lang === 'ar' ? st.labelAr : st.labelEn}
-                  </span>
+                  <h3 className="font-serif text-xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
+                    {isAr ? pr.titleAr : pr.titleEn}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans">
+                    {isAr ? pr.descAr : pr.descEn}
+                  </p>
                 </div>
               ))}
             </div>
@@ -130,299 +303,33 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Specialized Operational Divisions */}
-      <section
-        id="services-section"
-        className="py-16 sm:py-24 bg-white text-slate-900 border-b border-slate-200"
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="font-serif text-2xl sm:text-4xl font-bold tracking-tight text-slate-950">
-              {UI_STRINGS.divisions.heading[lang]}
-            </h2>
-            <p className="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
-              {UI_STRINGS.divisions.subheading[lang]}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {SERVICE_CATEGORIES.map((cat) => {
-              const IconComponent = divisionIcons[cat.icon] || Building2;
-              return (
-                <div
-                  key={cat.id}
-                  id={`division-card-${cat.id}`}
-                  className="group relative flex flex-col rounded-2xl border border-slate-200 bg-slate-50/50 overflow-hidden shadow-sm hover:shadow-md hover:border-amber-400/60 transition-all"
-                >
-                  {/* Category Image */}
-                  <div className="relative h-52 w-full overflow-hidden bg-slate-900">
-                    <Image
-                      src={cat.imageUrl}
-                      alt={cat.titleEn}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                    <div className="absolute bottom-4 start-4 flex items-center gap-2 text-white">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-600 text-slate-950 font-bold shadow">
-                        <IconComponent className="h-5 w-5" />
-                      </div>
-                      <span className="text-xs font-semibold uppercase tracking-wider text-amber-300">
-                        {lang === 'ar' ? 'قطاع متخصص' : 'Specialist Division'}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Body Content */}
-                  <div className="flex flex-1 flex-col p-6 sm:p-7">
-                    <h3 className="font-serif text-xl font-bold text-slate-900 mb-2">
-                      {lang === 'ar' ? cat.titleAr : cat.titleEn}
-                    </h3>
-                    <p className="text-xs font-semibold text-amber-700 mb-3">
-                      {lang === 'ar' ? cat.subtitleAr : cat.subtitleEn}
-                    </p>
-                    <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-1">
-                      {lang === 'ar' ? cat.descriptionAr : cat.descriptionEn}
-                    </p>
-
-                    {/* Sub-services list */}
-                    <div className="border-t border-slate-200/80 pt-4 mb-6">
-                      <span className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
-                        {lang === 'ar' ? 'تشمل الخدمات:' : 'Core Capabilities:'}
-                      </span>
-                      <ul className="space-y-2">
-                        {cat.services.map((srv) => (
-                          <li
-                            key={srv.id}
-                            className="flex items-start gap-2 text-xs text-slate-700 font-medium"
-                          >
-                            <CheckCircle2 className="h-3.5 w-3.5 text-amber-600 shrink-0 mt-0.5" />
-                            <span>{lang === 'ar' ? srv.titleAr : srv.titleEn}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <Link
-                      id={`division-link-${cat.id}`}
-                      href={`/${cat.slug}`}
-                      className="inline-flex items-center justify-between rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-xs font-bold text-slate-900 group-hover:bg-amber-600 group-hover:border-amber-600 group-hover:text-slate-950 transition-colors"
-                    >
-                      <span>{UI_STRINGS.divisions.viewDivision[lang]}</span>
-                      <ArrowIcon className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Mission, Vision, and Core Values Section */}
-      <section
-        id="mission-vision-section"
-        className="py-16 sm:py-24 bg-slate-900 text-white border-b border-slate-800"
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Mission & Vision Side by Side */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {/* Mission */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-8 sm:p-10 relative overflow-hidden">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30">
-                  <Compass className="h-5 w-5" />
-                </div>
-                <h3 className="font-serif text-2xl font-bold text-white">
-                  {UI_STRINGS.missionVision.missionTitle[lang]}
-                </h3>
-              </div>
-              <p className="text-slate-300 leading-relaxed text-base">
-                {UI_STRINGS.missionVision.missionText[lang]}
-              </p>
-              <div className="mt-6 flex items-center gap-2 text-xs font-semibold text-amber-400">
-                <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                <span>
-                  {isAr ? 'التميز المهني • الجودة • الاستدامة' : 'Excellence • Quality • Sustainability'}
-                </span>
-              </div>
-            </div>
-
-            {/* Vision */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-8 sm:p-10 relative overflow-hidden">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30">
-                  <Sparkles className="h-5 w-5" />
-                </div>
-                <h3 className="font-serif text-2xl font-bold text-white">
-                  {UI_STRINGS.missionVision.visionTitle[lang]}
-                </h3>
-              </div>
-              <p className="text-slate-300 leading-relaxed text-base">
-                {UI_STRINGS.missionVision.visionText[lang]}
-              </p>
-              <div className="mt-6 flex items-center gap-2 text-xs font-semibold text-amber-400">
-                <Building2 className="h-4 w-4 text-amber-400" />
-                <span>
-                  {isAr
-                    ? 'ريادة المقاولات والصيانة في دولة الإمارات'
-                    : 'Premier Contracting & Maintenance Partner in UAE'}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Core Values Grid */}
-          <div>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">
-                {UI_STRINGS.missionVision.valuesTitle[lang]}
-              </h3>
-              <p className="mt-2 text-sm text-slate-400">
-                {UI_STRINGS.missionVision.valuesSub[lang]}
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {COMPANY_DETAILS.values.map((val, idx) => {
-                const IconComponent = valueIcons[val.icon] || ShieldCheck;
-                return (
-                  <div
-                    key={idx}
-                    className="rounded-xl border border-slate-800 bg-slate-950/50 p-6 hover:border-slate-700 transition-colors"
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-800 text-amber-400">
-                        <IconComponent className="h-4 w-4" />
-                      </div>
-                      <h4 className="font-bold text-base text-white">
-                        {lang === 'ar' ? val.titleAr : val.titleEn}
-                      </h4>
-                    </div>
-                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                      {lang === 'ar' ? val.descAr : val.descEn}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Interactive Project Planning & RFP Calculator */}
-      <section id="quote-calculator-section" className="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <QuoteCalculator />
-        </div>
-      </section>
-
-      {/* 5. Headquarters, Map & Quick Contact */}
-      <section id="hq-contact-section" className="py-16 sm:py-24 bg-white text-slate-900">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Left: Office Information & Location Card */}
-            <div className="lg:col-span-5 space-y-6">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-700">
-                  {isAr ? 'المقر الرئيسي في الإمارات' : 'United Arab Emirates Headquarters'}
-                </span>
-                <h2 className="font-serif text-2xl sm:text-4xl font-bold text-slate-950 mt-1">
-                  {isAr ? 'عقار لاند - أبوظبي' : 'Aqar Land Abu Dhabi'}
-                </h2>
-                <p className="text-sm text-slate-600 mt-2 leading-relaxed">
-                  {UI_STRINGS.contact.subtitle[lang]}
-                </p>
-              </div>
-
-              <div className="space-y-4 rounded-xl border border-slate-200 bg-slate-50/70 p-6">
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-amber-600 shrink-0 mt-1" />
-                  <div>
-                    <span className="block text-xs font-semibold text-slate-500 uppercase">
-                      {isAr ? 'الموقع الجغرافي' : 'Physical Location'}
-                    </span>
-                    <span className="font-bold text-sm text-slate-900">
-                      {COMPANY_DETAILS.headquarters.addressEn}
-                    </span>
-                    <a
-                      id="home-hq-maps-link"
-                      href={COMPANY_DETAILS.headquarters.googleMapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-1 inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 hover:text-amber-800 hover:underline"
-                    >
-                      <span>{UI_STRINGS.contact.openInMaps[lang]}</span>
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 pt-3 border-t border-slate-200">
-                  <Phone className="h-5 w-5 text-amber-600 shrink-0" />
-                  <div>
-                    <span className="block text-xs font-semibold text-slate-500 uppercase">
-                      {UI_STRINGS.contact.landline[lang]}
-                    </span>
-                    <a
-                      href={COMPANY_DETAILS.contact.landlineTel}
-                      className="text-sm font-bold text-slate-900 hover:text-amber-700 transition-colors"
-                      dir="ltr"
-                    >
-                      {COMPANY_DETAILS.contact.landlineFormatted}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 pt-3 border-t border-slate-200">
-                  <Phone className="h-5 w-5 text-emerald-600 shrink-0" />
-                  <div>
-                    <span className="block text-xs font-semibold text-slate-500 uppercase">
-                      {UI_STRINGS.contact.mobile[lang]} (24/7 Dispatch)
-                    </span>
-                    <a
-                      href={COMPANY_DETAILS.contact.mobileTel}
-                      className="text-sm font-bold text-slate-900 hover:text-emerald-700 transition-colors"
-                      dir="ltr"
-                    >
-                      {COMPANY_DETAILS.contact.mobileFormatted}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 pt-3 border-t border-slate-200">
-                  <Mail className="h-5 w-5 text-amber-600 shrink-0" />
-                  <div>
-                    <span className="block text-xs font-semibold text-slate-500 uppercase">
-                      {UI_STRINGS.contact.email[lang]}
-                    </span>
-                    <a
-                      href={COMPANY_DETAILS.contact.emailMailto}
-                      className="text-sm font-bold text-slate-900 hover:text-amber-700 transition-colors"
-                    >
-                      {COMPANY_DETAILS.contact.email}
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Verified Badge */}
-              <div className="flex items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50/80 p-4 text-xs text-emerald-800">
-                <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" />
-                <span>
-                  {isAr
-                    ? 'مرخصون ومسجلون رسمياً في أبوظبي لممارسة المقاولات العامة وصيانة المباني.'
-                    : 'Officially registered in Abu Dhabi for General Contracting & Building Maintenance.'}
-                </span>
-              </div>
-            </div>
-
-            {/* Right: Contact Form */}
-            <div className="lg:col-span-7">
-              <ContactForm />
-            </div>
+      {/* 6. Direct Contact CTA Banner */}
+      <section className="py-20 lg:py-24 bg-[#EFECE6] dark:bg-[#181A1B]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 text-center space-y-6">
+          <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+            {isAr ? 'بدء مشروعك معنا' : 'PROJECT CONSULTATION'}
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#181A1B] dark:text-[#F7F5F0] max-w-3xl mx-auto">
+            {UI_STRINGS.contactCta.heading[lang]}
+          </h2>
+          <p className="text-sm sm:text-base text-[#2C2F33]/80 dark:text-[#E2DED6]/80 max-w-2xl mx-auto font-sans leading-relaxed">
+            {UI_STRINGS.contactCta.description[lang]}
+          </p>
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-3 bg-[#C85A32] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors"
+            >
+              <span>{UI_STRINGS.contactCta.ctaButton[lang]}</span>
+              <ArrowIcon className="h-4 w-4" />
+            </Link>
+            <a
+              href={COMPANY_DETAILS.contact.landlineTel}
+              className="inline-flex items-center gap-3 border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#2C2F33]/40 px-8 py-4 text-xs font-semibold uppercase tracking-widest text-[#181A1B] dark:text-[#F7F5F0] hover:border-[#C85A32] transition-colors"
+              dir="ltr"
+            >
+              <span>{COMPANY_DETAILS.contact.landlineFormatted}</span>
+            </a>
           </div>
         </div>
       </section>
