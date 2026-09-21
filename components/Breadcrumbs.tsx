@@ -40,10 +40,10 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbListSchema) }}
       />
-      <div className="mx-auto max-w-7xl flex items-center gap-2 text-[#2C2F33]/70 dark:text-[#E2DED6]/70 overflow-x-auto whitespace-nowrap font-sans">
+      <div className="mx-auto max-w-7xl flex items-center gap-2 text-[#3B3E42] dark:text-[#DCD8CF] overflow-x-auto whitespace-nowrap font-sans font-medium">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 hover:text-[#C85A32] transition-colors"
+          className="inline-flex items-center gap-1.5 hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors"
         >
           <Home className="h-3.5 w-3.5" />
           <span>{lang === 'ar' ? 'الرئيسية' : 'Home'}</span>
@@ -53,11 +53,11 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
           const isLast = idx === items.length - 1;
           return (
             <React.Fragment key={idx}>
-              <ChevronIcon className="h-3 w-3 text-[#2C2F33]/40 dark:text-[#E2DED6]/40 shrink-0" />
+              <ChevronIcon className="h-3 w-3 text-[#3B3E42] dark:text-[#DCD8CF] shrink-0" />
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="hover:text-[#C85A32] transition-colors"
+                  className="hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors"
                 >
                   {isAr ? item.labelAr : item.labelEn}
                 </Link>

@@ -7,7 +7,7 @@ import { useLanguage } from '@/lib/language-context';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 
 export default function QualityPage() {
-  const { lang, isAr } = useLanguage();
+  const { isAr } = useLanguage();
   const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
 
   const qualityPillars = [
@@ -73,13 +73,13 @@ export default function QualityPage() {
       <section className="border-b border-[#E2DED6] dark:border-[#2C2F33] py-20 lg:py-28 bg-[#EFECE6]/40 dark:bg-[#181A1B]">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="max-w-3xl space-y-4">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E]">
               {isAr ? 'منهجية الجودة والعمل • عقار لاند' : 'QUALITY FRAMEWORK • AQAR LAND'}
             </span>
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#181A1B] dark:text-[#F7F5F0] leading-tight">
               {isAr ? 'الجودة، النزاهة، والتميز الهندسي' : 'Quality Framework & Operational Approach'}
             </h1>
-            <p className="text-base sm:text-lg text-[#2C2F33]/85 dark:text-[#E2DED6]/85 font-sans leading-relaxed pt-2">
+            <p className="text-base sm:text-lg text-[#3B3E42] dark:text-[#DCD8CF] font-sans leading-relaxed pt-2">
               {isAr
                 ? 'تلتزم عقار لاند بتقديم خدمات وحلول عالية الجودة تتجاوز توقعات العملاء، مع التركيز على الاستدامة، الكفاءة، والانضباط الزمني في أبوظبي والإمارات.'
                 : 'A principled commitment to engineering quality, continuous improvement, customer satisfaction, and schedule discipline across every project lifecycle.'}
@@ -99,15 +99,15 @@ export default function QualityPage() {
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-sm font-bold text-[#C85A32] tracking-widest">
+                    <span className="font-mono text-sm font-bold text-[#A8421D] dark:text-[#E2774E] tracking-widest">
                       {item.num}
                     </span>
-                    <div className="h-2 w-2 bg-[#C85A32]" />
+                    <div className="h-2 w-2 bg-[#B84D28]" />
                   </div>
                   <h2 className="font-serif text-xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
                     {isAr ? item.titleAr : item.titleEn}
                   </h2>
-                  <p className="text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans">
+                  <p className="text-sm text-[#3B3E42] dark:text-[#DCD8CF] leading-relaxed font-sans">
                     {isAr ? item.descAr : item.descEn}
                   </p>
                 </div>
@@ -122,13 +122,13 @@ export default function QualityPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E]">
                 {isAr ? 'الانضباط الهندسي والميداني' : 'OPERATIONAL DISCIPLINE & RIGOR'}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
                 {isAr ? 'بيئة عمل منضبطة ومعايير تنفيذ دقيقة' : 'Structured On-Site Management & Project Standards'}
               </h2>
-              <p className="text-base text-[#2C2F33]/85 dark:text-[#E2DED6]/85 font-sans leading-relaxed">
+              <p className="text-base text-[#3B3E42] dark:text-[#DCD8CF] font-sans leading-relaxed">
                 {isAr
                   ? 'تحرص عقار لاند على تنظيم مواقع العمل، والالتزام بإرشادات السلامة العامة، وتطبيق الرقابة الهندسية المستمرة في كافة مراحل التشييد والبناء لضمان أعلى درجات الجودة والتسليم المنضبط.'
                   : 'Aqar Land enforces structured site coordination, safety guidelines, and active supervision across all active works in Abu Dhabi, ensuring high construction quality and timely project completion.'}
@@ -136,7 +136,7 @@ export default function QualityPage() {
               <div className="pt-2">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-3 bg-[#C85A32] px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors"
+                  className="inline-flex items-center gap-3 bg-[#B84D28] px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#A33F1D] transition-colors focus-visible:outline-2 focus-visible:outline-[#B84D28]"
                 >
                   <span>{isAr ? 'تواصل مع المقر الرئيسي' : 'Discuss Standards with HQ'}</span>
                   <ArrowIcon className="h-4 w-4" />
@@ -156,7 +156,7 @@ export default function QualityPage() {
                   />
                   <div className="absolute inset-0 bg-[#181A1B]/15" />
                 </div>
-                <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono tracking-wider text-[#2C2F33]/60 dark:text-[#E2DED6]/60 uppercase">
+                <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono tracking-wider text-[#3B3E42] dark:text-[#DCD8CF] uppercase font-medium">
                   <span>Site Supervision Standards</span>
                   <span>Abu Dhabi, UAE</span>
                 </div>
@@ -169,13 +169,13 @@ export default function QualityPage() {
       {/* 4. Bottom CTA */}
       <section className="py-20 lg:py-24 bg-[#EFECE6] dark:bg-[#181A1B]">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 text-center space-y-6">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+          <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E]">
             {isAr ? 'استشارات الجودة والمشاريع' : 'PROJECT CONSULTATION'}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#181A1B] dark:text-[#F7F5F0] max-w-3xl mx-auto">
             {isAr ? 'شاركنا متطلبات ومخططات مشروعك' : 'Review Blueprints & Engineering Specifications'}
           </h2>
-          <p className="text-sm sm:text-base text-[#2C2F33]/80 dark:text-[#E2DED6]/80 max-w-2xl mx-auto font-sans leading-relaxed">
+          <p className="text-sm sm:text-base text-[#3B3E42] dark:text-[#DCD8CF] max-w-2xl mx-auto font-sans leading-relaxed">
             {isAr
               ? 'فريقنا الهندسي في أبوظبي مستعد لدراسة المخططات وتقديم التوجيهات الفنية اللازمة.'
               : 'Our engineering and management team in Abu Dhabi is ready to conduct a detailed review of your project requirements.'}
@@ -183,7 +183,7 @@ export default function QualityPage() {
           <div className="pt-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 bg-[#C85A32] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors"
+              className="inline-flex items-center gap-3 bg-[#B84D28] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#A33F1D] transition-colors focus-visible:outline-2 focus-visible:outline-[#B84D28]"
             >
               <span>{isAr ? 'ابدأ مشروعك' : 'Start a Project Inquiry'}</span>
               <ArrowIcon className="h-4 w-4" />

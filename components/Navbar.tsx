@@ -1,60 +1,39 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/language-context';
 import { useTheme } from '@/lib/theme-context';
-import {
-  Menu,
-  X,
-  Sun,
-  Moon,
-  ArrowRight,
-  ArrowLeft,
-} from 'lucide-react';
+import { UI_STRINGS } from '@/lib/translations';
+import { Sun, Moon, Menu, X, ArrowRight, ArrowLeft } from 'lucide-react';
 
 export default function Navbar() {
-  const { lang, setLang, isAr } = useLanguage();
-  const { mode, toggleTheme, setMode } = useTheme();
   const pathname = usePathname();
+  const { lang, isAr, setLang } = useLanguage();
+  const { mode, toggleTheme, setMode } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Close menu on ESC key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [mobileMenuOpen]);
-
   const toggleLanguage = () => {
-    setLang(lang === 'en' ? 'ar' : 'en');
+    setLang(lang === 'ar' ? 'en' : 'ar');
   };
-
-  const navLinks = [
-    { href: '/', labelEn: 'Home', labelAr: 'الرئيسية' },
-    { href: '/about', labelEn: 'About', labelAr: 'من نحن' },
-    { href: '/services', labelEn: 'Services', labelAr: 'خدماتنا' },
-    { href: '/projects', labelEn: 'Projects', labelAr: 'المشاريع' },
-    { href: '/quality', labelEn: 'Quality & Approach', labelAr: 'الجودة والمنهجية' },
-    { href: '/contact', labelEn: 'Contact', labelAr: 'اتصل بنا' },
-  ];
 
   const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
 
+  const navLinks = [
+    { href: '/', labelEn: UI_STRINGS.nav.home.en, labelAr: UI_STRINGS.nav.home.ar },
+    { href: '/services', labelEn: UI_STRINGS.nav.services.en, labelAr: UI_STRINGS.nav.services.ar },
+    { href: '/projects', labelEn: UI_STRINGS.nav.projects.en, labelAr: UI_STRINGS.nav.projects.ar },
+    { href: '/about', labelEn: UI_STRINGS.nav.about.en, labelAr: UI_STRINGS.nav.about.ar },
+    { href: '/quality', labelEn: UI_STRINGS.nav.quality.en, labelAr: UI_STRINGS.nav.quality.ar },
+    { href: '/contact', labelEn: UI_STRINGS.nav.contact.en, labelAr: UI_STRINGS.nav.contact.ar },
+  ];
+
   const getThemeLabel = () => {
-    if (isAr) {
-      return mode === 'light'
-        ? 'التبديل إلى الوضع الداكن'
-        : 'التبديل إلى الوضع النهاري';
+    if (mode === 'light') {
+      return isAr ? 'التبديل إلى الوضع الداكن' : 'Switch to Dark Mode';
     }
-    return mode === 'light'
-      ? 'Switch to Dark Mode'
-      : 'Switch to Light Mode';
+    return isAr ? 'التبديل إلى الوضع النهاري' : 'Switch to Light Mode';
   };
 
   return (
@@ -67,14 +46,14 @@ export default function Navbar() {
           aria-label="Aqar Land Homepage"
         >
           {/* Subtle architectural geometric mark */}
-          <div className="h-5 w-5 bg-[#C85A32] transition-transform duration-300 group-hover:scale-95 flex items-center justify-center">
+          <div className="h-5 w-5 bg-[#B84D28] transition-transform duration-300 group-hover:scale-95 flex items-center justify-center">
             <div className="h-2 w-2 bg-[#F7F5F0] dark:bg-[#181A1B]" />
           </div>
           <span className="font-serif text-xl sm:text-2xl font-bold tracking-widest text-[#181A1B] dark:text-[#F7F5F0]">
             AQAR LAND
           </span>
           {isAr && (
-            <span className="text-base font-bold text-[#C85A32] font-arabic me-1">
+            <span className="text-base font-bold text-[#A8421D] dark:text-[#E2774E] font-arabic me-1">
               عقار لاند
             </span>
           )}
@@ -93,8 +72,8 @@ export default function Navbar() {
                 href={link.href}
                 className={`text-sm tracking-wide transition-colors py-1 border-b-2 ${
                   isActive
-                    ? 'border-[#C85A32] text-[#C85A32] font-semibold'
-                    : 'border-transparent text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] dark:hover:text-[#C85A32]'
+                    ? 'border-[#B84D28] text-[#A8421D] dark:border-[#E2774E] dark:text-[#E2774E] font-semibold'
+                    : 'border-transparent text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#A8421D] dark:hover:text-[#E2774E]'
                 }`}
               >
                 {isAr ? link.labelAr : link.labelEn}
@@ -110,7 +89,7 @@ export default function Navbar() {
             id="nav-lang-toggle"
             type="button"
             onClick={toggleLanguage}
-            className="text-xs font-semibold tracking-widest text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] dark:hover:text-[#C85A32] transition-colors uppercase px-2.5 py-1.5 border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32] focus-visible:outline-offset-2"
+            className="text-xs font-semibold tracking-widest text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors uppercase px-2.5 py-1.5 border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#B84D28] focus-visible:outline-offset-2"
             aria-label={isAr ? 'Switch to English' : 'التبديل إلى العربية'}
           >
             {isAr ? 'EN' : 'AR'}
@@ -121,7 +100,7 @@ export default function Navbar() {
             id="nav-theme-toggle"
             type="button"
             onClick={toggleTheme}
-            className="p-2 text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] dark:hover:text-[#C85A32] transition-colors border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32] focus-visible:outline-offset-2"
+            className="p-2 text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#B84D28] focus-visible:outline-offset-2"
             aria-label={getThemeLabel()}
             title={getThemeLabel()}
           >
@@ -136,28 +115,27 @@ export default function Navbar() {
           <Link
             id="nav-cta-start-project"
             href="/contact"
-            className="inline-flex items-center gap-2 bg-[#C85A32] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#B84D28] transition-colors focus-visible:outline-2 focus-visible:outline-[#C85A32] focus-visible:outline-offset-2"
+            className="inline-flex items-center gap-2 bg-[#B84D28] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#A33F1D] transition-colors focus-visible:outline-2 focus-visible:outline-[#B84D28] focus-visible:outline-offset-2"
           >
             <span>{isAr ? 'ابدأ مشروعك' : 'Start a Project'}</span>
             <ArrowIcon className="h-3.5 w-3.5" />
           </Link>
         </div>
 
-        {/* Mobile Menu & Quick Controls */}
-        <div className="flex sm:hidden items-center gap-2.5">
+        {/* Mobile Hamburger Button + Quick Language */}
+        <div className="flex sm:hidden items-center gap-2">
           <button
             type="button"
             onClick={toggleLanguage}
-            className="text-xs font-semibold tracking-wider text-[#181A1B] dark:text-[#F7F5F0] px-2 py-1 border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32]"
+            className="text-xs font-semibold tracking-wider text-[#181A1B] dark:text-[#F7F5F0] px-2 py-1 border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#B84D28]"
             aria-label={isAr ? 'Switch to English' : 'التبديل إلى العربية'}
           >
             {isAr ? 'EN' : 'AR'}
           </button>
           <button
-            id="mobile-theme-toggle-btn"
             type="button"
             onClick={toggleTheme}
-            className="p-1.5 text-[#181A1B] dark:text-[#F7F5F0] border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32]"
+            className="p-1.5 text-[#181A1B] dark:text-[#F7F5F0] border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#B84D28]"
             aria-label={getThemeLabel()}
             title={getThemeLabel()}
           >
@@ -168,14 +146,13 @@ export default function Navbar() {
             )}
           </button>
           <button
-            id="mobile-menu-toggle-btn"
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-[#181A1B] dark:text-[#F7F5F0] border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32]"
-            aria-expanded={mobileMenuOpen}
+            className="p-2 text-[#181A1B] dark:text-[#F7F5F0] border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#B84D28]"
             aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5 text-[#181A1B] dark:text-[#F7F5F0]" />}
           </button>
         </div>
       </div>
@@ -191,7 +168,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className={`py-2 text-base font-medium border-b border-[#E2DED6]/50 dark:border-[#2C2F33] ${
                   pathname === link.href
-                    ? 'text-[#C85A32] font-semibold'
+                    ? 'text-[#A8421D] dark:text-[#E2774E] font-semibold'
                     : 'text-[#181A1B] dark:text-[#F7F5F0]'
                 }`}
               >
@@ -201,7 +178,7 @@ export default function Navbar() {
           </nav>
           <div className="pt-4 space-y-3">
             <div className="flex items-center justify-between border border-[#E2DED6] dark:border-[#2C2F33] p-1.5 bg-[#EFECE6]/50 dark:bg-[#2C2F33]/30 text-xs font-medium">
-              <span className="px-2 text-[#2C2F33]/70 dark:text-[#E2DED6]/70">
+              <span className="px-2 text-[#3B3E42] dark:text-[#DCD8CF]">
                 {isAr ? 'المظهر' : 'Theme'}
               </span>
               <div className="flex items-center gap-1">
@@ -216,8 +193,8 @@ export default function Navbar() {
                       onClick={() => setMode(tMode)}
                       className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold transition-colors ${
                         isActive
-                          ? 'bg-[#C85A32] text-white'
-                          : 'text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32]'
+                          ? 'bg-[#B84D28] text-white'
+                          : 'text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#A8421D] dark:hover:text-[#E2774E]'
                       }`}
                       aria-label={`${label} mode`}
                     >
@@ -232,7 +209,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex w-full items-center justify-center gap-2 bg-[#C85A32] py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#B84D28]"
+              className="flex w-full items-center justify-center gap-2 bg-[#B84D28] py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#A33F1D]"
             >
               <span>{isAr ? 'ابدأ مشروعك' : 'Start a Project'}</span>
               <ArrowIcon className="h-4 w-4" />

@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 export default function Footer() {
-  const { lang, isAr } = useLanguage();
+  const { isAr } = useLanguage();
   const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
 
   const currentYear = new Date().getFullYear();
@@ -44,7 +44,7 @@ export default function Footer() {
       <div className="border-b border-[#E2DED6] dark:border-[#2C2F33] py-16 px-6 lg:px-12">
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-2xl space-y-4">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E]">
               {isAr ? 'عقار لاند • دولة الإمارات' : 'AQAR LAND • UNITED ARAB EMIRATES'}
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[#181A1B] dark:text-[#F7F5F0]">
@@ -55,7 +55,7 @@ export default function Footer() {
           </div>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-3 bg-[#C85A32] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors self-start md:self-auto"
+            className="inline-flex items-center gap-3 bg-[#B84D28] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#A33F1D] transition-colors self-start md:self-auto focus-visible:outline-2 focus-visible:outline-[#B84D28]"
           >
             <span>{isAr ? 'ابدأ مشروعك معنا' : 'Start a Project With Us'}</span>
             <ArrowIcon className="h-4 w-4" />
@@ -69,24 +69,24 @@ export default function Footer() {
           {/* Brand & Corporate Overview */}
           <div className="lg:col-span-4 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="h-4 w-4 bg-[#C85A32]" />
+              <div className="h-4 w-4 bg-[#B84D28]" />
               <span className="font-serif text-2xl font-bold tracking-widest text-[#181A1B] dark:text-[#F7F5F0]">
                 AQAR LAND
               </span>
               {isAr && (
-                <span className="text-lg font-bold text-[#C85A32] font-arabic">
+                <span className="text-lg font-bold text-[#A8421D] dark:text-[#E2774E] font-arabic">
                   عقار لاند
                 </span>
               )}
             </div>
 
-            <p className="text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans max-w-sm">
+            <p className="text-sm text-[#3B3E42] dark:text-[#DCD8CF] leading-relaxed font-sans max-w-sm">
               {isAr
                 ? 'مؤسسة عقارلاند للمقاولات العامة والنقل. خدمات مقاولات عامة شاملة، صيانة مباني، وإدارة مشاريع هندسية في أبوظبي وجميع أنحاء دولة الإمارات العربية المتحدة.'
                 : 'Aqarland Contracting & Transporting Est. Dedicated general contracting, facility upkeep, and engineering execution across Abu Dhabi and the United Arab Emirates.'}
             </p>
 
-            <div className="pt-2 text-xs text-[#2C2F33]/70 dark:text-[#E2DED6]/70">
+            <div className="pt-2 text-xs text-[#3B3E42] dark:text-[#DCD8CF]">
               <p className="font-semibold">{COMPANY_DETAILS.legalNameEn}</p>
               <p className="font-arabic font-medium mt-1">{COMPANY_DETAILS.legalNameAr}</p>
             </div>
@@ -94,7 +94,7 @@ export default function Footer() {
 
           {/* Core Categories */}
           <div className="lg:col-span-4 space-y-4">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32] block">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E] block">
               {isAr ? 'الخدمات التخصصية' : 'Core Disciplines'}
             </span>
             <ul className="space-y-3 pt-2">
@@ -102,9 +102,9 @@ export default function Footer() {
                 <li key={srv.num}>
                   <Link
                     href={srv.href}
-                    className="group flex items-baseline gap-3 text-sm text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] dark:hover:text-[#C85A32] transition-colors"
+                    className="group flex items-baseline gap-3 text-sm text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors"
                   >
-                    <span className="text-xs font-mono text-[#628E9D] group-hover:text-[#C85A32] transition-colors">
+                    <span className="text-xs font-mono font-semibold text-[#3B6676] dark:text-[#8EBDD0] group-hover:text-[#A8421D] dark:group-hover:text-[#E2774E] transition-colors">
                       {srv.num}
                     </span>
                     <span>{isAr ? srv.titleAr : srv.titleEn}</span>
@@ -116,7 +116,7 @@ export default function Footer() {
 
           {/* Quick Directory */}
           <div className="lg:col-span-2 space-y-4">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32] block">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E] block">
               {isAr ? 'دليل الموقع' : 'Navigation'}
             </span>
             <ul className="space-y-2.5 pt-2">
@@ -124,7 +124,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-[#2C2F33]/90 dark:text-[#E2DED6]/90 hover:text-[#C85A32] dark:hover:text-[#C85A32] transition-colors"
+                    className="text-sm text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors"
                   >
                     {isAr ? item.labelAr : item.labelEn}
                   </Link>
@@ -135,41 +135,41 @@ export default function Footer() {
 
           {/* Direct Contact HQ */}
           <div className="lg:col-span-2 space-y-4">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32] block">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E] block">
               {isAr ? 'المقر الرئيسي' : 'Headquarters'}
             </span>
             <div className="space-y-3 pt-2 text-sm text-[#2C2F33] dark:text-[#E2DED6]">
               <div className="flex items-start gap-2.5">
-                <MapPin className="h-4 w-4 text-[#C85A32] shrink-0 mt-0.5" />
+                <MapPin className="h-4 w-4 text-[#A8421D] dark:text-[#E2774E] shrink-0 mt-0.5" />
                 <span className="text-xs leading-relaxed">
                   {isAr ? 'أبوظبي، الإمارات العربية المتحدة' : 'Abu Dhabi, United Arab Emirates'}
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 text-[#C85A32] shrink-0" />
+                <Phone className="h-4 w-4 text-[#A8421D] dark:text-[#E2774E] shrink-0" />
                 <a
                   href={COMPANY_DETAILS.contact.landlineTel}
-                  className="text-xs hover:text-[#C85A32] transition-colors"
+                  className="text-xs hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors"
                   dir="ltr"
                 >
                   {COMPANY_DETAILS.contact.landlineFormatted}
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 text-[#C85A32] shrink-0" />
+                <Phone className="h-4 w-4 text-[#A8421D] dark:text-[#E2774E] shrink-0" />
                 <a
                   href={COMPANY_DETAILS.contact.mobileTel}
-                  className="text-xs hover:text-[#C85A32] transition-colors"
+                  className="text-xs hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors"
                   dir="ltr"
                 >
                   {COMPANY_DETAILS.contact.mobileFormatted}
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 text-[#C85A32] shrink-0" />
+                <Mail className="h-4 w-4 text-[#A8421D] dark:text-[#E2774E] shrink-0" />
                 <a
                   href={COMPANY_DETAILS.contact.emailMailto}
-                  className="text-xs hover:text-[#C85A32] transition-colors truncate"
+                  className="text-xs hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors truncate"
                 >
                   {COMPANY_DETAILS.contact.email}
                 </a>
@@ -181,16 +181,16 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-[#E2DED6] dark:border-[#2C2F33] py-8 px-6 lg:px-12">
-        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#2C2F33]/60 dark:text-[#E2DED6]/60">
+        <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#404347] dark:text-[#D1CDC5]">
           <p>
             © {currentYear} {COMPANY_DETAILS.legalNameEn}. {isAr ? 'جميع الحقوق محفوظة.' : 'All rights reserved.'}
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy-policy" className="hover:text-[#C85A32] transition-colors">
+            <Link href="/privacy-policy" className="hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors">
               {isAr ? 'سياسة الخصوصية' : 'Privacy Policy'}
             </Link>
             <span>•</span>
-            <Link href="/terms-conditions" className="hover:text-[#C85A32] transition-colors">
+            <Link href="/terms-conditions" className="hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors">
               {isAr ? 'الشروط والأحكام' : 'Terms & Conditions'}
             </Link>
           </div>

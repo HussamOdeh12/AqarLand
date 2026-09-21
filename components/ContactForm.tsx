@@ -104,13 +104,13 @@ export default function ContactForm() {
   return (
     <div className="border border-[#E2DED6] dark:border-[#2C2F33] bg-[#EFECE6]/40 dark:bg-[#2C2F33]/20 p-8 sm:p-10">
       <div className="mb-8 border-b border-[#E2DED6] dark:border-[#2C2F33] pb-4">
-        <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32] block mb-2">
+        <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E] block mb-2">
           {isAr ? 'نموذج الاستشارة والمشاريع' : 'DIRECT SPECIFICATION FORM'}
         </span>
         <h3 className="text-2xl font-serif font-normal text-[#181A1B] dark:text-[#F7F5F0]">
           {UI_STRINGS.contact.formTitle[lang]}
         </h3>
-        <p className="mt-2 text-xs sm:text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 font-sans">
+        <p className="mt-2 text-xs sm:text-sm text-[#3B3E42] dark:text-[#DCD8CF] font-sans">
           {isAr
             ? 'أدخل تفاصيل مشروعك للتواصل المباشر مع فريقنا الهندسي في أبوظبي.'
             : 'Enter your project specifications for direct communication with our Abu Dhabi engineering team.'}
@@ -118,15 +118,15 @@ export default function ContactForm() {
       </div>
 
       {status === 'success' ? (
-        <div className="border border-[#C85A32] bg-[#F7F5F0] dark:bg-[#181A1B] p-8 text-center space-y-6">
-          <div className="h-12 w-12 bg-[#C85A32] text-white flex items-center justify-center mx-auto">
+        <div className="border border-[#B84D28] bg-[#F7F5F0] dark:bg-[#181A1B] p-8 text-center space-y-6">
+          <div className="h-12 w-12 bg-[#B84D28] text-white flex items-center justify-center mx-auto">
             <Check className="h-6 w-6" />
           </div>
           <div className="space-y-2">
             <h4 className="font-serif text-2xl text-[#181A1B] dark:text-[#F7F5F0]">
               {isAr ? 'تم إرسال الاستفسار بنجاح' : 'Inquiry Sent Successfully'}
             </h4>
-            <p className="text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 max-w-md mx-auto leading-relaxed">
+            <p className="text-sm text-[#3B3E42] dark:text-[#DCD8CF] max-w-md mx-auto leading-relaxed">
               {UI_STRINGS.contact.successMsg[lang]}
             </p>
           </div>
@@ -135,7 +135,7 @@ export default function ContactForm() {
             <button
               type="button"
               onClick={() => setStatus('idle')}
-              className="inline-flex items-center gap-2 border border-[#E2DED6] dark:border-[#2C2F33] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0] hover:border-[#C85A32] hover:text-[#C85A32] transition-colors"
+              className="inline-flex items-center gap-2 border border-[#E2DED6] dark:border-[#2C2F33] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0] hover:border-[#B84D28] hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors"
             >
               <span>{isAr ? 'إرسال استفسار آخر' : 'Send Another Inquiry'}</span>
               <ArrowIcon className="h-3.5 w-3.5" />
@@ -162,7 +162,7 @@ export default function ContactForm() {
             <div
               role="alert"
               aria-live="polite"
-              className="border border-red-500/50 bg-red-500/10 p-4 text-xs text-red-600 dark:text-red-400 font-medium space-y-3"
+              className="border border-red-700/50 bg-red-500/10 p-4 text-xs text-red-700 dark:text-red-400 font-medium space-y-3"
             >
               <div className="flex items-start gap-2">
                 <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
@@ -176,14 +176,14 @@ export default function ContactForm() {
                 </span>
                 <a
                   href={mailtoLink}
-                  className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-[#C85A32]"
+                  className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-[#A8421D] dark:hover:text-[#E2774E]"
                 >
                   <Mail className="h-3.5 w-3.5" />
                   <span>{COMPANY_DETAILS.contact.email}</span>
                 </a>
                 <a
                   href={COMPANY_DETAILS.contact.landlineTel}
-                  className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-[#C85A32]"
+                  className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-[#A8421D] dark:hover:text-[#E2774E]"
                 >
                   <Phone className="h-3.5 w-3.5" />
                   <span dir="ltr">{COMPANY_DETAILS.contact.landlineFormatted}</span>
@@ -192,7 +192,7 @@ export default function ContactForm() {
                   href={COMPANY_DETAILS.contact.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-[#C85A32]"
+                  className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-[#A8421D] dark:hover:text-[#E2774E]"
                 >
                   <MessageSquare className="h-3.5 w-3.5" />
                   <span>WhatsApp</span>
@@ -205,7 +205,7 @@ export default function ContactForm() {
             <div className="space-y-2">
               <label
                 htmlFor="contact-name"
-                className="block text-xs font-semibold uppercase tracking-wider text-[#2C2F33] dark:text-[#E2DED6]"
+                className="block text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0]"
               >
                 {UI_STRINGS.contact.nameField[lang]}
               </label>
@@ -217,7 +217,7 @@ export default function ContactForm() {
                 disabled={status === 'submitting'}
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#C85A32] focus:outline-none transition-colors disabled:opacity-60"
+                className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#B84D28] dark:focus:border-[#E2774E] focus:outline-none transition-colors disabled:opacity-60"
                 placeholder={isAr ? 'الاسم الكريم' : 'e.g. Tariq Al-Nuaimi'}
               />
             </div>
@@ -225,7 +225,7 @@ export default function ContactForm() {
             <div className="space-y-2">
               <label
                 htmlFor="contact-company"
-                className="block text-xs font-semibold uppercase tracking-wider text-[#2C2F33] dark:text-[#E2DED6]"
+                className="block text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0]"
               >
                 {UI_STRINGS.contact.companyField[lang]}
               </label>
@@ -235,7 +235,7 @@ export default function ContactForm() {
                 disabled={status === 'submitting'}
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#C85A32] focus:outline-none transition-colors disabled:opacity-60"
+                className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#B84D28] dark:focus:border-[#E2774E] focus:outline-none transition-colors disabled:opacity-60"
                 placeholder={isAr ? 'اسم المؤسسة أو العقار (اختياري)' : 'Company or Property (Optional)'}
               />
             </div>
@@ -245,7 +245,7 @@ export default function ContactForm() {
             <div className="space-y-2">
               <label
                 htmlFor="contact-email"
-                className="block text-xs font-semibold uppercase tracking-wider text-[#2C2F33] dark:text-[#E2DED6]"
+                className="block text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0]"
               >
                 {UI_STRINGS.contact.emailField[lang]}
               </label>
@@ -257,7 +257,7 @@ export default function ContactForm() {
                 disabled={status === 'submitting'}
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#C85A32] focus:outline-none transition-colors disabled:opacity-60"
+                className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#B84D28] dark:focus:border-[#E2774E] focus:outline-none transition-colors disabled:opacity-60"
                 placeholder="name@domain.ae"
               />
             </div>
@@ -265,7 +265,7 @@ export default function ContactForm() {
             <div className="space-y-2">
               <label
                 htmlFor="contact-phone"
-                className="block text-xs font-semibold uppercase tracking-wider text-[#2C2F33] dark:text-[#E2DED6]"
+                className="block text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0]"
               >
                 {UI_STRINGS.contact.phoneField[lang]}
               </label>
@@ -275,7 +275,7 @@ export default function ContactForm() {
                 disabled={status === 'submitting'}
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#C85A32] focus:outline-none transition-colors disabled:opacity-60"
+                className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#B84D28] dark:focus:border-[#E2774E] focus:outline-none transition-colors disabled:opacity-60"
                 placeholder="+971 50 000 0000"
                 dir="ltr"
               />
@@ -285,7 +285,7 @@ export default function ContactForm() {
           <div className="space-y-2">
             <label
               htmlFor="contact-discipline"
-              className="block text-xs font-semibold uppercase tracking-wider text-[#2C2F33] dark:text-[#E2DED6]"
+              className="block text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0]"
             >
               {UI_STRINGS.contact.serviceField[lang]}
             </label>
@@ -294,7 +294,7 @@ export default function ContactForm() {
               disabled={status === 'submitting'}
               value={formData.discipline}
               onChange={(e) => setFormData({ ...formData, discipline: e.target.value })}
-              className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#C85A32] focus:outline-none transition-colors disabled:opacity-60"
+              className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#B84D28] dark:focus:border-[#E2774E] focus:outline-none transition-colors disabled:opacity-60"
             >
               {STITCH_SERVICES.map((s) => (
                 <option key={s.id} value={s.slug}>
@@ -307,7 +307,7 @@ export default function ContactForm() {
           <div className="space-y-2">
             <label
               htmlFor="contact-message"
-              className="block text-xs font-semibold uppercase tracking-wider text-[#2C2F33] dark:text-[#E2DED6]"
+              className="block text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0]"
             >
               {UI_STRINGS.contact.messageField[lang]}
             </label>
@@ -319,7 +319,7 @@ export default function ContactForm() {
               disabled={status === 'submitting'}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#C85A32] focus:outline-none transition-colors resize-none disabled:opacity-60"
+              className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#B84D28] dark:focus:border-[#E2774E] focus:outline-none transition-colors resize-none disabled:opacity-60"
               placeholder={
                 isAr
                   ? 'يرجى تقديم تفاصيل المشروع، نطاق العمل المطلوب، أو استفسارات الصيانة والتنفيذ...'
@@ -332,7 +332,7 @@ export default function ContactForm() {
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#C85A32] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-[#C85A32] focus-visible:outline-offset-2"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#B84D28] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#A33F1D] transition-colors disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-[#B84D28] focus-visible:outline-offset-2"
             >
               {status === 'submitting' ? (
                 <>
@@ -348,24 +348,24 @@ export default function ContactForm() {
             </button>
 
             {/* Direct fallback links */}
-            <div className="flex items-center gap-4 text-xs text-[#2C2F33]/70 dark:text-[#E2DED6]/70">
+            <div className="flex items-center gap-4 text-xs text-[#3B3E42] dark:text-[#DCD8CF]">
               <span>{isAr ? 'أو عبر المراسلة المباشرة:' : 'Or reach us via:'}</span>
               <a
                 href={COMPANY_DETAILS.contact.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#C85A32] font-semibold flex items-center gap-1"
+                className="hover:text-[#A8421D] dark:hover:text-[#E2774E] font-semibold flex items-center gap-1"
                 aria-label="WhatsApp"
               >
-                <MessageSquare className="h-3.5 w-3.5 text-[#C85A32]" />
+                <MessageSquare className="h-3.5 w-3.5 text-[#A8421D] dark:text-[#E2774E]" />
                 <span>WhatsApp</span>
               </a>
               <a
                 href={COMPANY_DETAILS.contact.landlineTel}
-                className="hover:text-[#C85A32] font-semibold flex items-center gap-1"
+                className="hover:text-[#A8421D] dark:hover:text-[#E2774E] font-semibold flex items-center gap-1"
                 aria-label="Phone"
               >
-                <Phone className="h-3.5 w-3.5 text-[#C85A32]" />
+                <Phone className="h-3.5 w-3.5 text-[#A8421D] dark:text-[#E2774E]" />
                 <span dir="ltr">{COMPANY_DETAILS.contact.landlineFormatted}</span>
               </a>
             </div>

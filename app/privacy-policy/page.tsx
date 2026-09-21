@@ -4,7 +4,6 @@ import React from 'react';
 import { useLanguage } from '@/lib/language-context';
 import { UI_STRINGS } from '@/lib/translations';
 import { COMPANY_DETAILS } from '@/lib/company-data';
-import { Mail, Phone } from 'lucide-react';
 
 export default function PrivacyPolicyPage() {
   const { lang, isAr } = useLanguage();
@@ -14,13 +13,13 @@ export default function PrivacyPolicyPage() {
       {/* Header */}
       <section className="border-b border-[#E2DED6] dark:border-[#2C2F33] py-20 bg-[#EFECE6]/40 dark:bg-[#181A1B]">
         <div className="mx-auto max-w-5xl px-6 lg:px-12">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32] block mb-3">
+          <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E] block mb-3">
             {isAr ? 'السياسات والشفافية • دولة الإمارات' : 'LEGAL & GOVERNANCE • UAE'}
           </span>
           <h1 className="font-serif text-4xl sm:text-5xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
             {UI_STRINGS.footer.privacyNotice[lang]}
           </h1>
-          <p className="mt-3 text-sm sm:text-base text-[#2C2F33]/80 dark:text-[#E2DED6]/80 font-sans">
+          <p className="mt-3 text-sm sm:text-base text-[#3B3E42] dark:text-[#DCD8CF] font-sans">
             {isAr
               ? 'التزام مؤسسة عقارلاند للمقاولات العامة بحماية خصوصيتك ومعلوماتك وفق القوانين المعمول بها في دولة الإمارات.'
               : 'Our commitment to data protection and client privacy under UAE commercial regulations.'}
@@ -30,7 +29,7 @@ export default function PrivacyPolicyPage() {
 
       {/* Content */}
       <section className="py-16 mx-auto max-w-5xl px-6 lg:px-12">
-        <div className="border border-[#E2DED6] dark:border-[#2C2F33] bg-[#EFECE6]/30 dark:bg-[#2C2F33]/20 p-8 sm:p-12 space-y-8 text-sm sm:text-base leading-relaxed text-[#2C2F33]/90 dark:text-[#E2DED6]/90 font-sans">
+        <div className="border border-[#E2DED6] dark:border-[#2C2F33] bg-[#EFECE6]/30 dark:bg-[#2C2F33]/20 p-8 sm:p-12 space-y-8 text-sm sm:text-base leading-relaxed text-[#2C2F33] dark:text-[#E2DED6] font-sans">
           <div>
             <h2 className="font-serif text-xl sm:text-2xl font-normal text-[#181A1B] dark:text-[#F7F5F0] mb-2">
               {isAr ? '1. المقدمة ونطاق الالتزام' : '1. Introduction & Scope'}
@@ -65,9 +64,9 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="pt-6 border-t border-[#E2DED6] dark:border-[#2C2F33] flex flex-wrap items-center gap-6 text-xs font-mono">
-            <span className="text-[#C85A32] font-semibold">{COMPANY_DETAILS.legalNameEn}</span>
-            <span>Abu Dhabi, United Arab Emirates</span>
-            <a href={COMPANY_DETAILS.contact.emailMailto} className="hover:text-[#C85A32]">
+            <span className="text-[#A8421D] dark:text-[#E2774E] font-semibold">{COMPANY_DETAILS.legalNameEn}</span>
+            <span className="text-[#3B3E42] dark:text-[#DCD8CF]">Abu Dhabi, United Arab Emirates</span>
+            <a href={COMPANY_DETAILS.contact.emailMailto} className="text-[#A8421D] dark:text-[#E2774E] hover:underline">
               {COMPANY_DETAILS.contact.email}
             </a>
           </div>

@@ -26,7 +26,7 @@ export default function HomePage() {
             {/* Left Content Column */}
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-3">
-                <span className="inline-block text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+                <span className="inline-block text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E]">
                   {UI_STRINGS.hero.label[lang]}
                 </span>
                 <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#181A1B] dark:text-[#F7F5F0] leading-[1.12]">
@@ -34,7 +34,7 @@ export default function HomePage() {
                 </h1>
               </div>
 
-              <p className="text-base sm:text-lg text-[#2C2F33]/85 dark:text-[#E2DED6]/85 leading-relaxed font-sans max-w-xl">
+              <p className="text-base sm:text-lg text-[#3B3E42] dark:text-[#DCD8CF] leading-relaxed font-sans max-w-xl">
                 {UI_STRINGS.hero.description[lang]}
               </p>
 
@@ -43,7 +43,7 @@ export default function HomePage() {
                 <Link
                   id="hero-explore-services-btn"
                   href="/services"
-                  className="inline-flex items-center gap-3 bg-[#C85A32] px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors"
+                  className="inline-flex items-center gap-3 bg-[#B84D28] px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#A33F1D] transition-colors focus-visible:outline-2 focus-visible:outline-[#B84D28]"
                 >
                   <span>{UI_STRINGS.hero.ctaPrimary[lang]}</span>
                   <ArrowIcon className="h-4 w-4" />
@@ -52,16 +52,16 @@ export default function HomePage() {
                 <Link
                   id="hero-view-projects-btn"
                   href="/projects"
-                  className="inline-flex items-center gap-3 border border-[#E2DED6] dark:border-[#2C2F33] bg-[#EFECE6]/50 dark:bg-[#2C2F33]/30 px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#181A1B] dark:text-[#F7F5F0] hover:border-[#C85A32] hover:text-[#C85A32] transition-colors"
+                  className="inline-flex items-center gap-3 border border-[#E2DED6] dark:border-[#2C2F33] bg-[#EFECE6]/50 dark:bg-[#2C2F33]/30 px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#181A1B] dark:text-[#F7F5F0] hover:border-[#B84D28] hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors focus-visible:outline-2 focus-visible:outline-[#B84D28]"
                 >
                   <span>{UI_STRINGS.hero.ctaSecondary[lang]}</span>
                 </Link>
               </div>
 
               {/* Minimal Architectural Location & Registration Stamp */}
-              <div className="pt-8 border-t border-[#E2DED6] dark:border-[#2C2F33] flex flex-wrap items-center gap-8 text-xs text-[#2C2F33]/70 dark:text-[#E2DED6]/70">
+              <div className="pt-8 border-t border-[#E2DED6] dark:border-[#2C2F33] flex flex-wrap items-center gap-8 text-xs text-[#3B3E42] dark:text-[#DCD8CF]">
                 <div>
-                  <span className="block font-semibold uppercase tracking-wider text-[#C85A32]">
+                  <span className="block font-semibold uppercase tracking-wider text-[#A8421D] dark:text-[#E2774E]">
                     {isAr ? 'المقر' : 'Location'}
                   </span>
                   <span className="font-sans">
@@ -70,7 +70,7 @@ export default function HomePage() {
                 </div>
                 <div className="h-6 w-px bg-[#E2DED6] dark:bg-[#2C2F33]" />
                 <div>
-                  <span className="block font-semibold uppercase tracking-wider text-[#C85A32]">
+                  <span className="block font-semibold uppercase tracking-wider text-[#A8421D] dark:text-[#E2774E]">
                     {isAr ? 'الكيان القانوني' : 'Legal Entity'}
                   </span>
                   <span className="font-sans">
@@ -89,14 +89,15 @@ export default function HomePage() {
                     alt={isAr ? 'مشروع سكني — عقار لاند أبوظبي' : 'AQAR LAND residential project — Abu Dhabi'}
                     fill
                     priority
-                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    quality={85}
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 500px, 460px"
                     className="object-cover object-center"
                   />
                   {/* Subtle architectural overlay */}
                   <div className="absolute inset-0 bg-[#181A1B]/15" />
                 </div>
                 {/* Structural Metadata Tag */}
-                <div className="mt-3 flex items-center justify-between text-[11px] font-mono tracking-wider text-[#2C2F33]/70 dark:text-[#E2DED6]/70 uppercase">
+                <div className="mt-3 flex items-center justify-between text-[11px] font-mono tracking-wider text-[#3B3E42] dark:text-[#DCD8CF] uppercase font-medium">
                   <span>Abu Dhabi, UAE</span>
                   <span>General Contracting</span>
                 </div>
@@ -110,7 +111,7 @@ export default function HomePage() {
       <section className="border-b border-[#E2DED6] dark:border-[#2C2F33] py-16 bg-[#EFECE6]/60 dark:bg-[#2C2F33]/20">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="max-w-4xl space-y-4">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E]">
               {isAr ? 'رؤية وفلسفة العمل' : 'VISION & ARCHITECTURAL PHILOSOPHY'}
             </span>
             <p className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#181A1B] dark:text-[#F7F5F0] leading-snug">
@@ -126,19 +127,19 @@ export default function HomePage() {
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
             <div className="max-w-2xl space-y-3">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E]">
                 {UI_STRINGS.servicesOverview.label[lang]}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
                 {UI_STRINGS.servicesOverview.heading[lang]}
               </h2>
-              <p className="text-sm sm:text-base text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans">
+              <p className="text-sm sm:text-base text-[#3B3E42] dark:text-[#DCD8CF] leading-relaxed font-sans">
                 {UI_STRINGS.servicesOverview.subheading[lang]}
               </p>
             </div>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#C85A32] hover:text-[#B84D28] transition-colors pb-1 border-b border-[#C85A32]"
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E] hover:text-[#8F3514] dark:hover:text-[#F39169] transition-colors pb-1 border-b border-[#B84D28] dark:border-[#E2774E]"
             >
               <span>{UI_STRINGS.servicesOverview.viewAll[lang]}</span>
               <ArrowIcon className="h-3.5 w-3.5" />
@@ -154,17 +155,17 @@ export default function HomePage() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-8">
-                    <span className="font-mono text-xs font-bold text-[#C85A32] tracking-widest">
+                    <span className="font-mono text-xs font-bold text-[#A8421D] dark:text-[#E2774E] tracking-widest">
                       {srv.number}
                     </span>
-                    <div className="h-2 w-2 bg-[#E2DED6] dark:bg-[#2C2F33] group-hover:bg-[#C85A32] transition-colors" />
+                    <div className="h-2 w-2 bg-[#E2DED6] dark:bg-[#2C2F33] group-hover:bg-[#B84D28] transition-colors" />
                   </div>
 
-                  <h3 className="font-serif text-2xl font-normal text-[#181A1B] dark:text-[#F7F5F0] mb-4 group-hover:text-[#C85A32] transition-colors">
+                  <h3 className="font-serif text-2xl font-normal text-[#181A1B] dark:text-[#F7F5F0] mb-4 group-hover:text-[#A8421D] dark:group-hover:text-[#E2774E] transition-colors">
                     {isAr ? srv.titleAr : srv.titleEn}
                   </h3>
 
-                  <p className="text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans mb-8">
+                  <p className="text-sm text-[#3B3E42] dark:text-[#DCD8CF] leading-relaxed font-sans mb-8">
                     {isAr ? srv.shortDescAr : srv.shortDescEn}
                   </p>
                 </div>
@@ -172,7 +173,7 @@ export default function HomePage() {
                 <div className="pt-6 border-t border-[#E2DED6]/60 dark:border-[#2C2F33]/60 flex items-center justify-between">
                   <Link
                     href={`/services#${srv.number.toLowerCase()}-${srv.slug}`}
-                    className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0] group-hover:text-[#C85A32] transition-colors"
+                    className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0] group-hover:text-[#A8421D] dark:group-hover:text-[#E2774E] transition-colors"
                   >
                     <span>{isAr ? 'التفاصيل الهندسية' : 'View Specifications'}</span>
                     <ArrowIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
@@ -190,19 +191,19 @@ export default function HomePage() {
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
             <div className="max-w-2xl space-y-3">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E]">
                 {UI_STRINGS.featuredProjects.label[lang]}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
                 {UI_STRINGS.featuredProjects.heading[lang]}
               </h2>
-              <p className="text-sm sm:text-base text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans">
+              <p className="text-sm sm:text-base text-[#3B3E42] dark:text-[#DCD8CF] leading-relaxed font-sans">
                 {UI_STRINGS.featuredProjects.subheading[lang]}
               </p>
             </div>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#C85A32] hover:text-[#B84D28] transition-colors pb-1 border-b border-[#C85A32]"
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E] hover:text-[#8F3514] dark:hover:text-[#F39169] transition-colors pb-1 border-b border-[#B84D28] dark:border-[#E2774E]"
             >
               <span>{UI_STRINGS.featuredProjects.viewAll[lang]}</span>
               <ArrowIcon className="h-3.5 w-3.5" />
@@ -225,7 +226,7 @@ export default function HomePage() {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-[#181A1B]/20 group-hover:bg-transparent transition-colors" />
-                  <div className="absolute top-4 start-4 bg-[#F7F5F0]/90 dark:bg-[#181A1B]/90 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-[#C85A32]">
+                  <div className="absolute top-4 start-4 bg-[#F7F5F0]/95 dark:bg-[#181A1B]/95 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-[#A8421D] dark:text-[#E2774E] font-semibold">
                     {isAr ? proj.statusAr : proj.statusEn}
                   </div>
                 </div>
@@ -234,31 +235,31 @@ export default function HomePage() {
                   <div className="space-y-3">
                     <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
                       <span
-                        className={`inline-block px-2 py-0.5 text-[10px] font-semibold border ${
+                        className={`inline-block px-2.5 py-0.5 text-[10px] font-semibold border ${
                           proj.status === 'Completed'
-                            ? 'border-[#628E9D]/40 text-[#628E9D] bg-[#628E9D]/5'
-                            : 'border-[#C85A32]/40 text-[#C85A32] bg-[#C85A32]/5'
+                            ? 'border-[#3B6676]/40 dark:border-[#8EBDD0]/40 text-[#2D5362] dark:text-[#8EBDD0] bg-[#3B6676]/10 dark:bg-[#8EBDD0]/10'
+                            : 'border-[#A8421D]/40 dark:border-[#E2774E]/40 text-[#A8421D] dark:text-[#E2774E] bg-[#A8421D]/10 dark:bg-[#E2774E]/10'
                         }`}
                       >
                         {isAr ? proj.statusAr : proj.statusEn}
                       </span>
                       {proj.year && (
-                        <span className="inline-block px-2 py-0.5 text-[10px] border border-[#E2DED6] dark:border-[#2C2F33] text-[#2C2F33]/80 dark:text-[#E2DED6]/80">
+                        <span className="inline-block px-2.5 py-0.5 text-[10px] border border-[#E2DED6] dark:border-[#2C2F33] text-[#3B3E42] dark:text-[#DCD8CF]">
                           {proj.year}
                         </span>
                       )}
                       {proj.value && (
-                        <span className="inline-block px-2 py-0.5 text-[10px] font-medium text-[#C85A32] dark:text-[#E07A5F] bg-[#C85A32]/5 border border-[#C85A32]/20">
+                        <span className="inline-block px-2.5 py-0.5 text-[10px] font-semibold text-[#A8421D] dark:text-[#E2774E] bg-[#A8421D]/10 dark:bg-[#E2774E]/10 border border-[#A8421D]/20 dark:border-[#E2774E]/20">
                           {isAr ? (proj.valueAr || proj.value) : proj.value}
                         </span>
                       )}
                     </div>
-                    <h3 className="font-serif text-lg sm:text-xl font-normal text-[#181A1B] dark:text-[#F7F5F0] group-hover:text-[#C85A32] transition-colors leading-snug">
+                    <h3 className="font-serif text-lg sm:text-xl font-normal text-[#181A1B] dark:text-[#F7F5F0] group-hover:text-[#A8421D] dark:group-hover:text-[#E2774E] transition-colors leading-snug">
                       {isAr ? proj.titleAr : proj.titleEn}
                     </h3>
                   </div>
 
-                  <div className="pt-4 border-t border-[#E2DED6] dark:border-[#2C2F33] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#C85A32]">
+                  <div className="pt-4 border-t border-[#E2DED6] dark:border-[#2C2F33] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#A8421D] dark:text-[#E2774E]">
                     <span>{isAr ? 'عرض كافة المشاريع' : 'View Full Portfolio'}</span>
                     <ArrowIcon className="h-3.5 w-3.5" />
                   </div>
@@ -274,19 +275,19 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             <div className="lg:col-span-5 space-y-6">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E]">
                 {UI_STRINGS.approach.label[lang]}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#181A1B] dark:text-[#F7F5F0] leading-tight">
                 {UI_STRINGS.approach.heading[lang]}
               </h2>
-              <p className="text-base text-[#2C2F33]/85 dark:text-[#E2DED6]/85 leading-relaxed font-sans">
+              <p className="text-base text-[#3B3E42] dark:text-[#DCD8CF] leading-relaxed font-sans">
                 {UI_STRINGS.approach.description[lang]}
               </p>
               <div className="pt-4">
                 <Link
                   href="/quality"
-                  className="inline-flex items-center gap-3 bg-[#C85A32] px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors"
+                  className="inline-flex items-center gap-3 bg-[#B84D28] px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#A33F1D] transition-colors focus-visible:outline-2 focus-visible:outline-[#B84D28]"
                 >
                   <span>{isAr ? 'منهجية الجودة والرقابة' : 'Quality Framework'}</span>
                   <ArrowIcon className="h-4 w-4" />
@@ -300,13 +301,13 @@ export default function HomePage() {
                   key={pr.num}
                   className="border border-[#E2DED6] dark:border-[#2C2F33] p-6 sm:p-8 bg-[#EFECE6]/40 dark:bg-[#2C2F33]/20 space-y-4"
                 >
-                  <span className="font-mono text-xs font-bold text-[#C85A32] tracking-widest block">
+                  <span className="font-mono text-xs font-bold text-[#A8421D] dark:text-[#E2774E] tracking-widest block">
                     {pr.num}
                   </span>
                   <h3 className="font-serif text-xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
                     {isAr ? pr.titleAr : pr.titleEn}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans">
+                  <p className="text-xs sm:text-sm text-[#3B3E42] dark:text-[#DCD8CF] leading-relaxed font-sans">
                     {isAr ? pr.descAr : pr.descEn}
                   </p>
                 </div>
@@ -319,26 +320,26 @@ export default function HomePage() {
       {/* 6. Direct Contact CTA Banner */}
       <section className="py-20 lg:py-24 bg-[#EFECE6] dark:bg-[#181A1B]">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 text-center space-y-6">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
+          <span className="text-xs font-semibold uppercase tracking-widest text-[#A8421D] dark:text-[#E2774E]">
             {isAr ? 'بدء مشروعك معنا' : 'PROJECT CONSULTATION'}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#181A1B] dark:text-[#F7F5F0] max-w-3xl mx-auto">
             {UI_STRINGS.contactCta.heading[lang]}
           </h2>
-          <p className="text-sm sm:text-base text-[#2C2F33]/80 dark:text-[#E2DED6]/80 max-w-2xl mx-auto font-sans leading-relaxed">
+          <p className="text-sm sm:text-base text-[#3B3E42] dark:text-[#DCD8CF] max-w-2xl mx-auto font-sans leading-relaxed">
             {UI_STRINGS.contactCta.description[lang]}
           </p>
           <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 bg-[#C85A32] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors"
+              className="inline-flex items-center gap-3 bg-[#B84D28] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#A33F1D] transition-colors focus-visible:outline-2 focus-visible:outline-[#B84D28]"
             >
               <span>{UI_STRINGS.contactCta.ctaButton[lang]}</span>
               <ArrowIcon className="h-4 w-4" />
             </Link>
             <a
               href={COMPANY_DETAILS.contact.landlineTel}
-              className="inline-flex items-center gap-3 border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#2C2F33]/40 px-8 py-4 text-xs font-semibold uppercase tracking-widest text-[#181A1B] dark:text-[#F7F5F0] hover:border-[#C85A32] transition-colors"
+              className="inline-flex items-center gap-3 border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#2C2F33]/40 px-8 py-4 text-xs font-semibold uppercase tracking-widest text-[#181A1B] dark:text-[#F7F5F0] hover:border-[#B84D28] hover:text-[#A8421D] dark:hover:text-[#E2774E] transition-colors focus-visible:outline-2 focus-visible:outline-[#B84D28]"
               dir="ltr"
             >
               <span>{COMPANY_DETAILS.contact.landlineFormatted}</span>
