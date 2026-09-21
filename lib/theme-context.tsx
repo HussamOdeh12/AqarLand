@@ -8,22 +8,21 @@ import React, {
   useEffect,
 } from 'react';
 
-export type ThemeMode = 'light' | 'dark' | 'system';
-export type ResolvedTheme = 'light' | 'dark';
+export type ThemeMode = 'light' | 'dark';
 
 interface ThemeContextType {
   mode: ThemeMode;
-  resolvedTheme: ResolvedTheme;
+  resolvedTheme: ThemeMode;
   setMode: (mode: ThemeMode) => void;
-  cycleTheme: () => void;
+  toggleTheme: () => void;
   isDark: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  mode: 'system',
+  mode: 'light',
   resolvedTheme: 'light',
   setMode: () => {},
-  cycleTheme: () => {},
+  toggleTheme: () => {},
   isDark: false,
 });
 
@@ -34,49 +33,39 @@ function subscribeTheme(callback: () => void) {
   if (typeof window === 'undefined') return () => {};
   window.addEventListener(THEME_CHANGE_EVENT, callback);
   window.addEventListener('storage', callback);
-  const mql = window.matchMedia('(prefers-color-scheme: dark)');
-  mql.addEventListener('change', callback);
   return () => {
     window.removeEventListener(THEME_CHANGE_EVENT, callback);
     window.removeEventListener('storage', callback);
-    mql.removeEventListener('change', callback);
   };
 }
 
 function getModeSnapshot(): ThemeMode {
-  if (typeof window === 'undefined') return 'system';
+  if (typeof window === 'undefined') return 'light';
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === 'light' || saved === 'dark' || saved === 'system') return saved;
-    return 'system';
+    if (saved === 'dark') return 'dark';
+    if (saved === 'light') return 'light';
+    return 'light';
   } catch {
-    return 'system';
+    return 'light';
   }
 }
 
 function getServerModeSnapshot(): ThemeMode {
-  return 'system';
-}
-
-function getResolvedTheme(mode: ThemeMode): ResolvedTheme {
-  if (mode === 'dark') return 'dark';
-  if (mode === 'light') return 'light';
-  if (typeof window === 'undefined') return 'light';
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  return 'light';
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const mode = useSyncExternalStore(subscribeTheme, getModeSnapshot, getServerModeSnapshot);
-  const resolvedTheme = getResolvedTheme(mode);
 
   useEffect(() => {
     const root = document.documentElement;
-    if (resolvedTheme === 'dark') {
+    if (mode === 'dark') {
       root.classList.add('dark');
     } else {
       root.classList.remove('dark');
     }
-  }, [resolvedTheme]);
+  }, [mode]);
 
   const setMode = useCallback((newMode: ThemeMode) => {
     try {
@@ -87,19 +76,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const cycleTheme = useCallback(() => {
+  const toggleTheme = useCallback(() => {
     const current = getModeSnapshot();
-    let next: ThemeMode;
-    if (current === 'light') next = 'dark';
-    else if (current === 'dark') next = 'system';
-    else next = 'light';
+    const next: ThemeMode = current === 'dark' ? 'light' : 'dark';
     setMode(next);
   }, [setMode]);
 
-  const isDark = resolvedTheme === 'dark';
+  const isDark = mode === 'dark';
 
   return (
-    <ThemeContext.Provider value={{ mode, resolvedTheme, setMode, cycleTheme, isDark }}>
+    <ThemeContext.Provider value={{ mode, resolvedTheme: mode, setMode, toggleTheme, isDark }}>
       {children}
     </ThemeContext.Provider>
   );

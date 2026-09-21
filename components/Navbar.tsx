@@ -10,14 +10,13 @@ import {
   X,
   Sun,
   Moon,
-  Monitor,
   ArrowRight,
   ArrowLeft,
 } from 'lucide-react';
 
 export default function Navbar() {
   const { lang, setLang, isAr } = useLanguage();
-  const { mode, cycleTheme, setMode } = useTheme();
+  const { mode, toggleTheme, setMode } = useTheme();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -49,19 +48,13 @@ export default function Navbar() {
 
   const getThemeLabel = () => {
     if (isAr) {
-      if (mode === 'light') return 'المظهر: نهاري (انقر للتبديل إلى داكن)';
-      if (mode === 'dark') return 'المظهر: داكن (انقر للتبديل إلى النظام)';
-      return 'المظهر: حسب النظام (انقر للتبديل إلى نهاري)';
+      return mode === 'light'
+        ? 'التبديل إلى الوضع الداكن'
+        : 'التبديل إلى الوضع النهاري';
     }
-    if (mode === 'light') return 'Theme: Light (Click for Dark)';
-    if (mode === 'dark') return 'Theme: Dark (Click for System)';
-    return 'Theme: System (Click for Light)';
-  };
-
-  const renderThemeIcon = (className = 'h-4 w-4') => {
-    if (mode === 'light') return <Sun className={className} />;
-    if (mode === 'dark') return <Moon className={className} />;
-    return <Monitor className={className} />;
+    return mode === 'light'
+      ? 'Switch to Dark Mode'
+      : 'Switch to Light Mode';
   };
 
   return (
@@ -123,16 +116,20 @@ export default function Navbar() {
             {isAr ? 'EN' : 'AR'}
           </button>
 
-          {/* Theme Toggle (Light / Dark / System) */}
+          {/* Theme Toggle (Light / Dark) */}
           <button
             id="nav-theme-toggle"
             type="button"
-            onClick={cycleTheme}
+            onClick={toggleTheme}
             className="p-2 text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] dark:hover:text-[#C85A32] transition-colors border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32] focus-visible:outline-offset-2"
             aria-label={getThemeLabel()}
             title={getThemeLabel()}
           >
-            {renderThemeIcon('h-4 w-4')}
+            {mode === 'light' ? (
+              <Moon className="h-4 w-4" />
+            ) : (
+              <Sun className="h-4 w-4" />
+            )}
           </button>
 
           {/* Start a Project Button */}
@@ -159,12 +156,16 @@ export default function Navbar() {
           <button
             id="mobile-theme-toggle-btn"
             type="button"
-            onClick={cycleTheme}
+            onClick={toggleTheme}
             className="p-1.5 text-[#181A1B] dark:text-[#F7F5F0] border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32]"
             aria-label={getThemeLabel()}
             title={getThemeLabel()}
           >
-            {renderThemeIcon('h-4 w-4')}
+            {mode === 'light' ? (
+              <Moon className="h-4 w-4" />
+            ) : (
+              <Sun className="h-4 w-4" />
+            )}
           </button>
           <button
             id="mobile-menu-toggle-btn"
@@ -204,22 +205,24 @@ export default function Navbar() {
                 {isAr ? 'المظهر' : 'Theme'}
               </span>
               <div className="flex items-center gap-1">
-                {(['light', 'dark', 'system'] as const).map((tMode) => {
+                {(['light', 'dark'] as const).map((tMode) => {
                   const isActive = mode === tMode;
-                  const label = tMode === 'light' ? (isAr ? 'نهاري' : 'Light') : tMode === 'dark' ? (isAr ? 'داكن' : 'Dark') : (isAr ? 'تلقائي' : 'Auto');
+                  const label = tMode === 'light' ? (isAr ? 'نهاري' : 'Light') : (isAr ? 'داكن' : 'Dark');
+                  const IconComp = tMode === 'light' ? Sun : Moon;
                   return (
                     <button
                       key={tMode}
                       type="button"
                       onClick={() => setMode(tMode)}
-                      className={`px-2.5 py-1 text-xs font-semibold transition-colors ${
+                      className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold transition-colors ${
                         isActive
                           ? 'bg-[#C85A32] text-white'
                           : 'text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32]'
                       }`}
                       aria-label={`${label} mode`}
                     >
-                      {label}
+                      <IconComp className="h-3 w-3" />
+                      <span>{label}</span>
                     </button>
                   );
                 })}
