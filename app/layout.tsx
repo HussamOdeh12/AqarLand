@@ -113,6 +113,28 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
+                  if (typeof window !== 'undefined') {
+                    var win = window;
+                    var proto = Object.getPrototypeOf(win);
+                    var dWin = Object.getOwnPropertyDescriptor(win, 'fetch');
+                    var dProto = proto ? Object.getOwnPropertyDescriptor(proto, 'fetch') : null;
+                    var d = dWin || dProto;
+                    if (d && !d.set) {
+                      var activeFetch = win.fetch ? win.fetch.bind(win) : null;
+                      Object.defineProperty(win, 'fetch', {
+                        get: function() {
+                          return activeFetch;
+                        },
+                        set: function(fn) {
+                          activeFetch = fn;
+                        },
+                        configurable: true,
+                        enumerable: true
+                      });
+                    }
+                  }
+                } catch (e) {}
+                try {
                   var saved = localStorage.getItem('aqar_theme');
                   if (saved === 'dark') {
                     document.documentElement.classList.add('dark');
