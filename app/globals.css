@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+:root {
+  --color-brand-sand: #c5a880;
+  --color-brand-gold: #b89558;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0b1120;
+  color: #0f172a;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+[dir="rtl"] {
+  text-align: start;
+}
