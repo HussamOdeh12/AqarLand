@@ -86,7 +86,7 @@ export default function HomePage() {
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#2C2F33]">
                   <Image
                     src="https://images.unsplash.com/photo-1541971875076-8f970d573be6?q=80&w=1200&auto=format&fit=crop"
-                    alt="Aqar Land Architectural Construction"
+                    alt="Aqar Land General Contracting & Civil Works"
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 40vw"
@@ -98,8 +98,8 @@ export default function HomePage() {
                 </div>
                 {/* Structural Metadata Tag */}
                 <div className="mt-3 flex items-center justify-between text-[11px] font-mono tracking-wider text-[#2C2F33]/70 dark:text-[#E2DED6]/70 uppercase">
-                  <span>Abu Dhabi • Structural Works</span>
-                  <span>Ref. AL-2026</span>
+                  <span>Abu Dhabi, UAE</span>
+                  <span>General Contracting</span>
                 </div>
               </div>
             </div>
@@ -228,25 +228,40 @@ export default function HomePage() {
                   />
                   <div className="absolute inset-0 bg-[#181A1B]/20 group-hover:bg-transparent transition-colors" />
                   <div className="absolute top-4 start-4 bg-[#F7F5F0]/90 dark:bg-[#181A1B]/90 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-[#C85A32]">
-                    {isAr ? proj.categoryAr : proj.categoryEn}
+                    {isAr ? proj.statusAr : proj.statusEn}
                   </div>
                 </div>
 
                 <div className="p-6 sm:p-8 flex flex-col justify-between flex-1 space-y-4">
-                  <div>
-                    <span className="text-xs font-mono text-[#628E9D] block mb-2">
-                      {isAr ? proj.locationAr : proj.locationEn}
-                    </span>
-                    <h3 className="font-serif text-xl sm:text-2xl font-normal text-[#181A1B] dark:text-[#F7F5F0] mb-2 group-hover:text-[#C85A32] transition-colors">
+                  <div className="space-y-3">
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                      <span
+                        className={`inline-block px-2 py-0.5 text-[10px] font-semibold border ${
+                          proj.status === 'Completed'
+                            ? 'border-[#628E9D]/40 text-[#628E9D] bg-[#628E9D]/5'
+                            : 'border-[#C85A32]/40 text-[#C85A32] bg-[#C85A32]/5'
+                        }`}
+                      >
+                        {isAr ? proj.statusAr : proj.statusEn}
+                      </span>
+                      {proj.year && (
+                        <span className="inline-block px-2 py-0.5 text-[10px] border border-[#E2DED6] dark:border-[#2C2F33] text-[#2C2F33]/80 dark:text-[#E2DED6]/80">
+                          {proj.year}
+                        </span>
+                      )}
+                      {proj.value && (
+                        <span className="inline-block px-2 py-0.5 text-[10px] font-medium text-[#C85A32] dark:text-[#E07A5F] bg-[#C85A32]/5 border border-[#C85A32]/20">
+                          {isAr ? (proj.valueAr || proj.value) : proj.value}
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="font-serif text-lg sm:text-xl font-normal text-[#181A1B] dark:text-[#F7F5F0] group-hover:text-[#C85A32] transition-colors leading-snug">
                       {isAr ? proj.titleAr : proj.titleEn}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans">
-                      {isAr ? proj.scopeAr : proj.scopeEn}
-                    </p>
                   </div>
 
                   <div className="pt-4 border-t border-[#E2DED6] dark:border-[#2C2F33] flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#C85A32]">
-                    <span>{isAr ? 'استعراض المشروع' : 'Project Scope'}</span>
+                    <span>{isAr ? 'عرض كافة المشاريع' : 'View Full Portfolio'}</span>
                     <ArrowIcon className="h-3.5 w-3.5" />
                   </div>
                 </div>

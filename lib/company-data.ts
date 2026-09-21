@@ -17,11 +17,12 @@ export interface ProjectItem {
   id: string;
   titleEn: string;
   titleAr: string;
-  categoryEn: string;
-  categoryAr: string;
-  categorySlug: 'contracting' | 'maintenance' | 'industrial' | 'management';
-  locationEn: string;
-  locationAr: string;
+  status: 'Completed' | 'In Progress';
+  statusEn: string;
+  statusAr: string;
+  year?: string;
+  value?: string;
+  valueAr?: string;
   scopeEn: string;
   scopeAr: string;
   imageUrl: string;
@@ -88,25 +89,25 @@ export const COMPANY_DETAILS = {
     {
       titleEn: 'Excellence',
       titleAr: 'التميز',
-      descEn: 'Commitment to the highest engineering standards and meticulous quality control.',
-      descAr: 'الالتزام بأعلى المعايير الهندسية والرقابة الدقيقة على الجودة.',
+      descEn: 'Commitment to high standards and quality control in all deliverables.',
+      descAr: 'الالتزام بمعايير عالية وضبط الجودة في كافة الأعمال.',
     },
     {
       titleEn: 'Innovation',
       titleAr: 'الابتكار',
-      descEn: 'Adoption of advanced construction technologies and modern methodology.',
-      descAr: 'اعتماد أحدث تقنيات البناء والحلول الهندسية المتطورة.',
+      descEn: 'Adoption of modern methods and effective construction solutions.',
+      descAr: 'اعتماد أحدث الأساليب والحلول الإنشائية الفعالة.',
     },
     {
       titleEn: 'Collaboration',
       titleAr: 'التعاون',
-      descEn: 'Building enduring client relationships based on active listening and shared success.',
-      descAr: 'بناء علاقات طويلة الأمد مع العملاء قائمة على الإنصات الفعال والنجاح المشترك.',
+      descEn: 'Building enduring client relationships based on active communication and shared success.',
+      descAr: 'بناء علاقات طويلة الأمد مع العملاء قائمة على التواصل الفعال والنجاح المشترك.',
     },
   ],
 };
 
-// 6 Stitch Verified Categories
+// 6 Verified Services (Audited strictly against company profile)
 export const STITCH_SERVICES: ServiceItem[] = [
   {
     id: 'general-contracting',
@@ -115,24 +116,24 @@ export const STITCH_SERVICES: ServiceItem[] = [
     titleEn: 'General Contracting',
     titleAr: 'المقاولات العامة',
     shortDescEn:
-      'Turnkey contracting solutions for residential, commercial, and mixed-use structures across Abu Dhabi and the UAE.',
+      'Turnkey contracting and civil construction for residential and commercial structures.',
     shortDescAr:
-      'حلول مقاولات شاملة وتسليم مفتاح للمشاريع السكنية والتجارية ومتعددة الاستخدامات في أبوظبي والإمارات.',
+      'حلول مقاولات شاملة وبناء مدني للمشاريع السكنية والتجارية.',
     fullDescEn:
-      'Aqar Land executes comprehensive general contracting works with uncompromising attention to structural integrity, project scheduling, and architectural precision. From foundational groundwork to final exterior finishes, our engineering operations ensure durable execution aligned with regional standards.',
+      'Aqar Land delivers turnkey general contracting works with adherence to approved specifications, structural integrity, and project schedules. We manage civil works from foundation to final structural delivery.',
     fullDescAr:
-      'تنفذ عقار لاند أعمال المقاولات العامة المتكاملة مع الاهتمام الصارم بالمتانة الإنشائية، والالتزام بالجداول الزمنية، والدقة المعمارية. من أعمال الأساسات وحتى التشطيبات الخارجية النهائية، تضمن عملياتنا الهندسية تنفيذاً مستداماً متوافقاً مع أفضل المعايير.',
+      'تنفذ عقار لاند أعمال المقاولات العامة المتكاملة مع الالتزام بالمواصفات المعتمدة والمتانة الإنشائية والجداول الزمنية. ندير الأعمال المدنية من الأساسات وحتى التسليم الإنشائي النهائي.',
     featuresEn: [
-      'Residential villas, townhouses, and compound construction',
-      'Commercial office spaces, retail complexes, and hospitality facilities',
-      'Civil earthworks, reinforced concrete substructures, and superstructures',
-      'Interior fit-out, architectural masonry, and perimeter landscaping',
+      'Residential villa and building construction',
+      'Commercial building general contracting',
+      'Civil earthworks and reinforced concrete structures',
+      'Exterior and interior finishing works',
     ],
     featuresAr: [
-      'تشييد الفلل السكنية والمجمعات والوحدات الفاخرة',
-      'مباني المكاتب التجارية والمراكز والمجمعات',
-      'أعمال الحفر والخرسانة المسلحة للهياكل الإنشائية',
-      'أعمال التشطيبات المعمارية والواجهات وتطوير الموقع العام',
+      'تشييد الفلل السكنية والمباني',
+      'المقاولات العامة للمباني التجارية',
+      'الأعمال المدنية والهياكل الخرسانية المسلحة',
+      'أعمال التشطيبات الخارجية والداخلية',
     ],
     imageUrl:
       'https://images.unsplash.com/photo-1541971875076-8f970d573be6?q=80&w=1200&auto=format&fit=crop',
@@ -144,24 +145,24 @@ export const STITCH_SERVICES: ServiceItem[] = [
     titleEn: 'Building Maintenance',
     titleAr: 'صيانة المباني',
     shortDescEn:
-      'Reliable building upkeep, preventative maintenance programs, and comprehensive MEP facility support.',
+      'Comprehensive building upkeep, preventative maintenance, and MEP facility support.',
     shortDescAr:
-      'خدمات صيانة دورية للمباني، وبرامج صيانة وقائية، ودعم كهروميكانيكي متكامل للمرافق.',
+      'خدمات صيانة دورية للمباني، صيانة وقائية، ودعم كهروميكانيكي للمرافق.',
     fullDescEn:
-      'Our facility maintenance division provides systematic upkeep to preserve the integrity, functionality, and longevity of built assets. Through proactive inspection regimes and rapid troubleshooting, we safeguard physical assets against environmental wear and operational interruptions.',
+      'Our building maintenance division provides ongoing upkeep to preserve the integrity and operation of built properties through regular maintenance and prompt repair services.',
     fullDescAr:
-      'يقدم قسم صيانة المرافق لدينا رعاية منهجية للحفاظ على سلامة وكفاءة وعمر الأصول العقارية. من خلال برامج الفحص الاستباقي والتدخل السريع، نحمي الأصول من التأثيرات البيئية والتوقفات التشغيلية.',
+      'يقدم قسم صيانة المباني لدينا خدمات الرعاية الدورية للحفاظ على سلامة وكفاءة تشغيل العقارات والمنشآت من خلال أعمال الصيانة المجدولة والإصلاحات الفورية.',
     featuresEn: [
-      'Comprehensive HVAC, mechanical ventilation, and cooling upkeep',
-      'Electrical distribution, lighting systems, and power diagnostics',
-      'Plumbing networks, water filtration, and drainage maintenance',
-      'Structural inspections, waterproofing repairs, and building envelope care',
+      'Air conditioning and ventilation system upkeep',
+      'Electrical systems and lighting maintenance',
+      'Plumbing networks and sanitary drainage maintenance',
+      'Structural inspections and general building repairs',
     ],
     featuresAr: [
-      'صيانة شاملة لأنظمة التكييف والتهوية الميكانيكية والتبريد',
-      'صيانة شبكات الكهرباء، الإضاءة، واللوحات الرئيسية',
-      'صيانة شبكات السباكة وإمدادات المياه ومعالجة الصرف',
-      'فحص ومعالجة عزل الأسطح والتشققات وصيانة الواجهات',
+      'صيانة أنظمة التكييف والتهوية',
+      'صيانة التمديدات واللوحات والشبكات الكهربائية',
+      'صيانة شبكات السباكة وإمدادات المياه والصرف',
+      'الفحص الدوري للمباني وأعمال الترميم العامة',
     ],
     imageUrl:
       'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1200&auto=format&fit=crop',
@@ -173,24 +174,24 @@ export const STITCH_SERVICES: ServiceItem[] = [
     titleEn: 'Support Services',
     titleAr: 'خدمات الدعم والمساندة',
     shortDescEn:
-      'Essential operational support, logistics, technical site assistance, and specialized equipment deployment.',
+      'Operational support, site logistics coordination, and technical assistance.',
     shortDescAr:
-      'خدمات دعم لوجستي وميداني، ومساندة فنية للمشاريع، وتوفير المعدات التخصصية في مواقع العمل.',
+      'خدمات الدعم التشغيلي، تنسيق لوجستيات الموقع، والمساندة الفنية للمشاريع.',
     fullDescEn:
-      'Aqar Land provides operational and technical support to ensure project continuity and site logistics efficiency. We supply trained technical workforce, on-site material coordination, and dedicated facility support across challenging environments.',
+      'Aqar Land provides operational and technical support to facilitate smooth site operations and project continuity across diverse working environments.',
     fullDescAr:
-      'توفر عقار لاند الدعم التشغيلي والفني لضمان استمرارية المشاريع وكفاءة الخدمات اللوجستية في الموقع. نحن نوفر الكوادر الفنية المدربة، وتنسيق التوريدات الميدانية، ودعم المنشآت التشغيلية في مختلف الظروف.',
+      'توفر عقار لاند خدمات الدعم التشغيلي والمساندة الفنية لتسهيل سير العمل في المواقع الإنشائية وضمان استمرارية تنفيذ المشاريع.',
     featuresEn: [
-      'Site logistics coordination and heavy material transport assistance',
-      'Specialized equipment deployment and operational staging',
-      'Technical staffing for facility management and industrial sites',
-      'Health, Safety, and Environmental (HSE) on-site coordination',
+      'Site logistics and material movement coordination',
+      'Technical site support for ongoing projects',
+      'Workforce assistance and operational staging',
+      'General on-site coordination and project support',
     ],
     featuresAr: [
-      'تنسيق اللوجستيات ونقل المواد والمعدات الثقيلة في المواقع',
-      'توفير المعدات التخصصية وتجهيز المواقع الإنشائية',
-      'توفير الكوادر الفنية المتخصصة لإدارة المنشآت والمواقع',
-      'التنسيق الميداني لمعايير الصحة والسلامة والبيئة (HSE)',
+      'تنسيق اللوجستيات ونقل المواد في الموقع',
+      'المساندة الفنية للمشاريع القائمة',
+      'توفير الكوادر المساعدة وتجهيز مواقع العمل',
+      'التنسيق الميداني العام ودعم متطلبات المشروع',
     ],
     imageUrl:
       'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200&auto=format&fit=crop',
@@ -202,24 +203,24 @@ export const STITCH_SERVICES: ServiceItem[] = [
     titleEn: 'Project Management',
     titleAr: 'إدارة المشاريع',
     shortDescEn:
-      'Disciplined construction oversight, budget planning, milestone tracking, and stakeholder communication.',
+      'Disciplined construction supervision, schedule tracking, and stakeholder coordination.',
     shortDescAr:
-      'إشراف هندسي دقيق، تخطيط الميزانيات، متابعة مراحل الإنجاز، والتنسيق الشفاف مع أصحاب المصلحة.',
+      'إشراف هندسي ميداني، متابعة الجداول الزمنية، وتنسيق مستمر مع أصحاب المصلحة.',
     fullDescEn:
-      'Our project management discipline bridges architectural vision and physical execution. We coordinate contractors, monitor procurement pipelines, maintain rigorous schedule control, and ensure that quality benchmarks are respected at each project gateway.',
+      'Our project management service provides structured oversight across all construction phases, ensuring budget discipline, schedule adherence, and clear communication with clients.',
     fullDescAr:
-      'تربط إدارة المشاريع لدينا بين الرؤية التصميمية والتنفيذ الفعلي على أرض الواقع. ننسق مع كافة الأطراف، ونراقب سلاسل التوريد، ونحافظ على الانضباط الزمني الدقيق لضمان تحقيق أعلى معايير الجودة في كل مرحلة.',
+      'توفر خدمة إدارة المشاريع لدينا إشرافاً منهجياً عبر كافة مراحل البناء، مع التركيز على ضبط التكاليف والالتزام بالجدول الزمني والتواصل الشفاف مع العملاء.',
     featuresEn: [
-      'Comprehensive project programming and Critical Path Method (CPM) scheduling',
-      'Cost planning, value engineering, and procurement oversight',
-      'Quality assurance milestones and site inspection sign-offs',
-      'Transparent milestone reporting for project owners and developers',
+      'Construction timeline and milestone management',
+      'Cost planning and resource tracking',
+      'Site supervision and quality checks',
+      'Client progress reporting and communication',
     ],
     featuresAr: [
-      'تخطيط البرامج الزمنية للمشاريع وتحديد المسار الحرج (CPM)',
-      'تخطيط التكاليف والهندسة القيمة ومتابعة المشتريات',
-      'مراقبة الجودة واعتماد تقارير الفحص الدوري الميداني',
-      'تقارير دورية شفافة لأصحاب المشاريع والمطورين',
+      'إدارة الجداول الزمنية ومراحل الإنجاز',
+      'متابعة التكاليف وتنسيق الموارد',
+      'الإشراف الميداني ومراجعة جودة الأعمال',
+      'تقارير دورية للعملاء عن تقدم العمل',
     ],
     imageUrl:
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop',
@@ -231,24 +232,24 @@ export const STITCH_SERVICES: ServiceItem[] = [
     titleEn: 'Design & Structural Analysis',
     titleAr: 'التصميم والتحليل الإنشائي',
     shortDescEn:
-      'Integrated engineering calculations, structural assessments, and architectural coordination for resilient structures.',
+      'Structural evaluations, engineering reviews, and coordination for resilient building frameworks.',
     shortDescAr:
-      'حسابات هندسية متكاملة، تقييمات إنشائية دقيقة، وتنسيق معماري لضمان صلابة وديمومة المنشآت.',
+      'تقييمات إنشائية، مراجعات هندسية، وتنسيق لضمان متانة الهياكل الخرسانية والمباني.',
     fullDescEn:
-      'Aqar Land integrates architectural concepts with rigorous structural analysis. Our engineering specialists analyze soil capacities, dead and live load distributions, and climatic stresses to develop structural configurations that maximize safety, efficiency, and longevity.',
+      'Aqar Land provides structural analysis and design coordination to ensure all structural elements are engineered safely and conform to approved engineering codes.',
     fullDescAr:
-      'تدمج عقار لاند المفاهيم المعمارية مع التحليل الإنشائي الدقيق. يحلل مهندسونا قدرات التربة، وتوزيع الأحمال الحية والميتة، وتأثيرات المناخ لتطوير هياكل إنشائية تحقق أعلى درجات الأمان والكفاءة والاستدامة.',
+      'تقدم عقار لاند التحليل الإنشائي والتنسيق الهندسي لضمان تصميم كافة العناصر الإنشائية بأمان ومطابقتها للمواصفات الهندسية المعتمدة.',
     featuresEn: [
-      'Structural load analysis, foundation calculations, and framing design',
-      'Evaluation of existing structures for renovation or load alterations',
-      'Architectural coordination ensuring design intent matches engineering realities',
-      'Material optimization balancing structural resilience and resource efficiency',
+      'Structural design and engineering evaluation',
+      'Review of structural alterations and additions',
+      'Coordination between architectural drawings and structural plans',
+      'Practical engineering solutions for structural durability',
     ],
     featuresAr: [
-      'تحليل الأحمال الإنشائية وتصميم الأساسات والهياكل الخرسانية والفولاذية',
-      'تقييم المنشآت القائمة لمتطلبات التوسعة أو إعادة التأهيل',
-      'التنسيق المعماري لضمان توافق التصميم مع الواقع الإنشائي',
-      'تحسين اختيار المواد لتحقيق الصلابة الإنشائية وكفاءة الموارد',
+      'التصميم الإنشائي والتقييم الهندسي',
+      'مراجعة التعديلات والإضافات الإنشائية',
+      'التنسيق بين المخططات المعمارية والإنشائية',
+      'حلول هندسية عملية لضمان المتانة الإنشائية',
     ],
     imageUrl:
       'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop',
@@ -260,120 +261,155 @@ export const STITCH_SERVICES: ServiceItem[] = [
     titleEn: 'Project Execution',
     titleAr: 'تنفيذ المشاريع',
     shortDescEn:
-      'On-site construction delivery, precision craftsmanship, material staging, and seamless handover protocols.',
+      'Direct on-site construction delivery, quality craftsmanship, and organized handover.',
     shortDescAr:
-      'تنفيذ ميداني متكامل، حرفية هندسية عالية، إدارة توريدات المواد، وبروتوكولات تسليم سلسة.',
+      'تنفيذ ميداني مباشر للأعمال، جودة في البناء، وتسليم منظم للمشاريع.',
     fullDescEn:
-      'Execution is where blueprint precision becomes physical reality. Our on-site supervisors, licensed trades, and experienced crews execute works with strict adherence to approved drawings, safety regimes, and craftsmanship standards.',
+      'Our on-site teams execute construction works with attention to detail and strict adherence to approved engineering drawings, specifications, and safety guidelines.',
     fullDescAr:
-      'التنفيذ الميداني هو تحويل المخططات الهندسية إلى واقع حقيقي ملموس. يعمل مشرفو المواقع والفرق الفنية المتخصصة وفق أعلى درجات الانضباط للمخططات المعتمدة، وبروتوكولات السلامة، ومعايير الحرفية الرفيعة.',
+      'تنفذ فرقنا الميدانية أعمال البناء بعناية فائقة والتزام صارم بالمخططات الهندسية والمواصفات المعتمدة وإرشادات السلامة العامة.',
     featuresEn: [
-      'Disciplined site management and daily execution logs',
-      'On-site material quality verification and testing coordination',
-      'Phased commissioning of electrical, mechanical, and safety systems',
-      'Final snagging, client walk-throughs, and structured project handover',
+      'Direct on-site construction supervision',
+      'Execution according to approved drawings',
+      'Quality review at every construction milestone',
+      'Structured site delivery and project handover',
     ],
     featuresAr: [
-      'إدارة ميدانية منضبطة وسجلات متابعة يومية لسير العمل',
-      'التحقق من جودة المواد الموردة للموقع ومتابعة الاختبارات',
-      'التشغيل التجريبي المرحلي للأنظمة الكهربائية والميكانيكية',
-      'معالجة الملاحظات النهائية والتسليم المنظم للمشروع',
+      'إشراف ميداني مباشر على أعمال البناء',
+      'التنفيذ وفق المخططات المعتمدة',
+      'مراجعة الجودة في كل مرحلة من مراحل التنفيذ',
+      'إنهاء الأعمال والتسليم المنظم للمشروع',
     ],
     imageUrl:
       'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1200&auto=format&fit=crop',
   },
 ];
 
-// Verified Project Portfolio (restrained metadata, verified company scopes, no fake stats/awards)
+// The 8 REAL Projects Documented in the Aqar Land Company Profile
 export const VERIFIED_PROJECTS: ProjectItem[] = [
   {
-    id: 'commercial-hq-abu-dhabi',
-    titleEn: 'Commercial Office Development',
-    titleAr: 'مجمع مكاتب تجارية',
-    categoryEn: 'General Contracting',
-    categoryAr: 'المقاولات العامة',
-    categorySlug: 'contracting',
-    locationEn: 'Abu Dhabi, UAE',
-    locationAr: 'أبوظبي، الإمارات',
-    scopeEn: 'Core structural works, exterior cladding, and MEP integration',
-    scopeAr: 'الأعمال الإنشائية الرئيسية، تكسية الواجهات، والأنظمة الكهروميكانيكية',
-    imageUrl:
-      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop',
-    featured: true,
-  },
-  {
-    id: 'residential-villa-compound',
-    titleEn: 'Private Residential Compound',
-    titleAr: 'مجمع فلل سكنية خاصة',
-    categoryEn: 'General Contracting',
-    categoryAr: 'المقاولات العامة',
-    categorySlug: 'contracting',
-    locationEn: 'Abu Dhabi, UAE',
-    locationAr: 'أبوظبي، الإمارات',
-    scopeEn: 'Turnkey villa construction, structural framing, and perimeter development',
-    scopeAr: 'بناء متكامل للفلل، الهياكل الخرسانية، وأعمال الموقع العام',
+    id: 'villa-ground-first-roof-service-annex',
+    titleEn: 'Residential Villa — Ground Floor, First Floor, Roof & Service Annex',
+    titleAr: 'فيلا سكنية — طابق أرضي، طابق أول، سطح وملحق خدمات',
+    status: 'Completed',
+    statusEn: 'Completed',
+    statusAr: 'منجز',
+    year: '2023',
+    value: 'AED 1,250,000',
+    valueAr: '1,250,000 درهم',
+    scopeEn: 'Residential Villa — Ground Floor, First Floor, Roof & Service Annex',
+    scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، سطح وملحق خدمات',
     imageUrl:
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop',
     featured: true,
   },
   {
-    id: 'industrial-logistics-facility',
-    titleEn: 'Industrial Storage & Logistics Facility',
-    titleAr: 'مرفق تخزين وخدمات لوجستية',
-    categoryEn: 'Project Execution',
-    categoryAr: 'تنفيذ المشاريع',
-    categorySlug: 'industrial',
-    locationEn: 'Industrial Zone, Abu Dhabi, UAE',
-    locationAr: 'المنطقة الصناعية، أبوظبي، الإمارات',
-    scopeEn: 'Heavy steel framing, floor slab engineering, and specialized civil works',
-    scopeAr: 'هياكل فولاذية ثقيلة، أرضيات صناعية معززة، وأعمال مدنية متخصصة',
+    id: 'villa-ground-first-electricity-room-fence',
+    titleEn: 'Residential Villa — Ground Floor, First Floor, Electricity Room & External Fence',
+    titleAr: 'فيلا سكنية — طابق أرضي، طابق أول، غرفة كهرباء وسور خارجي',
+    status: 'In Progress',
+    statusEn: 'In Progress',
+    statusAr: 'قيد التنفيذ',
+    value: 'AED 2,000,000',
+    valueAr: '2,000,000 درهم',
+    scopeEn: 'Residential Villa — Ground Floor, First Floor, Electricity Room & External Fence',
+    scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، غرفة كهرباء وسور خارجي',
     imageUrl:
-      'https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1200&auto=format&fit=crop',
     featured: true,
   },
   {
-    id: 'corporate-facility-maintenance',
-    titleEn: 'Commercial Facility Upkeep Program',
-    titleAr: 'برنامج صيانة المنشآت التجارية',
-    categoryEn: 'Building Maintenance',
-    categoryAr: 'صيانة المباني',
-    categorySlug: 'maintenance',
-    locationEn: 'Abu Dhabi, UAE',
-    locationAr: 'أبوظبي، الإمارات',
-    scopeEn: 'Scheduled HVAC overhaul, electrical system audits, and preventive servicing',
-    scopeAr: 'صيانة دورية للتكييف المركزي، فحص الشبكات الكهربائية، والخدمات الوقائية',
+    id: 'villa-ground-first-service-annex-electricity-fence',
+    titleEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Electricity Room & External Fence',
+    titleAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة كهرباء وسور خارجي',
+    status: 'In Progress',
+    statusEn: 'In Progress',
+    statusAr: 'قيد التنفيذ',
+    value: 'AED 1,250,000',
+    valueAr: '1,250,000 درهم',
+    scopeEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Electricity Room & External Fence',
+    scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة كهرباء وسور خارجي',
     imageUrl:
-      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1200&auto=format&fit=crop',
-    featured: false,
-  },
-  {
-    id: 'residential-tower-refurbishment',
-    titleEn: 'Residential Complex Refurbishment',
-    titleAr: 'تحديث وصيانة مجمع سكني',
-    categoryEn: 'Building Maintenance',
-    categoryAr: 'صيانة المباني',
-    categorySlug: 'maintenance',
-    locationEn: 'Abu Dhabi, UAE',
-    locationAr: 'أبوظبي، الإمارات',
-    scopeEn: 'Building envelope waterproofing, facade refurbishment, and MEP repairs',
-    scopeAr: 'عزل أسطح المباني، تجديد الواجهات الخارجية، وإصلاح الأنظمة الميكانيكية',
-    imageUrl:
-      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1200&auto=format&fit=crop',
-    featured: false,
-  },
-  {
-    id: 'structural-site-management',
-    titleEn: 'Multi-Phase Site Execution',
-    titleAr: 'إدارة وتنفيذ موقع متعدد المراحل',
-    categoryEn: 'Project Management',
-    categoryAr: 'إدارة المشاريع',
-    categorySlug: 'management',
-    locationEn: 'Abu Dhabi, UAE',
-    locationAr: 'أبوظبي، الإمارات',
-    scopeEn: 'On-site technical supervision, quality verification, and handover coordination',
-    scopeAr: 'إشراف فني ميداني، التحقق من معايير الجودة، وإدارة بروتوكولات التسليم',
-    imageUrl:
-      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop',
     featured: true,
+  },
+  {
+    id: 'redesign-interior-ground-first-annex-landscaping',
+    titleEn: 'Redesign & Interior Modifications — Ground Floor, First Floor, Service Annex & Landscaping',
+    titleAr: 'إعادة تصميم وتعديلات داخلية — طابق أرضي، طابق أول، ملحق خدمات وتنسيق حدائق',
+    status: 'Completed',
+    statusEn: 'Completed',
+    statusAr: 'منجز',
+    year: '2024',
+    value: 'AED 2,000,000',
+    valueAr: '2,000,000 درهم',
+    scopeEn: 'Redesign & Interior Modifications — Ground Floor, First Floor, Service Annex & Landscaping',
+    scopeAr: 'إعادة تصميم وتعديلات داخلية — طابق أرضي، طابق أول، ملحق خدمات وتنسيق حدائق',
+    imageUrl:
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop',
+    featured: false,
+  },
+  {
+    id: 'villa-ground-first-majlis-fence',
+    titleEn: 'Residential Villa — Ground Floor, First Floor, External Majlis & External Fence',
+    titleAr: 'فيلا سكنية — طابق أرضي، طابق أول، مجلس خارجي وسور خارجي',
+    status: 'In Progress',
+    statusEn: 'In Progress',
+    statusAr: 'قيد التنفيذ',
+    value: 'AED 1,750,000',
+    valueAr: '1,750,000 درهم',
+    scopeEn: 'Residential Villa — Ground Floor, First Floor, External Majlis & External Fence',
+    scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، مجلس خارجي وسور خارجي',
+    imageUrl:
+      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1200&auto=format&fit=crop',
+    featured: false,
+  },
+  {
+    id: 'villa-ground-first-service-annex-electricity-wall',
+    titleEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Electricity Room & External Wall',
+    titleAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة كهرباء وجدار خارجي',
+    status: 'Completed',
+    statusEn: 'Completed',
+    statusAr: 'منجز',
+    year: '2024',
+    value: 'AED 2,000,000',
+    valueAr: '2,000,000 درهم',
+    scopeEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Electricity Room & External Wall',
+    scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة كهرباء وجدار خارجي',
+    imageUrl:
+      'https://images.unsplash.com/photo-1541971875076-8f970d573be6?q=80&w=1200&auto=format&fit=crop',
+    featured: false,
+  },
+  {
+    id: 'villa-ground-first-annex-guard-electrical-fence',
+    titleEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Guard Room, Electrical Room & External Fence',
+    titleAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة حارس، غرفة كهرباء وسور خارجي',
+    status: 'Completed',
+    statusEn: 'Completed',
+    statusAr: 'منجز',
+    year: '2024',
+    value: 'AED 2,300,000',
+    valueAr: '2,300,000 درهم',
+    scopeEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Guard Room, Electrical Room & External Fence',
+    scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة حارس، غرفة كهرباء وسور خارجي',
+    imageUrl:
+      'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop',
+    featured: false,
+  },
+  {
+    id: 'villa-ground-first-annex-electricity-fence-2025',
+    titleEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Electricity Room & External Fence',
+    titleAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة كهرباء وسور خارجي',
+    status: 'Completed',
+    statusEn: 'Completed',
+    statusAr: 'منجز',
+    year: '2025',
+    value: 'AED 2,000,000',
+    valueAr: '2,000,000 درهم',
+    scopeEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Electricity Room & External Fence',
+    scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة كهرباء وسور خارجي',
+    imageUrl:
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop',
+    featured: false,
   },
 ];

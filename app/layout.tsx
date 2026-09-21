@@ -114,7 +114,10 @@ export default function RootLayout({
       <head>
         <JsonLd />
       </head>
-      <body className="min-h-screen flex flex-col font-sans bg-[#F7F5F0] text-[#181A1B] dark:bg-[#181A1B] dark:text-[#F7F5F0] transition-colors duration-200">
+      <body
+        suppressHydrationWarning
+        className="min-h-screen flex flex-col font-sans bg-[#F7F5F0] text-[#181A1B] dark:bg-[#181A1B] dark:text-[#F7F5F0] transition-colors duration-200"
+      >
         <ThemeProvider>
           <LanguageProvider>
             <div className="flex min-h-screen flex-col">

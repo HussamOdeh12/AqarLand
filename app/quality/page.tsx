@@ -4,49 +4,66 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/lib/language-context';
-import { UI_STRINGS } from '@/lib/translations';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 
 export default function QualityPage() {
   const { lang, isAr } = useLanguage();
   const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
 
-  const qualityStandards = [
+  const qualityPillars = [
     {
       num: '01',
-      titleEn: 'Structural Precision & Calculation Rigor',
-      titleAr: 'الدقة الإنشائية والتحليل الهندسي',
+      titleEn: 'Quality & Craftsmanship',
+      titleAr: 'الجودة ودقة التنفيذ',
       descEn:
-        'Every structural component is assessed against regional load dynamics, foundation stability requirements, and structural engineering best practices.',
+        'Uncompromising dedication to superior workmanship, structural integrity, and adherence to approved engineering specifications across all project stages.',
       descAr:
-        'يتم فحص كل عنصر إنشائي وفق حسابات الأحمال واستقرار الأساسات وأفضل الممارسات الهندسية الإقليمية المعتمدة.',
+        'التزام راسخ بأعلى معايير الإتقان، والمتانة الإنشائية، ومطابقة المخططات والمواصفات الهندسية المعتمدة في كافة مراحل المشروع.',
     },
     {
       num: '02',
-      titleEn: 'Material Verification & Environmental Resilience',
-      titleAr: 'التحقق من المواد ومقاومة البيئة المحلية',
+      titleEn: 'Continuous Improvement & Technology',
+      titleAr: 'التحسين المستمر والابتكار',
       descEn:
-        'All raw materials, concrete aggregates, waterproofing membranes, and steel reinforcement are sourced from certified regional suppliers capable of withstanding the UAE climate.',
+        'Systematic enhancement of construction practices, adopting modern methods and technologies to optimize site execution and operational workflows.',
       descAr:
-        'يتم توريد الخرسانة، وحديد التسليح، وعوازل المياه والرطوبة من موردين معتمدين لضمان مقاومة العوامل الجوية ودرجات الحرارة العالية.',
+        'تطوير منهجي ومستمر لأساليب البناء واعتماد التقنيات الحديثة لرفع كفاءة التنفيذ وتطوير بيئة العمل.',
     },
     {
       num: '03',
-      titleEn: 'On-Site Supervision & Milestone Sign-Offs',
-      titleAr: 'الإشراف الميداني واعتماد المراحل',
+      titleEn: 'Customer Satisfaction & Transparency',
+      titleAr: 'رضا العملاء والشفافية',
       descEn:
-        'Daily on-site logs and milestone inspections guarantee that execution matches approved architectural drawings before proceeding to subsequent construction stages.',
+        'Building enduring client relationships based on active communication, responsive collaboration, and exceeding expectations on every deliverable.',
       descAr:
-        'سجلات متابعة يومية وفحوصات دورية لكل مرحلة تضمن مطابقة التنفيذ للمخططات الهندسية المعتمدة قبل الانتقال للمرحلة التالية.',
+        'بناء علاقات متينة مع العملاء تقوم على التواصل الفعال، والتنسيق المستمر، والحرص على تجاوز التوقعات في كافة المخرجات.',
     },
     {
       num: '04',
-      titleEn: 'Proactive Asset Upkeep & Lifecycle Care',
-      titleAr: 'الصيانة الاستباقية وحماية الأصول',
+      titleEn: 'Sustainability & Environmental Awareness',
+      titleAr: 'الاستدامة والمسؤولية البيئية',
       descEn:
-        'Post-handover maintenance agreements and systematic preventative routines preserve the mechanical, electrical, and aesthetic integrity of built structures.',
+        'Prioritizing sustainable practices, efficient resource utilization, and long-term durability in built environments across the UAE.',
       descAr:
-        'برامج صيانة وقائية دورية تحافظ على كفاءة الأنظمة الكهروميكانيكية وسلامة المباني والمنشآت على المدى الطويل.',
+        'التركيز على الممارسات المستدامة، والاستخدام الأمثل للموارد، وضمان ديمومة المباني والمنشآت في دولة الإمارات.',
+    },
+    {
+      num: '05',
+      titleEn: 'Cost Effectiveness & Efficiency',
+      titleAr: 'الكفاءة وفعالية التكلفة',
+      descEn:
+        'Rigorous budget planning and resource management delivering maximum value and operational efficiency without compromising on build quality.',
+      descAr:
+        'تخطيط مالي دقيق وإدارة فعالة للموارد لتحقيق أعلى قيمة تشغيلية واقتصادية دون المساس بجودة البناء.',
+    },
+    {
+      num: '06',
+      titleEn: 'Schedule Discipline & Project Standards',
+      titleAr: 'الانضباط الزمني والالتزام بالمعايير',
+      descEn:
+        'Strict adherence to agreed timelines, milestone management, and systematic site oversight to ensure predictable and orderly project handovers.',
+      descAr:
+        'التزام صارم بالجداول الزمنية المحددة، ومتابعة مراحل الإنجاز، وإشراف ميداني منتظم لضمان تسليم المشاريع بدقة وانضباط.',
     },
   ];
 
@@ -57,15 +74,15 @@ export default function QualityPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="max-w-3xl space-y-4">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
-              {isAr ? 'منهجية الجودة والرقابة • عقار لاند' : 'METHODOLOGY & QUALITY • AQAR LAND'}
+              {isAr ? 'منهجية الجودة والعمل • عقار لاند' : 'QUALITY FRAMEWORK • AQAR LAND'}
             </span>
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#181A1B] dark:text-[#F7F5F0] leading-tight">
-              {isAr ? 'الجودة، النزاهة، والانضباط الهندسي' : 'Quality Framework & Operational Approach'}
+              {isAr ? 'الجودة، النزاهة، والتميز الهندسي' : 'Quality Framework & Operational Approach'}
             </h1>
             <p className="text-base sm:text-lg text-[#2C2F33]/85 dark:text-[#E2DED6]/85 font-sans leading-relaxed pt-2">
               {isAr
-                ? 'نلتزم بأعلى معايير الحرفية والشفافية في كافة مراحل التخطيط، المقاولات، والتنفيذ في أبوظبي ودولة الإمارات.'
-                : 'A principled commitment to structural durability, meticulous site oversight, and transparent stakeholder coordination across every construction and maintenance lifecycle.'}
+                ? 'تلتزم عقار لاند بتقديم خدمات وحلول عالية الجودة تتجاوز توقعات العملاء، مع التركيز على الاستدامة، الكفاءة، والانضباط الزمني في أبوظبي والإمارات.'
+                : 'A principled commitment to engineering quality, continuous improvement, customer satisfaction, and schedule discipline across every project lifecycle.'}
             </p>
           </div>
         </div>
@@ -74,45 +91,47 @@ export default function QualityPage() {
       {/* 2. Core Pillars Grid */}
       <section className="py-20 lg:py-28 border-b border-[#E2DED6] dark:border-[#2C2F33]">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {qualityStandards.map((item) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {qualityPillars.map((item) => (
               <div
                 key={item.num}
-                className="border border-[#E2DED6] dark:border-[#2C2F33] p-8 lg:p-10 bg-[#EFECE6]/30 dark:bg-[#2C2F33]/20 space-y-4"
+                className="border border-[#E2DED6] dark:border-[#2C2F33] p-8 bg-[#EFECE6]/30 dark:bg-[#2C2F33]/20 space-y-4 flex flex-col justify-between"
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-sm font-bold text-[#C85A32] tracking-widest">
-                    {item.num}
-                  </span>
-                  <div className="h-2 w-2 bg-[#C85A32]" />
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-sm font-bold text-[#C85A32] tracking-widest">
+                      {item.num}
+                    </span>
+                    <div className="h-2 w-2 bg-[#C85A32]" />
+                  </div>
+                  <h2 className="font-serif text-xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
+                    {isAr ? item.titleAr : item.titleEn}
+                  </h2>
+                  <p className="text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans">
+                    {isAr ? item.descAr : item.descEn}
+                  </p>
                 </div>
-                <h2 className="font-serif text-2xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
-                  {isAr ? item.titleAr : item.titleEn}
-                </h2>
-                <p className="text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 leading-relaxed font-sans">
-                  {isAr ? item.descAr : item.descEn}
-                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. Site Health, Safety & Environment (HSE) Discipline */}
+      {/* 3. Operational Discipline & Site Standards */}
       <section className="py-20 lg:py-28 border-b border-[#E2DED6] dark:border-[#2C2F33] bg-[#EFECE6]/50 dark:bg-[#181A1B]">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6 space-y-6">
               <span className="text-xs font-semibold uppercase tracking-widest text-[#C85A32]">
-                {isAr ? 'السلامة والبيئة المهنية' : 'SAFETY PROTOCOLS & SITE RIGOR'}
+                {isAr ? 'الانضباط الهندسي والميداني' : 'OPERATIONAL DISCIPLINE & RIGOR'}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#181A1B] dark:text-[#F7F5F0]">
-                {isAr ? 'بيئة عمل آمنة، منظمة، ومنضبطة' : 'Disciplined On-Site Environmental & Safety Standards'}
+                {isAr ? 'بيئة عمل منضبطة ومعايير تنفيذ دقيقة' : 'Structured On-Site Management & Project Standards'}
               </h2>
               <p className="text-base text-[#2C2F33]/85 dark:text-[#E2DED6]/85 font-sans leading-relaxed">
                 {isAr
-                  ? 'تولي عقار لاند سلامة الكوادر الفنية والمواقع الإنشائية أولوية قصوى. تطبق فرقنا الميدانية بروتوكولات وقائية يومية وتدريبات دورية للحفاظ على بيئة عمل آمنة ومنتجة.'
-                  : 'Aqar Land enforces proactive safety protocols across every active site in Abu Dhabi. From daily morning briefings to hazard mitigation and mandatory personal protective equipment, our worksites maintain strict operational discipline.'}
+                  ? 'تحرص عقار لاند على تنظيم مواقع العمل، والالتزام بإرشادات السلامة العامة، وتطبيق الرقابة الهندسية المستمرة في كافة مراحل التشييد والبناء لضمان أعلى درجات الجودة والتسليم المنضبط.'
+                  : 'Aqar Land enforces structured site coordination, safety guidelines, and active supervision across all active works in Abu Dhabi, ensuring high construction quality and timely project completion.'}
               </p>
               <div className="pt-2">
                 <Link
@@ -139,7 +158,7 @@ export default function QualityPage() {
                   <div className="absolute inset-0 bg-[#181A1B]/15" />
                 </div>
                 <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono tracking-wider text-[#2C2F33]/60 dark:text-[#E2DED6]/60 uppercase">
-                  <span>Site Supervision Protocol</span>
+                  <span>Site Supervision Standards</span>
                   <span>Abu Dhabi, UAE</span>
                 </div>
               </div>
