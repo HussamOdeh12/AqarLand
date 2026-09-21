@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useSyncExternalStore, useCallback } from 'react';
+import React, { createContext, useContext, useSyncExternalStore, useCallback, useEffect } from 'react';
 
 export type Language = 'en' | 'ar';
 
@@ -21,16 +21,28 @@ const LanguageContext = createContext<LanguageContextType>({
 const LANGUAGE_CHANGE_EVENT = 'aqar_language_change';
 
 function subscribe(callback: () => void) {
+  if (typeof window === 'undefined') return () => {};
   window.addEventListener(LANGUAGE_CHANGE_EVENT, callback);
   window.addEventListener('storage', callback);
+  window.addEventListener('popstate', callback);
   return () => {
     window.removeEventListener(LANGUAGE_CHANGE_EVENT, callback);
     window.removeEventListener('storage', callback);
+    window.removeEventListener('popstate', callback);
   };
 }
 
 function getSnapshot(): Language {
+  if (typeof window === 'undefined') return 'en';
   try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    if (urlLang === 'ar' || urlLang === 'en') {
+      return urlLang;
+    }
+    if (window.location.pathname === '/ar' || window.location.pathname.startsWith('/ar/')) {
+      return 'ar';
+    }
     const saved = localStorage.getItem('aqar_lang');
     return saved === 'ar' ? 'ar' : 'en';
   } catch {
@@ -45,11 +57,20 @@ function getServerSnapshot(): Language {
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const lang = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    }
+  }, [lang]);
+
   const setLang = useCallback((newLang: Language) => {
     try {
       localStorage.setItem('aqar_lang', newLang);
-      document.documentElement.lang = newLang;
-      document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+      if (typeof document !== 'undefined') {
+        document.documentElement.lang = newLang;
+        document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+      }
       window.dispatchEvent(new Event(LANGUAGE_CHANGE_EVENT));
     } catch {
       // ignore

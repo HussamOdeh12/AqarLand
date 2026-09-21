@@ -85,13 +85,12 @@ export default function HomePage() {
               <div className="relative border border-[#E2DED6] dark:border-[#2C2F33] p-3 bg-[#EFECE6] dark:bg-[#2C2F33]/40">
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#2C2F33]">
                   <Image
-                    src="https://images.unsplash.com/photo-1541971875076-8f970d573be6?q=80&w=1200&auto=format&fit=crop"
-                    alt="Aqar Land General Contracting & Civil Works"
+                    src="/images/hero/aqar-land-hero.jpg"
+                    alt={isAr ? 'مشروع سكني — عقار لاند أبوظبي' : 'AQAR LAND residential project — Abu Dhabi'}
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 40vw"
-                    className="object-cover"
-                    referrerPolicy="no-referrer"
+                    className="object-cover object-center"
                   />
                   {/* Subtle architectural overlay */}
                   <div className="absolute inset-0 bg-[#181A1B]/15" />
@@ -220,11 +219,10 @@ export default function HomePage() {
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#2C2F33]">
                   <Image
                     src={proj.imageUrl}
-                    alt={proj.titleEn}
+                    alt={isAr ? 'مشروع سكني — عقار لاند' : 'AQAR LAND residential project'}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-[#181A1B]/20 group-hover:bg-transparent transition-colors" />
                   <div className="absolute top-4 start-4 bg-[#F7F5F0]/90 dark:bg-[#181A1B]/90 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-[#C85A32]">

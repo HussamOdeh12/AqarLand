@@ -15,7 +15,7 @@ export default function ProjectsPage() {
 
   const filterTabs: { id: 'All' | 'Completed' | 'In Progress'; labelEn: string; labelAr: string }[] = [
     { id: 'All', labelEn: 'All', labelAr: 'الكل' },
-    { id: 'Completed', labelEn: 'Completed', labelAr: 'منجز' },
+    { id: 'Completed', labelEn: 'Completed', labelAr: 'مكتمل' },
     { id: 'In Progress', labelEn: 'In Progress', labelAr: 'قيد التنفيذ' },
   ];
 
@@ -98,11 +98,10 @@ export default function ProjectsPage() {
                     >
                       <Image
                         src={project.imageUrl}
-                        alt={project.titleEn}
+                        alt={isAr ? 'مشروع سكني — عقار لاند' : 'AQAR LAND residential project'}
                         fill
                         sizes={isFeatured ? '(max-width: 1024px) 100vw, 66vw' : '(max-width: 768px) 100vw, 33vw'}
                         className="object-cover transition-transform duration-700 hover:scale-105"
-                        referrerPolicy="no-referrer"
                       />
                       <div className="absolute top-4 start-4 bg-[#F7F5F0]/90 dark:bg-[#181A1B]/90 px-3 py-1 text-[11px] font-mono uppercase tracking-wider text-[#C85A32]">
                         {isAr ? project.statusAr : project.statusEn}

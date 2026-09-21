@@ -135,8 +135,7 @@ export const STITCH_SERVICES: ServiceItem[] = [
       'الأعمال المدنية والهياكل الخرسانية المسلحة',
       'أعمال التشطيبات الخارجية والداخلية',
     ],
-    imageUrl:
-      'https://images.unsplash.com/photo-1541971875076-8f970d573be6?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/services/general-contracting.jpg',
   },
   {
     id: 'building-maintenance',
@@ -164,8 +163,7 @@ export const STITCH_SERVICES: ServiceItem[] = [
       'صيانة شبكات السباكة وإمدادات المياه والصرف',
       'الفحص الدوري للمباني وأعمال الترميم العامة',
     ],
-    imageUrl:
-      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/services/building-maintenance.jpg',
   },
   {
     id: 'support-services',
@@ -193,8 +191,7 @@ export const STITCH_SERVICES: ServiceItem[] = [
       'توفير الكوادر المساعدة وتجهيز مواقع العمل',
       'التنسيق الميداني العام ودعم متطلبات المشروع',
     ],
-    imageUrl:
-      'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/services/support-services.jpg',
   },
   {
     id: 'project-management',
@@ -222,8 +219,7 @@ export const STITCH_SERVICES: ServiceItem[] = [
       'الإشراف الميداني ومراجعة جودة الأعمال',
       'تقارير دورية للعملاء عن تقدم العمل',
     ],
-    imageUrl:
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/services/project-management.jpg',
   },
   {
     id: 'design-structural-analysis',
@@ -251,8 +247,7 @@ export const STITCH_SERVICES: ServiceItem[] = [
       'التنسيق بين المخططات المعمارية والإنشائية',
       'حلول هندسية عملية لضمان المتانة الإنشائية',
     ],
-    imageUrl:
-      'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/services/design-structural.jpg',
   },
   {
     id: 'project-execution',
@@ -280,8 +275,7 @@ export const STITCH_SERVICES: ServiceItem[] = [
       'مراجعة الجودة في كل مرحلة من مراحل التنفيذ',
       'إنهاء الأعمال والتسليم المنظم للمشروع',
     ],
-    imageUrl:
-      'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/services/project-execution.jpg',
   },
 ];
 
@@ -293,14 +287,13 @@ export const VERIFIED_PROJECTS: ProjectItem[] = [
     titleAr: 'فيلا سكنية — طابق أرضي، طابق أول، سطح وملحق خدمات',
     status: 'Completed',
     statusEn: 'Completed',
-    statusAr: 'منجز',
+    statusAr: 'مكتمل',
     year: '2023',
     value: 'AED 1,250,000',
     valueAr: '1,250,000 درهم',
     scopeEn: 'Residential Villa — Ground Floor, First Floor, Roof & Service Annex',
     scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، سطح وملحق خدمات',
-    imageUrl:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/projects/aqar-land-villa-01.jpg',
     featured: true,
   },
   {
@@ -314,8 +307,7 @@ export const VERIFIED_PROJECTS: ProjectItem[] = [
     valueAr: '2,000,000 درهم',
     scopeEn: 'Residential Villa — Ground Floor, First Floor, Electricity Room & External Fence',
     scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، غرفة كهرباء وسور خارجي',
-    imageUrl:
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/projects/aqar-land-villa-02.jpg',
     featured: true,
   },
   {
@@ -329,8 +321,7 @@ export const VERIFIED_PROJECTS: ProjectItem[] = [
     valueAr: '1,250,000 درهم',
     scopeEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Electricity Room & External Fence',
     scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة كهرباء وسور خارجي',
-    imageUrl:
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/projects/aqar-land-villa-03.jpg',
     featured: true,
   },
   {
@@ -339,14 +330,13 @@ export const VERIFIED_PROJECTS: ProjectItem[] = [
     titleAr: 'إعادة تصميم وتعديلات داخلية — طابق أرضي، طابق أول، ملحق خدمات وتنسيق حدائق',
     status: 'Completed',
     statusEn: 'Completed',
-    statusAr: 'منجز',
+    statusAr: 'مكتمل',
     year: '2024',
     value: 'AED 2,000,000',
     valueAr: '2,000,000 درهم',
     scopeEn: 'Redesign & Interior Modifications — Ground Floor, First Floor, Service Annex & Landscaping',
     scopeAr: 'إعادة تصميم وتعديلات داخلية — طابق أرضي، طابق أول، ملحق خدمات وتنسيق حدائق',
-    imageUrl:
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/projects/aqar-land-villa-04.jpg',
     featured: false,
   },
   {
@@ -360,8 +350,7 @@ export const VERIFIED_PROJECTS: ProjectItem[] = [
     valueAr: '1,750,000 درهم',
     scopeEn: 'Residential Villa — Ground Floor, First Floor, External Majlis & External Fence',
     scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، مجلس خارجي وسور خارجي',
-    imageUrl:
-      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/projects/aqar-land-villa-05.jpg',
     featured: false,
   },
   {
@@ -370,14 +359,13 @@ export const VERIFIED_PROJECTS: ProjectItem[] = [
     titleAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة كهرباء وجدار خارجي',
     status: 'Completed',
     statusEn: 'Completed',
-    statusAr: 'منجز',
+    statusAr: 'مكتمل',
     year: '2024',
     value: 'AED 2,000,000',
     valueAr: '2,000,000 درهم',
     scopeEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Electricity Room & External Wall',
     scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة كهرباء وجدار خارجي',
-    imageUrl:
-      'https://images.unsplash.com/photo-1541971875076-8f970d573be6?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/projects/aqar-land-villa-06.jpg',
     featured: false,
   },
   {
@@ -386,14 +374,13 @@ export const VERIFIED_PROJECTS: ProjectItem[] = [
     titleAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة حارس، غرفة كهرباء وسور خارجي',
     status: 'Completed',
     statusEn: 'Completed',
-    statusAr: 'منجز',
+    statusAr: 'مكتمل',
     year: '2024',
     value: 'AED 2,300,000',
     valueAr: '2,300,000 درهم',
     scopeEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Guard Room, Electrical Room & External Fence',
     scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة حارس، غرفة كهرباء وسور خارجي',
-    imageUrl:
-      'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/projects/aqar-land-villa-07.jpg',
     featured: false,
   },
   {
@@ -402,14 +389,13 @@ export const VERIFIED_PROJECTS: ProjectItem[] = [
     titleAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة كهرباء وسور خارجي',
     status: 'Completed',
     statusEn: 'Completed',
-    statusAr: 'منجز',
+    statusAr: 'مكتمل',
     year: '2025',
     value: 'AED 2,000,000',
     valueAr: '2,000,000 درهم',
     scopeEn: 'Residential Villa — Ground Floor, First Floor, Service Annex, Electricity Room & External Fence',
     scopeAr: 'فيلا سكنية — طابق أرضي، طابق أول، ملحق خدمات، غرفة كهرباء وسور خارجي',
-    imageUrl:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: '/images/projects/aqar-land-villa-08.jpg',
     featured: false,
   },
 ];

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/language-context';
@@ -10,15 +10,27 @@ import {
   X,
   Sun,
   Moon,
+  Monitor,
   ArrowRight,
   ArrowLeft,
 } from 'lucide-react';
 
 export default function Navbar() {
   const { lang, setLang, isAr } = useLanguage();
-  const { isDark, toggleTheme } = useTheme();
+  const { mode, cycleTheme, setMode } = useTheme();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Close menu on ESC key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
 
   const toggleLanguage = () => {
     setLang(lang === 'en' ? 'ar' : 'en');
@@ -34,6 +46,23 @@ export default function Navbar() {
   ];
 
   const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
+
+  const getThemeLabel = () => {
+    if (isAr) {
+      if (mode === 'light') return 'المظهر: نهاري (انقر للتبديل إلى داكن)';
+      if (mode === 'dark') return 'المظهر: داكن (انقر للتبديل إلى النظام)';
+      return 'المظهر: حسب النظام (انقر للتبديل إلى نهاري)';
+    }
+    if (mode === 'light') return 'Theme: Light (Click for Dark)';
+    if (mode === 'dark') return 'Theme: Dark (Click for System)';
+    return 'Theme: System (Click for Light)';
+  };
+
+  const renderThemeIcon = (className = 'h-4 w-4') => {
+    if (mode === 'light') return <Sun className={className} />;
+    if (mode === 'dark') return <Moon className={className} />;
+    return <Monitor className={className} />;
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0]/95 dark:bg-[#181A1B]/95 backdrop-blur-md transition-colors duration-200">
@@ -88,28 +117,29 @@ export default function Navbar() {
             id="nav-lang-toggle"
             type="button"
             onClick={toggleLanguage}
-            className="text-xs font-semibold tracking-widest text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] transition-colors uppercase px-2 py-1 border border-[#E2DED6] dark:border-[#2C2F33]"
+            className="text-xs font-semibold tracking-widest text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] dark:hover:text-[#C85A32] transition-colors uppercase px-2.5 py-1.5 border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32] focus-visible:outline-offset-2"
             aria-label={isAr ? 'Switch to English' : 'التبديل إلى العربية'}
           >
             {isAr ? 'EN' : 'AR'}
           </button>
 
-          {/* Theme Toggle */}
+          {/* Theme Toggle (Light / Dark / System) */}
           <button
             id="nav-theme-toggle"
             type="button"
-            onClick={toggleTheme}
-            className="p-2 text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] dark:hover:text-[#C85A32] transition-colors border border-[#E2DED6] dark:border-[#2C2F33]"
-            aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            onClick={cycleTheme}
+            className="p-2 text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32] dark:hover:text-[#C85A32] transition-colors border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32] focus-visible:outline-offset-2"
+            aria-label={getThemeLabel()}
+            title={getThemeLabel()}
           >
-            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {renderThemeIcon('h-4 w-4')}
           </button>
 
           {/* Start a Project Button */}
           <Link
             id="nav-cta-start-project"
             href="/contact"
-            className="inline-flex items-center gap-2 bg-[#C85A32] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#B84D28] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#C85A32] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-[#B84D28] transition-colors focus-visible:outline-2 focus-visible:outline-[#C85A32] focus-visible:outline-offset-2"
           >
             <span>{isAr ? 'ابدأ مشروعك' : 'Start a Project'}</span>
             <ArrowIcon className="h-3.5 w-3.5" />
@@ -117,27 +147,30 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu & Quick Controls */}
-        <div className="flex sm:hidden items-center gap-3">
+        <div className="flex sm:hidden items-center gap-2.5">
           <button
             type="button"
             onClick={toggleLanguage}
-            className="text-xs font-semibold tracking-wider text-[#181A1B] dark:text-[#F7F5F0] px-2 py-1 border border-[#E2DED6] dark:border-[#2C2F33]"
+            className="text-xs font-semibold tracking-wider text-[#181A1B] dark:text-[#F7F5F0] px-2 py-1 border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32]"
+            aria-label={isAr ? 'Switch to English' : 'التبديل إلى العربية'}
           >
             {isAr ? 'EN' : 'AR'}
           </button>
           <button
+            id="mobile-theme-toggle-btn"
             type="button"
-            onClick={toggleTheme}
-            className="p-1.5 text-[#181A1B] dark:text-[#F7F5F0] border border-[#E2DED6] dark:border-[#2C2F33]"
-            aria-label="Toggle theme"
+            onClick={cycleTheme}
+            className="p-1.5 text-[#181A1B] dark:text-[#F7F5F0] border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32]"
+            aria-label={getThemeLabel()}
+            title={getThemeLabel()}
           >
-            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {renderThemeIcon('h-4 w-4')}
           </button>
           <button
             id="mobile-menu-toggle-btn"
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-[#181A1B] dark:text-[#F7F5F0] border border-[#E2DED6] dark:border-[#2C2F33]"
+            className="p-2 text-[#181A1B] dark:text-[#F7F5F0] border border-[#E2DED6] dark:border-[#2C2F33] focus-visible:outline-2 focus-visible:outline-[#C85A32]"
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle menu"
           >
@@ -165,7 +198,34 @@ export default function Navbar() {
               </Link>
             ))}
           </nav>
-          <div className="pt-4">
+          <div className="pt-4 space-y-3">
+            <div className="flex items-center justify-between border border-[#E2DED6] dark:border-[#2C2F33] p-1.5 bg-[#EFECE6]/50 dark:bg-[#2C2F33]/30 text-xs font-medium">
+              <span className="px-2 text-[#2C2F33]/70 dark:text-[#E2DED6]/70">
+                {isAr ? 'المظهر' : 'Theme'}
+              </span>
+              <div className="flex items-center gap-1">
+                {(['light', 'dark', 'system'] as const).map((tMode) => {
+                  const isActive = mode === tMode;
+                  const label = tMode === 'light' ? (isAr ? 'نهاري' : 'Light') : tMode === 'dark' ? (isAr ? 'داكن' : 'Dark') : (isAr ? 'تلقائي' : 'Auto');
+                  return (
+                    <button
+                      key={tMode}
+                      type="button"
+                      onClick={() => setMode(tMode)}
+                      className={`px-2.5 py-1 text-xs font-semibold transition-colors ${
+                        isActive
+                          ? 'bg-[#C85A32] text-white'
+                          : 'text-[#2C2F33] dark:text-[#E2DED6] hover:text-[#C85A32]'
+                      }`}
+                      aria-label={`${label} mode`}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}

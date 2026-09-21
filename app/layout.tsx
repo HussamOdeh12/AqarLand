@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1541971875076-8f970d573be6?q=80&w=1200&auto=format&fit=crop',
+        url: '/images/hero/aqar-land-hero.jpg',
         width: 1200,
         height: 630,
         alt: 'Aqar Land Contracting & Maintenance Services UAE',
@@ -76,9 +76,7 @@ export const metadata: Metadata = {
       "Aqar Land: Premier general contracting, building maintenance, and support services in Abu Dhabi and across the UAE. Architectural precision and enduring execution.",
     site: '@AqarLand195',
     creator: '@AqarLand195',
-    images: [
-      'https://images.unsplash.com/photo-1541971875076-8f970d573be6?q=80&w=1200&auto=format&fit=crop',
-    ],
+    images: ['/images/hero/aqar-land-hero.jpg'],
   },
   robots: {
     index: true,
@@ -112,6 +110,30 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('aqar_theme');
+                  var isDark = false;
+                  if (saved === 'dark') {
+                    isDark = true;
+                  } else if (saved === 'light') {
+                    isDark = false;
+                  } else {
+                    isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  }
+                  if (isDark) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
         <JsonLd />
       </head>
       <body
@@ -121,6 +143,12 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             <div className="flex min-h-screen flex-col">
+              <a
+                href="#main-content"
+                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[#C85A32] focus:text-white focus:outline-none text-xs font-semibold uppercase tracking-wider"
+              >
+                Skip to content / التخطي إلى المحتوى
+              </a>
               <Navbar />
               <main id="main-content" className="flex-1">
                 {children}

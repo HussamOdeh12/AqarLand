@@ -148,12 +148,11 @@ export default function QualityPage() {
               <div className="relative border border-[#E2DED6] dark:border-[#2C2F33] p-3 bg-[#F7F5F0] dark:bg-[#2C2F33]/40">
                 <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#2C2F33]">
                   <Image
-                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1200&auto=format&fit=crop"
-                    alt="On-site Engineering Supervision"
+                    src="/images/quality/site-supervision.jpg"
+                    alt={isAr ? 'معايير الإشراف الميداني — عقار لاند' : 'Site Supervision Standards — AQAR LAND'}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
-                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-[#181A1B]/15" />
                 </div>

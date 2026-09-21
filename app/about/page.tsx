@@ -88,12 +88,11 @@ export default function AboutPage() {
               <div className="relative border border-[#E2DED6] dark:border-[#2C2F33] p-3 bg-[#EFECE6] dark:bg-[#2C2F33]/40">
                 <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#2C2F33]">
                   <Image
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop"
-                    alt="Aqar Land Abu Dhabi"
+                    src="/images/about/about-hq.jpg"
+                    alt={isAr ? 'المقر الرئيسي — عقار لاند أبوظبي' : 'AQAR LAND Abu Dhabi Operations'}
                     fill
                     sizes="(max-width: 1024px) 100vw, 40vw"
                     className="object-cover"
-                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-[#181A1B]/15" />
                 </div>
