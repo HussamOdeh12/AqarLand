@@ -15,7 +15,7 @@ export default function HomePage() {
   const featuredProjects = VERIFIED_PROJECTS.slice(0, 3);
 
   return (
-    <div className="flex flex-col bg-[#F7F5F0] dark:bg-[#181A1B] text-[#181A1B] dark:text-[#F7F5F0] transition-colors duration-200">
+    <div className="flex flex-col bg-[#F7F5F0] dark:bg-[#181A1B] text-[#181A1B] dark:text-[#F7F5F0]">
       {/* 1. Large Architectural Hero Section */}
       <section
         id="hero-section"
@@ -89,8 +89,8 @@ export default function HomePage() {
                     alt={isAr ? 'مشروع سكني — عقار لاند أبوظبي' : 'AQAR LAND residential project — Abu Dhabi'}
                     fill
                     priority
-                    quality={85}
-                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 500px, 460px"
+                    quality={78}
+                    sizes="(max-width: 640px) calc(100vw - 72px), (max-width: 1024px) 500px, 460px"
                     className="object-cover object-center"
                   />
                   {/* Subtle architectural overlay */}

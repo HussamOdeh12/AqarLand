@@ -11,21 +11,19 @@ const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-serif',
   display: 'swap',
-  weight: ['400', '600'],
 });
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
 });
 
 const notoSansArabic = Noto_Sans_Arabic({
   subsets: ['arabic'],
   variable: '--font-arabic',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -130,7 +128,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning
-        className="min-h-screen flex flex-col font-sans bg-[#F7F5F0] text-[#181A1B] dark:bg-[#181A1B] dark:text-[#F7F5F0] transition-colors duration-200"
+        className="min-h-screen flex flex-col font-sans bg-[#F7F5F0] text-[#181A1B] dark:bg-[#181A1B] dark:text-[#F7F5F0]"
       >
         <ThemeProvider>
           <LanguageProvider>
