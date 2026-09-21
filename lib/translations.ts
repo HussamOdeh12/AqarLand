@@ -37,8 +37,8 @@ export const UI_STRINGS = {
     label: { en: 'SELECTED WORKS', ar: 'مشاريع مختارة' },
     heading: { en: 'Recent Architectural & Contracting Works', ar: 'أعمال مقاولات وهندسة حديثة' },
     subheading: {
-      en: 'A curated selection of our general contracting, industrial facilities, and building maintenance projects delivered across the UAE.',
-      ar: 'مختارات من مشاريع المقاولات العامة والمنشآت الصناعية وصيانة المباني المنفذة في دولة الإمارات.',
+      en: 'A selection of documented residential construction and architectural modification works delivered by AQAR LAND.',
+      ar: 'مجموعة من مشاريع البناء السكني والتعديلات المعمارية الموثقة المنفذة بواسطة عقار لاند.',
     },
     viewAll: { en: 'Explore All Projects', ar: 'استعراض كافة المشاريع' },
   },

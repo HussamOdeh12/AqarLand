@@ -31,8 +31,8 @@ export default function QualityPage() {
     },
     {
       num: '03',
-      titleEn: 'Customer Satisfaction & Transparency',
-      titleAr: 'رضا العملاء والشفافية',
+      titleEn: 'Customer Satisfaction',
+      titleAr: 'رضا العملاء',
       descEn:
         'Building enduring client relationships based on active communication, responsive collaboration, and exceeding expectations on every deliverable.',
       descAr:
@@ -40,8 +40,8 @@ export default function QualityPage() {
     },
     {
       num: '04',
-      titleEn: 'Sustainability & Environmental Awareness',
-      titleAr: 'الاستدامة والمسؤولية البيئية',
+      titleEn: 'Sustainability',
+      titleAr: 'الاستدامة',
       descEn:
         'Prioritizing sustainable practices, efficient resource utilization, and long-term durability in built environments across the UAE.',
       descAr:

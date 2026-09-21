@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
-      url: `${baseUrl}/quality-approach`,
+      url: `${baseUrl}/quality`,
       lastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.85,

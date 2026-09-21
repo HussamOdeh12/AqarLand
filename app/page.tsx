@@ -16,10 +16,6 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col bg-[#F7F5F0] dark:bg-[#181A1B] text-[#181A1B] dark:text-[#F7F5F0] transition-colors duration-200">
-      <div
-        style={{ display: 'none' }}
-        dangerouslySetInnerHTML={{ __html: '<!-- AQAR-BUILD-CHECK-2026-09-21 -->' }}
-      />
       {/* 1. Large Architectural Hero Section */}
       <section
         id="hero-section"

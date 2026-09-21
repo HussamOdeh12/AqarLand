@@ -46,8 +46,8 @@ export default function AboutPage() {
               <div className="space-y-4 text-base text-[#2C2F33]/85 dark:text-[#E2DED6]/85 leading-relaxed font-sans">
                 <p>
                   {isAr
-                    ? 'تعمل مؤسسة عقارلاند للمقاولات العامة والنقل من مقرها في أبوظبي لتقديم خدمات هندسية وإنشائية متكاملة تلبي احتياجات المشاريع السكنية، التجارية، والصناعية. نحن نركز على تحقيق أعلى درجات الجودة والمتانة الإنشائية.'
-                    : 'Operating from its headquarters in Abu Dhabi, Aqarland Contracting & Transporting Est. provides integrated engineering and contracting works across residential, commercial, and industrial developments. We build with an enduring focus on structural integrity and craftsmanship.'}
+                    ? 'تعمل مؤسسة عقارلاند للمقاولات العامة والنقل من مقرها في أبوظبي لتقديم خدمات هندسية وإنشائية متكاملة تلبي احتياجات المشاريع السكنية والتجارية. نحن نركز على تحقيق أعلى درجات الجودة والمتانة الإنشائية.'
+                    : 'Operating from its headquarters in Abu Dhabi, Aqarland Contracting & Transporting Est. provides integrated engineering and contracting works across residential and commercial developments. We build with an enduring focus on structural integrity and craftsmanship.'}
                 </p>
                 <p>
                   {isAr

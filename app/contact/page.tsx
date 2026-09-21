@@ -112,15 +112,16 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Legal Notice */}
+              {/* Entity Information */}
               <div className="border border-[#E2DED6] dark:border-[#2C2F33] p-6 text-xs text-[#2C2F33]/70 dark:text-[#E2DED6]/70 space-y-2">
                 <span className="font-semibold uppercase tracking-wider text-[#C85A32] block">
-                  {isAr ? 'الترخيص والاعتماد' : 'Registration & Licensure'}
+                  {isAr ? 'الكيان المعتمد' : 'Entity Information'}
                 </span>
+                <p className="font-medium text-[#181A1B] dark:text-[#F7F5F0]">
+                  {isAr ? COMPANY_DETAILS.legalNameAr : COMPANY_DETAILS.legalNameEn}
+                </p>
                 <p>
-                  {isAr
-                    ? 'مؤسسة عقارلاند للمقاولات العامة والنقل مسجلة ومرخصة رسمياً في إمارة أبوظبي، دولة الإمارات العربية المتحدة.'
-                    : 'Aqarland Contracting & Transporting Est. is an officially registered commercial entity operating under UAE commercial regulations in the Emirate of Abu Dhabi.'}
+                  {isAr ? 'المقر الرئيسي: أبوظبي، دولة الإمارات العربية المتحدة' : 'Headquarters: Abu Dhabi, United Arab Emirates'}
                 </p>
               </div>
             </div>

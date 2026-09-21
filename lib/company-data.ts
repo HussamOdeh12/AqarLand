@@ -76,8 +76,8 @@ export const COMPANY_DETAILS = {
     ar: 'مهمتنا هي تقديم خدمات وحلول عالية الجودة تتجاوز توقعات عملائنا، مع التركيز على رضا العملاء والتميز المهني والاستدامة.',
   },
   vision: {
-    en: "To be the UAE's leading provider of reliable contracting and maintenance services, fostering sustainable community development and driving innovation in every sector.",
-    ar: 'أن نكون المزود الرائد في دولة الإمارات لخدمات المقاولات والصيانة الموثوقة، مع تعزيز التنمية المجتمعية المستدامة ودفع الابتكار في كل قطاع.',
+    en: 'To set a high standard in property management and construction, creating sustainable, valuable and enduring built environments.',
+    ar: 'إرساء معايير رفيعة في إدارة العقارات والبناء، وإيجاد بيئات عمرانية مستدامة وقيمة وطويلة الأمد.',
   },
   values: [
     {

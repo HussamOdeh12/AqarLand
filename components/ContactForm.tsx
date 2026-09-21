@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useLanguage } from '@/lib/language-context';
 import { UI_STRINGS } from '@/lib/translations';
 import { COMPANY_DETAILS, STITCH_SERVICES } from '@/lib/company-data';
-import { Check, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Check, ArrowRight, ArrowLeft, Mail, Phone, MessageSquare } from 'lucide-react';
 
 export default function ContactForm() {
   const { lang, isAr } = useLanguage();
@@ -18,8 +18,17 @@ export default function ContactForm() {
     message: '',
   });
 
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'prepared' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const selectedService = STITCH_SERVICES.find((s) => s.slug === formData.discipline) || STITCH_SERVICES[0];
+
+  const emailSubject = `Inquiry: ${selectedService.titleEn} - ${formData.name || 'Client'}`;
+  const emailBody = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'Not provided'}\nDiscipline: ${selectedService.titleEn} (${selectedService.number})\n\nProject Specifications / Message:\n${formData.message}`;
+
+  const mailtoLink = `mailto:${COMPANY_DETAILS.contact.email}?subject=${encodeURIComponent(
+    emailSubject
+  )}&body=${encodeURIComponent(emailBody)}`;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,17 +50,7 @@ export default function ContactForm() {
       return;
     }
 
-    setStatus('submitting');
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        discipline: 'general-contracting',
-        message: '',
-      });
-    }, 600);
+    setStatus('prepared');
   };
 
   return (
@@ -65,36 +64,71 @@ export default function ContactForm() {
         </h3>
         <p className="mt-2 text-xs sm:text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 font-sans">
           {isAr
-            ? 'أرسل مواصفات مشروعك أو استفسارك الهندسي مباشرة إلى مقرنا في أبوظبي.'
-            : 'Submit your project specifications or maintenance inquiry directly to our engineering division.'}
+            ? 'أدخل تفاصيل مشروعك للتواصل المباشر مع فريقنا الهندسي في أبوظبي.'
+            : 'Enter your project specifications for direct communication with our Abu Dhabi engineering team.'}
         </p>
       </div>
 
-      {status === 'success' ? (
-        <div className="border border-[#C85A32] bg-[#F7F5F0] dark:bg-[#181A1B] p-8 text-center space-y-4">
+      {status === 'prepared' ? (
+        <div className="border border-[#C85A32] bg-[#F7F5F0] dark:bg-[#181A1B] p-8 text-center space-y-6">
           <div className="h-10 w-10 bg-[#C85A32] text-white flex items-center justify-center mx-auto">
             <Check className="h-5 w-5" />
           </div>
-          <h4 className="font-serif text-xl text-[#181A1B] dark:text-[#F7F5F0]">
-            {isAr ? 'تم استلام استفساركم بنجاح' : 'Inquiry Received Successfully'}
-          </h4>
-          <p className="text-xs sm:text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 max-w-md mx-auto">
-            {UI_STRINGS.contact.successMsg[lang]}
-          </p>
-          <div className="pt-4">
+          <div className="space-y-2">
+            <h4 className="font-serif text-xl text-[#181A1B] dark:text-[#F7F5F0]">
+              {isAr ? 'تم تجهيز تفاصيل الاستفسار' : 'Inquiry Details Prepared'}
+            </h4>
+            <p className="text-xs sm:text-sm text-[#2C2F33]/80 dark:text-[#E2DED6]/80 max-w-md mx-auto leading-relaxed">
+              {isAr
+                ? 'يمكنك إرسال الاستفسار مباشرة عبر بريدك الإلكتروني المعتمد أو التواصل فوراً مع مكتبنا في أبوظبي.'
+                : 'You can dispatch this inquiry directly via your email client or contact our Abu Dhabi office immediately.'}
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <a
+              href={mailtoLink}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#C85A32] px-6 py-3.5 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors"
+            >
+              <Mail className="h-4 w-4" />
+              <span>{isAr ? 'فتح في تطبيق البريد' : 'Open in Email Client'}</span>
+            </a>
+            <a
+              href={COMPANY_DETAILS.contact.landlineTel}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-[#E2DED6] dark:border-[#2C2F33] px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0] hover:border-[#C85A32] transition-colors"
+            >
+              <Phone className="h-4 w-4 text-[#C85A32]" />
+              <span>{isAr ? 'اتصال بالمكتب' : 'Call Office'}</span>
+            </a>
+            <a
+              href={COMPANY_DETAILS.contact.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-[#E2DED6] dark:border-[#2C2F33] px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0] hover:border-[#C85A32] transition-colors"
+            >
+              <MessageSquare className="h-4 w-4 text-[#C85A32]" />
+              <span>WhatsApp</span>
+            </a>
+          </div>
+
+          <div className="pt-2 border-t border-[#E2DED6] dark:border-[#2C2F33]">
             <button
               type="button"
               onClick={() => setStatus('idle')}
-              className="border border-[#E2DED6] dark:border-[#2C2F33] px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#181A1B] dark:text-[#F7F5F0] hover:border-[#C85A32]"
+              className="text-xs text-[#2C2F33]/70 dark:text-[#E2DED6]/70 hover:text-[#C85A32] underline underline-offset-4 transition-colors"
             >
-              {isAr ? 'إرسال استفسار آخر' : 'Send Another Inquiry'}
+              {isAr ? 'تعديل البيانات المدخلة' : 'Edit Inquiry Details'}
             </button>
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6" noValidate>
           {status === 'error' && (
-            <div className="border border-red-500/50 bg-red-500/10 p-4 text-xs text-red-600 dark:text-red-400">
+            <div
+              role="alert"
+              aria-live="polite"
+              className="border border-red-500/50 bg-red-500/10 p-4 text-xs text-red-600 dark:text-red-400 font-medium"
+            >
               {errorMessage}
             </div>
           )}
@@ -111,6 +145,7 @@ export default function ContactForm() {
                 id="contact-name"
                 type="text"
                 required
+                aria-required="true"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#C85A32] focus:outline-none transition-colors"
@@ -129,6 +164,7 @@ export default function ContactForm() {
                 id="contact-email"
                 type="email"
                 required
+                aria-required="true"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#C85A32] focus:outline-none transition-colors"
@@ -189,6 +225,7 @@ export default function ContactForm() {
               id="contact-message"
               rows={4}
               required
+              aria-required="true"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               className="w-full border border-[#E2DED6] dark:border-[#2C2F33] bg-[#F7F5F0] dark:bg-[#181A1B] px-4 py-3 text-sm text-[#181A1B] dark:text-[#F7F5F0] focus:border-[#C85A32] focus:outline-none transition-colors resize-none"
@@ -202,10 +239,9 @@ export default function ContactForm() {
 
           <button
             type="submit"
-            disabled={status === 'submitting'}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#C85A32] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors disabled:opacity-50"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#C85A32] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white hover:bg-[#B84D28] transition-colors"
           >
-            <span>{status === 'submitting' ? UI_STRINGS.contact.submitting[lang] : UI_STRINGS.contact.submitBtn[lang]}</span>
+            <span>{UI_STRINGS.contact.submitBtn[lang]}</span>
             <ArrowIcon className="h-4 w-4" />
           </button>
         </form>

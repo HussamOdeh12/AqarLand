@@ -38,8 +38,8 @@ export default function ProjectsPage() {
             </h1>
             <p className="text-base sm:text-lg text-[#2C2F33]/85 dark:text-[#E2DED6]/85 font-sans leading-relaxed pt-2">
               {isAr
-                ? 'مشاريع المقاولات العامة، صيانة المنشآت، والتنفيذ الإنشائي الموثقة في ملف أعمال مؤسسة عقار لاند.'
-                : 'General contracting, civil execution, and building maintenance projects documented in the Aqar Land corporate profile.'}
+                ? 'مجموعة من مشاريع البناء السكني والتعديلات المعمارية الموثقة المنفذة بواسطة مؤسسة عقار لاند.'
+                : 'A selection of documented residential construction and architectural modification works delivered by AQAR LAND.'}
             </p>
           </div>
         </div>
