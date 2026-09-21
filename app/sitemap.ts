@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
-      url: `${baseUrl}/quality`,
+      url: `${baseUrl}/quality-approach`,
       lastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.85,
@@ -40,24 +40,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'monthly' as const,
       priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/general-contracting`,
-      lastModified,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/building-maintenance`,
-      lastModified,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/support-services`,
-      lastModified,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/privacy-policy`,
